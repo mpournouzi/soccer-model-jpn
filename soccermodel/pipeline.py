@@ -13,7 +13,7 @@ from .elo import ClubEloWeights, run_elo
 from .goals import LambdaLookup, MatchModel, compute_tilts
 from .league import league_table, season_outputs, simulate_season
 from .params import TournamentParams, tournament_stats
-from .poisson import over_prob
+from .poisson import calibrate_draw_rate, over_prob
 from .report import write_report
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -121,6 +121,12 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print) -> d
     for key, lg in cfg['leagues'].items():
         tournament = lg['tournament']
         pred_params = params.prediction(tournament, lg.get('predict'))
+        draw_model = cfg.get('prediction_params', {}).get('draw_model', 'league_rate')
+        if draw_model == 'calibrated' and 'draw_rate' not in (lg.get('predict') or {}):
+            past = history[history['tournament'] == tournament]
+            pred_params['league_draw_rate'] = pred_params['draw_rate']
+            pred_params['draw_rate'] = calibrate_draw_rate(
+                past['home_elo'] - past['away_elo'] + pred_params['hfa'], pred_params['draw_rate'])
         lookup = LambdaLookup(pred_params['draw_rate'], pred_params['total_goals'], lookup_step, CACHE_DIR)
         model = MatchModel(ratings, tilts, pred_params, lookup)
 

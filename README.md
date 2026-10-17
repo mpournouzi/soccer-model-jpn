@@ -57,6 +57,7 @@ python -m soccermodel update japan
 |---|---|---|
 | `elo.lambda_match` | `win_prob` (original) / `expected_score` | How an Elo edge becomes Poisson goal rates for the ClubElo goal weights. `expected_score` stops counting draws twice. |
 | `prediction_params.method` | `history` / `shrink` | Pricing HFA, draw rate and goals/game from all seasons, or this season blended with earlier ones (`prior_matches`). |
+| `prediction_params.draw_model` | `league_rate` / `calibrated` | Davidson draw parameter set to the league draw rate, or calibrated per league so average predicted draws match observed draws. |
 | `penalties.method` | `coin` / `skill` | Cup shoot-outs 50/50, or per-team conversion rates from `data/japan/penalties.csv` (5 kicks each, then sudden death). |
 
 ## Layout

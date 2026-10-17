@@ -15,7 +15,7 @@ elo:
   # How the ClubElo goal weights turn an Elo edge into Poisson goal rates:
   #   win_prob        Poisson P(win) = Elo expected score (original scripts; counts draws twice)
   #   expected_score  Poisson P(win) + P(draw)/2 = Elo expected score
-  lambda_match: win_prob
+  lambda_match: expected_score
 
 # HFA / draw rate / goals per game used to price fixtures (Elo updates are unaffected):
 #   history  all seasons equally
@@ -23,10 +23,14 @@ elo:
 prediction_params:
   method: history
   prior_matches: 300           # backtest: 300-600 helped slightly, 50-150 hurt
+  # league_rate  Davidson draw parameter = league draw rate (original; under-predicts draws)
+  # calibrated   fitted per league so the average predicted draw rate over the league's
+  #              real matchups equals the observed rate (backtest: -0.07% log loss)
+  draw_model: calibrated
 
 # Cup shoot-outs: coin = 50/50, skill = per-team conversion rates from penalties.csv
 penalties:
-  method: coin
+  method: skill
   file: penalties.csv
   prior_kicks: 70               # shrinkage for teams with scored/missed but no `skill` value
   default_skill: 0.75           # teams not in the file

@@ -62,6 +62,19 @@ def davidson(elo_diff_adj, nu: float, scale: float = 400):
     return theta / denom, nu * root / denom, 1 / denom
 
 
+def calibrate_draw_rate(elo_diffs_adj, target_rate: float, scale: float = 400) -> float:
+    """
+    Davidson's nu sets the draw rate between *equal* teams; real fixtures are mostly unequal,
+    so feeding it the league-wide draw rate under-predicts draws. Find the equal-teams draw
+    rate whose average draw probability over these matchups equals target_rate
+    (moment matching - for Davidson this coincides with the maximum-likelihood nu).
+    """
+    from scipy.optimize import brentq
+    d = np.asarray(elo_diffs_adj, dtype=float)
+    nu = brentq(lambda v: davidson(d, v, scale)[1].mean() - target_rate, 1e-4, 20)
+    return nu / (2 + nu)
+
+
 def logistic(elo_diff_adj: float, scale: float = 400) -> float:
     return 1 / (1 + 10 ** (-elo_diff_adj / scale))
 

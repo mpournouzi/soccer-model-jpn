@@ -42,7 +42,9 @@ def write_report(summary: dict, out_dir: Path):
     for lg in summary['leagues'].values():
         p = lg['params']
         lines += [f"## {lg['name']}", '',
-                  f"HFA {p['hfa']:.1f} Elo · draw rate {p['draw_rate']:.3f} · goals/game {p['total_goals']:.2f} · "
+                  f"HFA {p['hfa']:.1f} Elo · draw rate {p['draw_rate']:.3f}"
+                  + (f" (level teams; league average {p['league_draw_rate']:.3f})" if 'league_draw_rate' in p else '')
+                  + f" · goals/game {p['total_goals']:.2f} · "
                   f"{lg['remaining']} matches left", '']
         if len(lg['next']):
             lines += ['### Next matches', '', _md(_odds_view(lg['next'])), '']

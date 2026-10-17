@@ -92,3 +92,11 @@ def test_shrink_without_current_season_equals_history_before_it():
     shrink = TournamentParams({'prediction_params': {'method': 'shrink'}}, stats).prediction('L')
     hist = TournamentParams({}, stats).prediction('L')
     assert shrink == pytest.approx(hist)
+
+
+def test_calibrated_draw_rate_matches_average_and_exceeds_league_rate():
+    from soccermodel.poisson import calibrate_draw_rate
+    diffs = np.random.default_rng(0).normal(30, 110, 5000)
+    level = calibrate_draw_rate(diffs, 0.26)
+    assert level > 0.26
+    assert davidson(diffs, nu_from_draw_rate(level))[1].mean() == pytest.approx(0.26, abs=1e-6)
