@@ -73,6 +73,21 @@ Elo updates use the all-history values (`hfa: auto`) unless the config fixes a n
   (50 matches: +0.18% log loss; 150: +0.03%); only a heavy prior helped, and only slightly (300: −0.01%; 600: −0.02%).
   It's left off.
 
+  *Direct test (RMSE of the parameter itself):* for 30 league-seasons since 2019, the clock was stopped at 0–80% of the
+  season, each method's estimate was compared with what the **rest** of that season produced, and errors were
+  weighted by matches remaining.
+
+  | Method | HFA RMSE (Elo pts) | Draw-rate RMSE (pts) |
+  |---|---|---|
+  | History (current) | 28.2 | 3.98 |
+  | Season-to-date only | 56.0 | 5.92 |
+  | Shrink, prior 50 / 150 / 300 / 600 | 35.0 / 30.0 / 28.5 / 28.1 | 4.35 / 4.03 / 3.96 / 3.95 |
+
+  A full season (about 380 matches) only pins down that season's true HFA to about ±21 Elo points by chance alone.
+  History's error at the start of the season is 24 points, so genuine season-to-season variation in HFA is only about
+  √(24² − 21²) ≈ 12 Elo points: there is little real movement for a recency model to track. Log loss is the right metric
+  for judging prices; the parameter RMSE is the sharper test for judging the estimator, and both point the same way.
+
 Tournaments with fewer than 20 matches fall back to defaults and produce a warning.
 
 ## 3. Elo ratings (`elo.py`)
@@ -230,5 +245,5 @@ Each of the 20,000 runs plays out the rest of the bracket:
 | Draws fall away with the Elo gap faster than Davidson allows (27.9% actual v 26.7% model for gaps under 50; 23.2% v 25.6% at 100–150) | Idea: a second "draw decay" parameter fitted by maximum likelihood |
 | Ratings fixed within simulations (a team doesn't get stronger after winning simulated games) | Accepted for now |
 | Elo uses the score after extra time; tilts and parameters use 90-minute scores | Intentional |
-| Recency-weighted HFA/draw rate | Built (`shrink`), off: no meaningful gain in the backtest |
+| Recency-weighted HFA/draw rate | Built (`shrink`), off: no gain in log loss or in parameter RMSE; true HFA varies only about ±12 Elo between seasons |
 | Shoot-out results not stored | Adding a `winner` to results would allow backtesting penalty skill |
