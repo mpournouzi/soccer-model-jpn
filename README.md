@@ -45,7 +45,7 @@ python -m soccermodel update japan
    from Poisson rates fitted to each tournament's goals per game). Uses the final score incl. extra time.
 3. **Tilts** — each team's tendency for high/low-scoring games (0.98/0.02 exponential update).
 4. **Match prices** — 1X2 from Elo-Davidson; expected goals from the lambda lookup × both teams' tilts;
-   O/U 2.5 from Poisson. Power-method margins (1.11 for 1X2, 1.09 for O/U) and rounded to the price ladder.
+   O/U 2.5 from Poisson. Configurable power-method margins (1.08 for 1X2, 1.08 for O/U) and rounded to the price ladder.
 5. **Season simulation** — 20,000 runs of the remaining fixtures (Davidson outcome probabilities,
    Poisson scorelines; ranked on points, GD, goals scored). Outright markets are defined per league in
    the config and priced yes/no with a 1.08 margin.
