@@ -12,6 +12,24 @@ elo:
   lookup_step: 10               # Elo-diff resolution of the ClubElo goal-weight tables
   expg_lookup_step: 5           # Elo-diff resolution of the expected-goals lookup
   default_k: 30
+  # How the ClubElo goal weights turn an Elo edge into Poisson goal rates:
+  #   win_prob        Poisson P(win) = Elo expected score (original scripts; counts draws twice)
+  #   expected_score  Poisson P(win) + P(draw)/2 = Elo expected score
+  lambda_match: win_prob
+
+# HFA / draw rate / goals per game used to price fixtures (Elo updates are unaffected):
+#   history  all seasons equally
+#   shrink   this season blended with earlier seasons, which count as `prior_matches` matches
+prediction_params:
+  method: history
+  prior_matches: 300           # backtest: 300-600 helped slightly, 50-150 hurt
+
+# Cup shoot-outs: coin = 50/50, skill = per-team conversion rates from penalties.csv
+penalties:
+  method: coin
+  file: penalties.csv
+  prior_kicks: 70               # shrinkage for teams with scored/missed but no `skill` value
+  default_skill: 0.75           # teams not in the file
 
 # Elo update settings per tournament label used in results.csv.
 # hfa: auto  -> 400*log10(home wins / away wins) over all history, recomputed every run.

@@ -69,16 +69,25 @@ def logistic(elo_diff_adj: float, scale: float = 400) -> float:
 # --------------------------
 # Expected goals solver
 # --------------------------
-def solve_lambdas(elo_diff_adj: float, target_p_win: float, total_goals: float):
+def expected_score(lh: float, la: float) -> float:
+    """P(home win) + P(draw) / 2 - the Poisson counterpart of the Elo expected score."""
+    m = score_matrix(lh, la)
+    return np.tril(m, -1).sum() + np.trace(m) / 2
+
+
+def solve_lambdas(elo_diff_adj: float, target: float, total_goals: float, metric: str = 'win'):
     """
-    Find (lambda_home, lambda_away) whose Poisson home-win probability matches
-    target_p_win while lambda_home + lambda_away stays close to total_goals.
+    Find (lambda_home, lambda_away) whose Poisson home-win probability (metric='win') or
+    expected score (metric='score') matches target, while lambda_home + lambda_away stays
+    close to total_goals.
     """
+    measure = win_prob if metric == 'win' else expected_score
+
     def objective(params):
         lh, la = params
         if lh <= 0.01 or la <= 0.01:
             return 1e10
-        return 100 * (win_prob(lh, la) - target_p_win) ** 2 + (lh + la - total_goals) ** 2
+        return 100 * (measure(lh, la) - target) ** 2 + (lh + la - total_goals) ** 2
 
     if elo_diff_adj >= 0:
         ratio = 1 + elo_diff_adj / 400

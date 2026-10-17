@@ -2,7 +2,10 @@
 Elo ratings with tournament-specific dynamic ClubElo goal weighting
 (port of elo_upd_jpn.py / elo_upd_gr.py).
 
-  1. Map Elo difference -> (lambda_H, lambda_A) using the tournament's average total goals
+  1. Map Elo difference -> (lambda_H, lambda_A) using the tournament's average total goals.
+     lambda_match decides what the Poisson rates must reproduce:
+       win_prob        P(home win) = Elo expected score (original scripts; counts draws twice)
+       expected_score  P(home win) + P(draw)/2 = Elo expected score
   2. norm = E[sqrt(margin) | win] under those Poisson rates
   3. K_adjusted = K * sqrt(margin) / norm   (draws: K / mean(norm_home, norm_away))
 """
@@ -20,9 +23,13 @@ TOTALS_GRID = np.round(np.arange(2.0, 3.51, 0.1), 1)
 
 
 class ClubEloWeights:
-    def __init__(self, step: int = 10, cache_dir: Path = None):
+    def __init__(self, step: int = 10, cache_dir: Path = None, lambda_match: str = 'win_prob'):
+        if lambda_match not in ('win_prob', 'expected_score'):
+            raise ValueError(f"elo.lambda_match must be win_prob or expected_score, not {lambda_match!r}")
         self.step = step
-        self.cache_path = Path(cache_dir) / f'clubelo_norms_step{step}.pkl' if cache_dir else None
+        self.metric = 'win' if lambda_match == 'win_prob' else 'score'
+        suffix = '' if lambda_match == 'win_prob' else '_score'
+        self.cache_path = Path(cache_dir) / f'clubelo_norms_step{step}{suffix}.pkl' if cache_dir else None
         self.tables = {}
         if self.cache_path and self.cache_path.exists():
             with open(self.cache_path, 'rb') as f:
@@ -34,7 +41,7 @@ class ClubEloWeights:
         if total not in self.tables:
             table = {}
             for d in range(-ELO_RANGE, ELO_RANGE + 1, self.step):
-                lh, la = solve_lambdas(d, logistic(d), total)
+                lh, la = solve_lambdas(d, logistic(d), total, self.metric)
                 table[d] = margin_norms(lh, la)
             self.tables[total] = table
             self._dirty = True

@@ -74,3 +74,21 @@ def test_japan_data_is_valid():
     cfg = load_config(ROOT / 'data' / 'japan')
     results = load_results(cfg)
     validate(results, load_initial_elo(cfg), cfg)
+
+
+def test_shootout_probabilities():
+    from soccermodel.cup import shootout_win_prob
+    assert shootout_win_prob(0.75, 0.75) == pytest.approx(0.5)
+    p = shootout_win_prob(0.80, 0.70)
+    assert 0.5 < p < 0.75
+    assert p + shootout_win_prob(0.70, 0.80) == pytest.approx(1)
+
+
+def test_shrink_without_current_season_equals_history_before_it():
+    from soccermodel.params import TournamentParams, tournament_stats
+    res = pd.DataFrame({'tournament': ['L'] * 40, 'season': ['old'] * 40,
+                        'hg_90': [2, 1, 0, 1] * 10, 'ag_90': [0, 1, 1, 0] * 10})
+    stats = tournament_stats(res, 'new')
+    shrink = TournamentParams({'prediction_params': {'method': 'shrink'}}, stats).prediction('L')
+    hist = TournamentParams({}, stats).prediction('L')
+    assert shrink == pytest.approx(hist)

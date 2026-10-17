@@ -51,6 +51,14 @@ python -m soccermodel update japan
    the config and priced yes/no with a 1.08 margin.
 6. **Cups** — knockout simulation with one- or two-legged ties, extra time and penalties.
 
+### Optional model switches (`config.yaml`)
+
+| Setting | Options | Effect |
+|---|---|---|
+| `elo.lambda_match` | `win_prob` (original) / `expected_score` | How an Elo edge becomes Poisson goal rates for the ClubElo goal weights. `expected_score` stops counting draws twice. |
+| `prediction_params.method` | `history` / `shrink` | Pricing HFA, draw rate and goals/game from all seasons, or this season blended with earlier ones (`prior_matches`). |
+| `penalties.method` | `coin` / `skill` | Cup shoot-outs 50/50, or per-team conversion rates from `data/japan/penalties.csv` (5 kicks each, then sudden death). |
+
 ## Layout
 
 ```

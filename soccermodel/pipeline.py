@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from . import odds as odds_mod
-from .cup import CupSimulator, alive_from_results
+from .cup import CupSimulator, PenaltyModel, alive_from_results
 from .data import load_config, load_fixture_file, load_initial_elo, load_results, validate
 from .elo import ClubEloWeights, run_elo
 from .goals import LambdaLookup, MatchModel, compute_tilts
@@ -92,7 +92,8 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print) -> d
     stats = tournament_stats(results, season)
     params = TournamentParams(cfg, stats)
     elo_cfg = cfg.get('elo', {})
-    weights = ClubEloWeights(step=int(elo_cfg.get('lookup_step', 10)), cache_dir=CACHE_DIR)
+    weights = ClubEloWeights(step=int(elo_cfg.get('lookup_step', 10)), cache_dir=CACHE_DIR,
+                             lambda_match=elo_cfg.get('lambda_match', 'win_prob'))
     ratings, history = run_elo(results, initial_elo, params, weights)
     tilts = compute_tilts(results, params)
     log("Elo ratings and tilts updated")
@@ -104,10 +105,12 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print) -> d
     ratings_df['tilt'] = ratings_df['team'].map(tilts).fillna(1.0).round(4)
     ratings_df['last_match'] = ratings_df['team'].map(last['date']).dt.strftime('%Y-%m-%d')
     ratings_df['last_tournament'] = ratings_df['team'].map(last['tournament'])
-    ratings_df = ratings_df.dropna(subset=['last_match']).sort_values('elo', ascending=False)
+    ratings_df = ratings_df.dropna(subset=['last_match']).sort_values(['elo', 'team'], ascending=[False, True])
     ratings_df.to_csv(out_dir / 'ratings.csv', index=False)
 
-    params_df = stats.reset_index().merge(params.elo_table(), on='tournament', how='outer')
+    keep = [c for c in stats.columns if not c.startswith('prior_') and
+            c not in ('season_home_wins', 'season_away_wins', 'season_draws', 'season_goals')]
+    params_df = stats[keep].reset_index().merge(params.elo_table(), on='tournament', how='outer')
     params_df.round(3).to_csv(out_dir / 'tournament_params.csv', index=False)
 
     summary = {'cfg': cfg, 'results': results, 'ratings': ratings_df, 'params': params_df,
@@ -147,6 +150,7 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print) -> d
         log(f"{lg['name']}: {len(season_res)} played, {len(remaining)} to play, simulated {n_sims}x")
 
     # ---- cups
+    penalties = PenaltyModel(cfg.get('penalties'), cfg['dir'])
     for key, cup in cfg['cups'].items():
         first_t = cup['rounds'][0]['tournament']
         pred_params = params.prediction(first_t, cup.get('predict'))
@@ -181,7 +185,7 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print) -> d
             summary['warnings'].append(f"{cup['name']}: {len(start)} teams alive but the configured "
                                        f"rounds need {expected} - check `rounds` in config.yaml")
 
-        sim = CupSimulator(cup, draw, start, model, rng)
+        sim = CupSimulator(cup, draw, start, model, rng, penalties)
         probs = sim.run(n_sims)
         outrights = _outright_prices(probs, margins['outright'])
 

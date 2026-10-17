@@ -13,6 +13,7 @@ The draw file lists ties as they become known:
 """
 
 from collections import defaultdict
+from math import comb
 
 import numpy as np
 import pandas as pd
@@ -41,11 +42,66 @@ def alive_from_results(results: pd.DataFrame, prefix: str, season: str, warnings
     return sorted(teams - eliminated)
 
 
+def shootout_win_prob(p_a: float, p_b: float, kicks: int = 5) -> float:
+    """
+    P(team A wins a shoot-out): each side takes `kicks` penalties converting with its own
+    probability, then sudden death. (Stopping early once a side can't catch up doesn't
+    change who wins, so all five kicks are counted.)
+    """
+    pa = [comb(kicks, k) * p_a ** k * (1 - p_a) ** (kicks - k) for k in range(kicks + 1)]
+    pb = [comb(kicks, k) * p_b ** k * (1 - p_b) ** (kicks - k) for k in range(kicks + 1)]
+    win = sum(pa[i] * pb[j] for i in range(kicks + 1) for j in range(i))
+    level = sum(pa[i] * pb[i] for i in range(kicks + 1))
+    a_round, b_round = p_a * (1 - p_b), p_b * (1 - p_a)
+    sudden = a_round / (a_round + b_round) if a_round + b_round > 0 else 0.5
+    return win + level * sudden
+
+
+class PenaltyModel:
+    """
+    method: coin  -> every shoot-out is 50/50
+    method: skill -> per-team conversion rates from penalties.csv (`skill` column, else
+                     scored/missed shrunk towards the file average by prior_kicks)
+    """
+
+    def __init__(self, cfg: dict, country_dir):
+        cfg = cfg or {}
+        self.method = cfg.get('method', 'coin')
+        if self.method not in ('coin', 'skill'):
+            raise ValueError(f"penalties.method must be coin or skill, not {self.method!r}")
+        self.skills = {}
+        self.default = float(cfg.get('default_skill', 0.75))
+        if self.method == 'skill':
+            df = pd.read_csv(country_dir / cfg.get('file', 'penalties.csv'))
+            df['team'] = df['team'].str.strip()
+            kicks = df['scored'] + df['missed']
+            base = df['scored'].sum() / kicks.sum() if kicks.sum() else self.default
+            prior = float(cfg.get('prior_kicks', 70))
+            shrunk = (df['scored'] + prior * base) / (kicks + prior)
+            skill = df['skill'] if 'skill' in df else pd.Series(np.nan, index=df.index)
+            self.skills = dict(zip(df['team'], skill.fillna(shrunk)))
+        self._cache = {}
+
+    def skill(self, team: str) -> float:
+        return self.skills.get(team, self.default)
+
+    def home_win_prob(self, home: str, away: str) -> float:
+        """Shoot-out win probability for `home`; home kicks first (no first-kicker edge modelled)."""
+        if self.method == 'coin':
+            return 0.5
+        key = (home, away)
+        if key not in self._cache:
+            self._cache[key] = shootout_win_prob(self.skill(home), self.skill(away))
+        return self._cache[key]
+
+
 class CupSimulator:
-    def __init__(self, cup_cfg: dict, draw: pd.DataFrame, start_teams: list, model, rng):
+    def __init__(self, cup_cfg: dict, draw: pd.DataFrame, start_teams: list, model, rng,
+                 penalties: PenaltyModel = None):
         self.rounds = cup_cfg['rounds']
         self.model = model
         self.rng = rng
+        self.penalties = penalties or PenaltyModel({}, None)
         self.start_teams = start_teams
         self.ties = defaultdict(dict)  # round -> tie id -> list of leg rows
         for row in draw.sort_values(['round', 'tie', 'leg']).itertuples(index=False):
@@ -70,7 +126,10 @@ class CupSimulator:
         hg, ag = self.rng.poisson(e1 / 3), self.rng.poisson(e2 / 3)
         if hg != ag:
             return home if hg > ag else away
-        return home if self.rng.random() < 0.5 else away
+        return self._shootout(home, away)
+
+    def _shootout(self, home, away):
+        return home if self.rng.random() < self.penalties.home_win_prob(home, away) else away
 
     def _play_tie(self, a, b, legs, rnd):
         """a hosts leg 1. legs = scored/unscored rows from the draw file, or None."""
@@ -86,7 +145,7 @@ class CupSimulator:
                 if i == n_legs - 1 and goals[a] == goals[b]:
                     if isinstance(row.winner, str) and row.winner in (a, b):
                         return row.winner
-                    return a if self.rng.random() < 0.5 else b
+                    return self._shootout(home, away)
                 continue
             hg, ag = self._play_90(home, away, neutral)
             goals[home] += hg
