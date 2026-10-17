@@ -40,8 +40,8 @@ tournaments:
   J2/3 100 Year Vision: {k: 30, hfa: auto}
 
 margins:
-  three_way: 1.11               # 1X2
-  two_way: 1.09                 # over/under 2.5
+  three_way: 1.08               # 1X2
+  two_way: 1.08                 # over/under 2.5
   outright: 1.08                # yes/no outright markets
 
 simulation:
