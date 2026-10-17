@@ -46,8 +46,8 @@ Nara Club,1159,1.1669,2026-10-10,J3 League
 Imabari,1146,0.9937,2026-10-10,J2 League
 Roasso Kumamoto,1145,0.8897,2026-10-11,J3 League
 Gifu,1139,1.0982,2026-10-11,J3 League
-Gainare Tottori,1139,1.0785,2026-10-11,J3 League
 Zweigen Kanazawa,1139,1.0136,2026-10-09,J3 League
+Gainare Tottori,1139,1.0785,2026-10-11,J3 League
 Matsumoto Yamaga,1138,0.9716,2026-10-11,J3 League
 Sagawa Printing Kyoto SC,1133,1.0315,2015-11-15,JFL
 Vanraure Hachinohe,1115,0.7911,2026-10-10,J2 League
@@ -68,16 +68,16 @@ Azul Claro Numazu,966,0.9951,2026-10-10,JFL
 Veroskronos Tsuno,965,1.0048,2026-08-26,Emperor Cup
 Kamatamare Sanuki,963,1.0629,2026-10-09,J3 League
 Kochi United,962,0.9445,2026-10-10,J3 League
-Matsue City,953,0.9439,2022-11-20,JFL
 Reinmeer Aomori,953,0.9447,2026-10-10,JFL
+Matsue City,953,0.9439,2022-11-20,JFL
 Saurcos Fukui,944,1.0374,2018-05-26,Emperor Cup
 Thank Kuriyama,937,1.0691,2025-05-25,Emperor Cup
-Japan Soccer College,934,0.9782,2026-08-19,Emperor Cup
 Beluga Rosso Iwami,934,0.9939,2026-08-26,Emperor Cup
+Japan Soccer College,934,0.9782,2026-08-19,Emperor Cup
 Cerezo Osaka U23,931,1.0614,2020-12-20,J3 League
 Criacao Shinjuku,925,0.8338,2026-10-10,JFL
-Ococias Kyoto,924,1.0239,2021-07-07,Emperor Cup
 Urayasu,924,0.9114,2026-10-11,JFL
+Ococias Kyoto,924,1.0239,2021-07-07,Emperor Cup
 VONDS Ichihara,923,0.9648,2026-10-10,JFL
 Okinawa SV,921,1.0686,2026-10-10,JFL
 Kochi University,920,0.9989,2014-07-05,Emperor Cup
@@ -121,8 +121,8 @@ Tokai Gakuen University FC,805,0.9926,2016-08-27,Emperor Cup
 Tadotsu,802,1.0425,2018-06-06,Emperor Cup
 Oyama,800,1.1263,2026-08-19,Emperor Cup
 Aruverio Takamatsu,800,1.0807,2017-04-23,Emperor Cup
-Sapporo University FC,800,1.0017,2026-08-19,Emperor Cup
 Juntendo University,800,1.0338,2025-05-25,Emperor Cup
+Sapporo University FC,800,1.0017,2026-08-19,Emperor Cup
 Chukyo University FC,797,0.9998,2025-05-25,Emperor Cup
 Laranja Kyoto,796,0.9933,2023-05-20,Emperor Cup
 Kawasoe Club,792,1.0007,2026-08-19,Emperor Cup
@@ -134,15 +134,15 @@ Tochigi Uva,785,1.0903,2017-11-12,JFL
 Saitama SC,785,1.0284,2014-07-06,Emperor Cup
 Aventura Kawaguchi,782,0.9991,2021-05-23,Emperor Cup
 Parafrente Yonezawa,781,1.0164,2017-04-22,Emperor Cup
-FC Tokushima,780,1.03,2026-08-26,Emperor Cup
 Tonan Maebashi,780,1.058,2024-05-25,Emperor Cup
+FC Tokushima,780,1.03,2026-08-26,Emperor Cup
 Arterivo Wakayama,769,1.0743,2026-08-19,Emperor Cup
 Waseda University,768,1.0055,2016-08-28,Emperor Cup
 Hosei University,768,0.9526,2025-05-25,Emperor Cup
 Niigata University of Health and Welfare FC,767,0.9575,2025-05-24,Emperor Cup
 Vertfee Yaita,766,1.0256,2022-06-01,Emperor Cup
-Ryutsu Keizai Dragons,765,1.2111,2019-12-01,JFL
 Saga LIXIL,765,0.9917,2025-06-11,Emperor Cup
+Ryutsu Keizai Dragons,765,1.2111,2019-12-01,JFL
 Tokyo Int. University,761,0.9596,2022-05-21,Emperor Cup
 Nagai,759,1.0242,2022-05-21,Emperor Cup
 MD Nagasaki,755,0.9949,2022-05-22,Emperor Cup
@@ -153,8 +153,8 @@ Cobaltore Onagawa,747,1.0609,2018-11-18,JFL
 Miyazaki Sangyo-keiei,746,1.0146,2017-06-21,Emperor Cup
 Saruta Kogyo,744,1.0766,2024-05-26,Emperor Cup
 Yamanashi Gakuin,741,1.007,2026-08-26,Emperor Cup
-Hokkaido Tokachi,735,0.9963,2024-05-26,Emperor Cup
 Pacific University,735,1.0026,2026-08-19,Emperor Cup
+Hokkaido Tokachi,735,0.9963,2024-05-26,Emperor Cup
 FC Kariya,732,0.9803,2021-12-18,JFL/JRL
 Tsukuba University,730,0.9567,2026-08-19,Emperor Cup
 Toin University of Yokohama FC,728,1.0866,2022-06-08,Emperor Cup
@@ -176,12 +176,12 @@ Kyoto Sangyo University SC,661,1.0153,2026-08-26,Emperor Cup
 Meiji University FC,653,0.9546,2024-05-26,Emperor Cup
 Tokuyama University SC,633,1.0628,2022-06-01,Emperor Cup
 Fuji University,623,0.9843,2022-06-08,Emperor Cup
-Konan University,620,0.9949,2024-06-12,Emperor Cup
-Kokushikan University SC,620,0.9804,2017-06-21,Emperor Cup
 Kanagawa University,620,0.9789,2016-09-03,Emperor Cup
+Kokushikan University SC,620,0.9804,2017-06-21,Emperor Cup
+Konan University,620,0.9949,2024-06-12,Emperor Cup
 Doshisha University,619,0.9823,2022-06-01,Emperor Cup
-Fukuoka University FC,618,0.9488,2021-05-23,Emperor Cup
 Ritsumeikan University SC,618,1.0021,2019-07-03,Emperor Cup
+Fukuoka University FC,618,0.9488,2021-05-23,Emperor Cup
 Hiroshima University,609,1.0197,2015-09-05,Emperor Cup
 Senshu University,607,0.9983,2026-08-26,Emperor Cup
 JAPAN Sakkakarejji,600,1.024,2015-08-29,Emperor Cup
@@ -189,12 +189,12 @@ Mitsubishi Nagasaki,600,0.9862,2023-05-21,Emperor Cup
 Nippon Bunri University,600,0.9978,2021-05-22,Emperor Cup
 Nagasaki Institute of Applied Science FC,599,0.9908,2026-08-19,Emperor Cup
 Montedio Yamagata Youth,599,0.9865,2014-07-06,Emperor Cup
-Rissho University,598,0.9858,2022-05-22,Emperor Cup
 Akita University,598,1.0857,2026-08-19,Emperor Cup
+Rissho University,598,0.9858,2022-05-22,Emperor Cup
 Tohoku Gakuin University,598,1.0015,2026-08-19,Emperor Cup
 Tokushima Municipal,597,1.0326,2014-07-05,Emperor Cup
-North Asia University,596,1.051,2025-05-25,Emperor Cup
 Hokkaido University,596,0.9827,2019-05-26,Emperor Cup
+North Asia University,596,1.051,2025-05-25,Emperor Cup
 Biwako Seikei Sport College FC,595,1.0042,2024-05-26,Emperor Cup
 Yokkaichi University FC,593,1.0256,2015-08-29,Emperor Cup
 Yamagata University,591,1.0874,2023-05-21,Emperor Cup

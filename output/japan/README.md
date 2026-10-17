@@ -1,6 +1,6 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-10-11** (18,319 matches). Generated 2026-10-17 06:23 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-10-11** (18,319 matches). Generated 2026-10-17 06:27 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 ## J1 League
 
@@ -345,8 +345,8 @@ HFA 16.4 Elo · draw rate 0.248 · goals/game 2.60 · 185 matches left
 | Yokohama | 42.7 | 2.15 | 14.4 | 5.5 | 3.8 | 19 | 1.1 | 51 |
 | Sagan Tosu | 29.3 | 3 | 6.6 | 11 | 1.2 | 51 | 0.3 | 201 |
 | Jubilo Iwata | 26.8 | 3.2 | 5.5 | 13 | 1 | 51 | 0.2 | 251 |
-| Gainare Tottori | 18.3 | 4.5 | 2.4 | 26 | 0.2 | 201 | 0 | 1001 |
 | Matsumoto Yamaga | 17.7 | 4.6 | 2.2 | 29 | 0.2 | 251 | 0 | 1001 |
+| Gainare Tottori | 18.3 | 4.5 | 2.4 | 26 | 0.2 | 201 | 0 | 1001 |
 
 ## Top 30 Elo ratings
 
