@@ -1,0 +1,56 @@
+name: Matchday update
+
+# Runs whenever scores, fixtures, config or code are pushed (including edits made in
+# the GitHub web editor), and can be started by hand from the Actions tab.
+on:
+  push:
+    branches: [main]
+    paths: ['data/**', 'soccermodel/**', 'requirements.txt', '.github/workflows/matchday.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: matchday
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - run: pip install -r requirements.txt pytest
+
+      - name: Lookup-table cache
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: lookups-${{ hashFiles('soccermodel/poisson.py', 'soccermodel/elo.py', 'soccermodel/goals.py') }}
+
+      - name: Check data and run tests
+        run: |
+          python -m soccermodel check japan
+          python -m pytest -q tests
+
+      - name: Run matchday update
+        run: python -m soccermodel update japan
+
+      - name: Commit outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add output
+          if git diff --cached --quiet; then
+            echo "No output changes"
+          else
+            git commit -m "Matchday update $(date -u +%Y-%m-%d)"
+            git pull --rebase
+            git push
+          fi

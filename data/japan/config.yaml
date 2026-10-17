@@ -1,0 +1,113 @@
+# Japan - everything the matchday run needs besides the CSV files.
+name: Japan
+season: 2026-27                 # results with this season label form the current tables
+
+results: results.csv
+initial_elo: initial_elo.csv
+
+# Map alternative spellings to the canonical team name (applied to every file).
+aliases: {}
+
+elo:
+  lookup_step: 10               # Elo-diff resolution of the ClubElo goal-weight tables
+  expg_lookup_step: 5           # Elo-diff resolution of the expected-goals lookup
+  default_k: 30
+
+# Elo update settings per tournament label used in results.csv.
+# hfa: auto  -> 400*log10(home wins / away wins) over all history, recomputed every run.
+# A number fixes it (0 for neutral venues).
+tournaments:
+  J1 League:            {k: 30, hfa: auto}
+  J2 League:            {k: 30, hfa: auto}
+  J3 League:            {k: 30, hfa: auto}
+  JFL:                  {k: 30, hfa: auto}
+  J1/J2:                {k: 30, hfa: 27.15}   # promotion/relegation playoffs: too few matches
+  J2/J3:                {k: 30, hfa: 32.55}
+  J3/JFL:               {k: 30, hfa: 28.5}
+  JFL/JRL:              {k: 30, hfa: 16.45}
+  Emperor Cup:          {k: 20, hfa: auto}
+  Emperor Cup R16:      {k: 30, hfa: 0}
+  Emperor Cup QF:       {k: 30, hfa: auto}
+  Emperor Cup SF:       {k: 30, hfa: auto}
+  Emperor Cup Final:    {k: 40, hfa: 0}       # neutral venue
+  League Cup:           {k: 20, hfa: auto}
+  League Cup PO:        {k: 30, hfa: auto}
+  League Cup QF:        {k: 30, hfa: auto}
+  League Cup SF:        {k: 30, hfa: auto}
+  League Cup Final:     {k: 40, hfa: 0}       # neutral venue
+  Super Cup:            {k: 40, hfa: 0}       # neutral venue
+  J1 100 Year Vision:   {k: 30, hfa: auto}
+  J2/3 100 Year Vision: {k: 30, hfa: auto}
+
+margins:
+  three_way: 1.11               # 1X2
+  two_way: 1.09                 # over/under 2.5
+  outright: 1.08                # yes/no outright markets
+
+simulation:
+  n_sims: 20000
+  seed: 2026                    # fixed seed = reproducible output; remove for fresh randomness
+
+# League fixtures: enter scores straight into the hg/ag columns (hg_90/ag_90 only if
+# extra time was played). Prediction parameters (hfa, draw_rate, total_goals) are
+# computed from the league's history unless overridden under `predict:`.
+# Markets: [first, last] finishing positions; negative numbers count from the bottom.
+leagues:
+  j1:
+    name: J1 League
+    tournament: J1 League
+    fixtures: fixtures/j1_2026-27.csv
+    markets:
+      Winner: [1, 1]
+      Top 3: [1, 3]
+      Relegation: [-3, -1]
+  j2:
+    name: J2 League
+    tournament: J2 League
+    fixtures: fixtures/j2_2026-27.csv
+    markets:
+      Winner: [1, 1]
+      Top 2: [1, 2]
+      Top 6: [1, 6]
+      Relegation: [-3, -1]
+  j3:
+    name: J3 League
+    tournament: J3 League
+    fixtures: fixtures/j3_2026-27.csv
+    markets:
+      Winner: [1, 1]
+      Top 2: [1, 2]
+      Top 6: [1, 6]
+      Bottom 2: [-2, -1]
+  jfl:
+    name: JFL
+    tournament: JFL
+    fixtures: fixtures/jfl_2026-27.csv
+    markets:
+      Winner: [1, 1]
+      Top 4: [1, 4]
+      Bottom 2: [-2, -1]
+
+# Cups: list the remaining rounds from the current one to the final.
+# The draw file is filled in as draws are announced; until then the sim draws at random.
+cups:
+  emperors_cup:
+    name: Emperor's Cup
+    results_prefix: Emperor Cup   # tournament labels belonging to this cup
+    draw: cups/emperors_cup_2026-27.csv
+    predict: {hfa: 43.1, draw_rate: 0.27, total_goals: 2.66}
+    rounds:
+      - {name: R16, tournament: Emperor Cup R16, legs: 1}
+      - {name: QF, tournament: Emperor Cup QF, legs: 1}
+      - {name: SF, tournament: Emperor Cup SF, legs: 1}
+      - {name: Final, tournament: Emperor Cup Final, legs: 1, neutral: true}
+  league_cup:
+    name: League Cup
+    results_prefix: League Cup
+    draw: cups/league_cup_2026-27.csv
+    predict: {hfa: 69.5, draw_rate: 0.265, total_goals: 2.66}
+    rounds:
+      - {name: R16, tournament: League Cup PO, legs: 2}
+      - {name: QF, tournament: League Cup QF, legs: 2}
+      - {name: SF, tournament: League Cup SF, legs: 2}
+      - {name: Final, tournament: League Cup Final, legs: 1, neutral: true}
