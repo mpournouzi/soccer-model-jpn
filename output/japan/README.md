@@ -1,6 +1,6 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-10-14** (18,333 matches). Generated 2026-10-18 10:10 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-10-14** (18,333 matches). Generated 2026-10-18 10:28 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 ## J1 League
 
@@ -247,12 +247,12 @@ HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/gam
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-09-13 | J-Lease FC | Tokyo Musashino City | 4 | 3.75 | 1.8 | 2.25 | 1.57 | 0.853 | 1.447 |
 | 2026-10-17 | Honda | Maruyasu Okazaki | 1.75 | 3.75 | 4.3 | 2.3 | 1.57 | 1.459 | 0.808 |
 | 2026-10-17 | Honda Lock | J-Lease FC | 1.57 | 4 | 5.5 | 1.95 | 1.8 | 1.809 | 0.779 |
 | 2026-10-17 | Tokyo Musashino City | Urayasu | 3.15 | 3.5 | 2.1 | 2.45 | 1.5 | 0.936 | 1.224 |
 | 2026-10-17 | VONDS Ichihara | Okinawa SV | 2.4 | 3.45 | 2.65 | 1.85 | 1.87 | 1.385 | 1.3 |
 | 2026-10-17 | Veertien Mie | Azul Claro Numazu | 2.15 | 3.5 | 3 | 2.2 | 1.6 | 1.286 | 1.036 |
+| 2026-10-17 | YSCC | Reinmeer Aomori | 3 | 3.5 | 2.15 | 1.67 | 2.1 | 1.316 | 1.619 |
 | 2026-10-18 | TIAMO Hirakata | Grulla Morioka | 2.37 | 3.5 | 2.65 | 1.35 | 3.05 | 1.928 | 1.769 |
 | 2026-10-18 | Verspah Oita | Criacao Shinjuku | 2.15 | 3.5 | 3.1 | 2.55 | 1.45 | 1.167 | 0.916 |
 
@@ -261,42 +261,42 @@ HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/gam
 | pos | team | P | W | D | L | GF | GA | GD | Pts | exp_pts | exp_pos |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | Criacao Shinjuku | 7 | 5 | 1 | 1 | 8 | 4 | 4 | 16 | 48.6 | 5.18 |
-| 2 | Verspah Oita | 7 | 4 | 2 | 1 | 11 | 8 | 3 | 14 | 50.2 | 4.38 |
-| 3 | Reinmeer Aomori | 7 | 4 | 1 | 2 | 8 | 7 | 1 | 13 | 47.1 | 5.9 |
-| 4 | Honda | 7 | 4 | 1 | 2 | 7 | 6 | 1 | 13 | 53.3 | 3.17 |
-| 5 | Veertien Mie | 7 | 4 | 0 | 3 | 11 | 7 | 4 | 12 | 51.3 | 3.83 |
-| 6 | Azul Claro Numazu | 7 | 3 | 3 | 1 | 9 | 6 | 3 | 12 | 47.9 | 5.4 |
-| 7 | YSCC | 7 | 4 | 0 | 3 | 13 | 12 | 1 | 12 | 40.8 | 9.1 |
-| 8 | Okinawa SV | 7 | 3 | 2 | 2 | 11 | 7 | 4 | 11 | 42.7 | 7.96 |
-| 9 | VONDS Ichihara | 7 | 3 | 2 | 2 | 9 | 7 | 2 | 11 | 44.1 | 7.31 |
-| 10 | Honda Lock | 7 | 3 | 1 | 3 | 8 | 9 | -1 | 10 | 40.2 | 9.46 |
-| 11 | Grulla Morioka | 7 | 1 | 4 | 2 | 7 | 9 | -2 | 7 | 38.2 | 10.34 |
-| 12 | Maruyasu Okazaki | 7 | 2 | 0 | 5 | 8 | 10 | -2 | 6 | 35.5 | 11.6 |
+| 2 | Verspah Oita | 7 | 4 | 2 | 1 | 11 | 8 | 3 | 14 | 50.2 | 4.4 |
+| 3 | Reinmeer Aomori | 7 | 4 | 1 | 2 | 8 | 7 | 1 | 13 | 47.1 | 5.88 |
+| 4 | Honda | 7 | 4 | 1 | 2 | 7 | 6 | 1 | 13 | 53.2 | 3.19 |
+| 5 | Veertien Mie | 7 | 4 | 0 | 3 | 11 | 7 | 4 | 12 | 51.3 | 3.81 |
+| 6 | Azul Claro Numazu | 7 | 3 | 3 | 1 | 9 | 6 | 3 | 12 | 47.8 | 5.42 |
+| 7 | YSCC | 7 | 4 | 0 | 3 | 13 | 12 | 1 | 12 | 40.8 | 9.12 |
+| 8 | Okinawa SV | 7 | 3 | 2 | 2 | 11 | 7 | 4 | 11 | 42.7 | 7.95 |
+| 9 | VONDS Ichihara | 7 | 3 | 2 | 2 | 9 | 7 | 2 | 11 | 44.1 | 7.33 |
+| 10 | Honda Lock | 7 | 3 | 1 | 3 | 8 | 9 | -1 | 10 | 40.2 | 9.45 |
+| 11 | Grulla Morioka | 7 | 1 | 4 | 2 | 7 | 9 | -2 | 7 | 38.2 | 10.32 |
+| 12 | Maruyasu Okazaki | 7 | 2 | 0 | 5 | 8 | 10 | -2 | 6 | 35.5 | 11.58 |
 | 13 | J-Lease FC | 6 | 1 | 2 | 3 | 6 | 7 | -1 | 5 | 20.7 | 15.73 |
-| 14 | TIAMO Hirakata | 7 | 1 | 2 | 4 | 7 | 16 | -9 | 5 | 35.3 | 11.79 |
-| 15 | Urayasu | 7 | 1 | 1 | 5 | 6 | 12 | -6 | 4 | 36.3 | 11.24 |
-| 16 | Tokyo Musashino City | 6 | 1 | 0 | 5 | 8 | 10 | -2 | 3 | 30.1 | 13.63 |
+| 14 | TIAMO Hirakata | 7 | 1 | 2 | 4 | 7 | 16 | -9 | 5 | 35.3 | 11.78 |
+| 15 | Urayasu | 7 | 1 | 1 | 5 | 6 | 12 | -6 | 4 | 36.3 | 11.25 |
+| 16 | Tokyo Musashino City | 6 | 1 | 0 | 5 | 8 | 10 | -2 | 3 | 30.1 | 13.62 |
 
 ### Outrights
 
 | team | Winner % | Winner Yes | Top 4 % | Top 4 Yes | Bottom 2 % | Bottom 2 Yes |
 |---|---|---|---|---|---|---|
-| Honda | 30.6 | 2.87 | 76.5 | 1.27 | 0 | 3501 |
-| Veertien Mie | 21 | 4 | 66.9 | 1.44 | 0 | 1001 |
-| Verspah Oita | 16 | 5 | 59.1 | 1.6 | 0.1 | 751 |
-| Criacao Shinjuku | 9.6 | 8 | 46.8 | 1.95 | 0.1 | 501 |
-| Azul Claro Numazu | 9 | 8.5 | 44.1 | 2.05 | 0.2 | 201 |
-| Reinmeer Aomori | 6.9 | 11 | 37.9 | 2.37 | 0.3 | 151 |
-| VONDS Ichihara | 2.8 | 23 | 22.4 | 3.8 | 1.1 | 51 |
-| Okinawa SV | 2 | 34 | 16.9 | 4.85 | 1.7 | 41 |
-| YSCC | 0.9 | 67 | 9.8 | 8 | 2.9 | 23 |
-| Honda Lock | 0.6 | 101 | 8.1 | 9.5 | 4.1 | 17 |
-| Grulla Morioka | 0.3 | 151 | 5 | 15 | 6.7 | 11 |
-| Urayasu | 0.1 | 501 | 2.6 | 26 | 12.1 | 6.5 |
-| Maruyasu Okazaki | 0.1 | 501 | 1.8 | 34 | 14.3 | 5.75 |
-| TIAMO Hirakata | 0.1 | 501 | 1.9 | 34 | 15.9 | 5 |
-| Tokyo Musashino City | 0 | 5001 | 0.2 | 201 | 45.9 | 2 |
-| J-Lease FC | 0 |  | 0 |  | 94.6 | 1.05 |
+| Honda | 30.2 | 2.9 | 76.2 | 1.27 | 0 | 1501 |
+| Veertien Mie | 20.7 | 4 | 67.4 | 1.42 | 0 | 1001 |
+| Verspah Oita | 16.3 | 5 | 58.3 | 1.61 | 0.1 | 751 |
+| Criacao Shinjuku | 9.9 | 8 | 46.6 | 1.95 | 0.2 | 301 |
+| Azul Claro Numazu | 9.1 | 8.5 | 43.9 | 2.1 | 0.2 | 251 |
+| Reinmeer Aomori | 6.7 | 11 | 38.2 | 2.35 | 0.3 | 201 |
+| VONDS Ichihara | 2.9 | 23 | 22.5 | 3.75 | 0.9 | 67 |
+| Okinawa SV | 2.1 | 29 | 17.4 | 4.75 | 1.5 | 41 |
+| YSCC | 0.8 | 67 | 9.8 | 8 | 2.9 | 23 |
+| Honda Lock | 0.6 | 101 | 8.2 | 9 | 4 | 17 |
+| Grulla Morioka | 0.4 | 151 | 5 | 15 | 7 | 11 |
+| Urayasu | 0.2 | 301 | 2.6 | 26 | 12.6 | 6.25 |
+| Maruyasu Okazaki | 0.1 | 501 | 2 | 34 | 14.1 | 5.75 |
+| TIAMO Hirakata | 0.1 | 501 | 1.8 | 34 | 15.7 | 5.25 |
+| Tokyo Musashino City | 0 | 5001 | 0.2 | 201 | 45.8 | 2 |
+| J-Lease FC | 0 |  | 0 | 5001 | 94.6 | 1.05 |
 
 ## Emperor's Cup
 
