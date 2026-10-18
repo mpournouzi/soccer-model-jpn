@@ -1,0 +1,8 @@
+soccer-model-jpn
+Copyright 2026 mpournouzi
+
+The Apache License 2.0 in LICENSE applies to the source code in this repository
+(soccermodel/, tests/, tools/, .github/) and its documentation.
+
+It does not apply to the match data in data/. That data is not licensed for
+reuse: all rights reserved. Please ask before copying or redistributing it.

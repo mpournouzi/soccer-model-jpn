@@ -69,3 +69,8 @@ soccermodel/         the model code
 tests/               checks against prices/probabilities from the old workbooks
 tools/               one-off import from the old Excel files
 ```
+
+## License
+
+The code is licensed under the [Apache License 2.0](LICENSE). The match data in `data/` is **not** covered by that
+license and isn't licensed for reuse: all rights reserved. See [NOTICE](NOTICE).
