@@ -1,0 +1,5 @@
+date,home,away,home_elo,away_elo,elo_diff_adj,home_tilt,away_tilt,prob1,probX,prob2,expg1,expg2,over25,odds1,oddsX,odds2,oddsO25,oddsU25
+2026-10-28,Yokohama F. Marinos,Sanfrecce Hiroshima,1508,1608,-31,1.0987,1.0345,0.3355,0.2642,0.4002,1.427,1.597,0.582,2.75,3.45,2.35,1.62,2.15
+2026-10-28,Mito Hollyhock,Cerezo Osaka,1340,1494,-84,0.9845,1.0797,0.2821,0.2593,0.4586,1.205,1.623,0.5371,3.25,3.5,2.05,1.75,2.0
+2026-10-28,Nagoya Grampus,Urawa Reds,1420,1470,19,1.0947,1.0171,0.3882,0.2647,0.3471,1.525,1.437,0.5682,2.4,3.45,2.65,1.65,2.1
+2026-10-28,Sagan Tosu,Kawasaki Frontale,1252,1459,-138,0.9292,1.2071,0.2336,0.2504,0.516,1.139,1.845,0.5731,3.85,3.6,1.85,1.65,2.15

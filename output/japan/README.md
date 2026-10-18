@@ -1,9 +1,9 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-10-14** (18,329 matches). Generated 2026-10-18 08:01 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-10-14** (18,329 matches). Generated 2026-10-18 08:07 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 > **Warnings**
-> - League Cup: 10 teams alive but the configured rounds need 16 - check `rounds` in config.yaml
+> - League Cup: 8 teams alive but the configured rounds need 16 - check `rounds` in config.yaml
 
 ## J1 League
 
@@ -341,22 +341,29 @@ HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/gam
 
 ## League Cup
 
-10 teams left · random draw (draw not entered yet) · HFA 69.5 · draw rate 0.265
+8 teams left · draw from cup file · HFA 69.5 · draw rate 0.265
+
+### Next matches
+
+| date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
+|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-28 | Yokohama F. Marinos | Sanfrecce Hiroshima | 2.75 | 3.45 | 2.35 | 1.62 | 2.15 | 1.427 | 1.597 |
+| 2026-10-28 | Mito Hollyhock | Cerezo Osaka | 3.25 | 3.5 | 2.05 | 1.75 | 2 | 1.205 | 1.623 |
+| 2026-10-28 | Nagoya Grampus | Urawa Reds | 2.4 | 3.45 | 2.65 | 1.65 | 2.1 | 1.525 | 1.437 |
+| 2026-10-28 | Sagan Tosu | Kawasaki Frontale | 3.85 | 3.6 | 1.85 | 1.65 | 2.15 | 1.139 | 1.845 |
 
 ### Outrights
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Cerezo Osaka | 54.4 | 1.72 | 20.7 | 4 | 9.2 | 8.5 | 0 |  |
-| Kashiwa Reysol | 63 | 1.5 | 28.9 | 3 | 15.1 | 5.25 | 0 |  |
-| Kawasaki Frontale | 47.7 | 1.95 | 16.2 | 5 | 6.1 | 12 | 0 |  |
-| Machida Zelvia | 68.3 | 1.4 | 35.2 | 2.55 | 21 | 4 | 0 |  |
-| Mito Hollyhock | 29.9 | 2.9 | 5.9 | 12 | 1.3 | 51 | 0 |  |
-| Nagoya Grampus | 41.5 | 2.2 | 11.8 | 6.75 | 3.9 | 17 | 0 |  |
-| Sagan Tosu | 17.4 | 4.75 | 2 | 34 | 0.3 | 151 | 0 |  |
-| Sanfrecce Hiroshima | 71.4 | 1.35 | 38.6 | 2.35 | 25.4 | 3.4 | 0 |  |
-| Urawa Reds | 49.6 | 1.87 | 17.4 | 4.75 | 7 | 11 | 0 |  |
-| Yokohama F. Marinos | 56.8 | 1.65 | 23.2 | 3.6 | 10.8 | 7.25 | 0 |  |
+| Cerezo Osaka | 66.6 | 1.44 | 36.2 | 2.45 | 17.2 | 4.75 | 0 |  |
+| Kawasaki Frontale | 59.9 | 1.57 | 28.1 | 3.1 | 11.4 | 7 | 0 |  |
+| Mito Hollyhock | 38 | 2.37 | 10.6 | 7.25 | 2.7 | 26 | 0 |  |
+| Nagoya Grampus | 52.4 | 1.8 | 21.1 | 4 | 7.3 | 10 | 0 |  |
+| Sagan Tosu | 22.3 | 3.8 | 3.8 | 19 | 0.4 | 126 | 0 |  |
+| Sanfrecce Hiroshima | 65.9 | 1.45 | 49.8 | 1.85 | 36.9 | 2.45 | 0 |  |
+| Urawa Reds | 61 | 1.55 | 29.6 | 2.95 | 11.9 | 6.5 | 0 |  |
+| Yokohama F. Marinos | 34.1 | 2.6 | 20.8 | 4 | 12.1 | 6.5 | 0 |  |
 
 ## Top 30 Elo ratings
 
