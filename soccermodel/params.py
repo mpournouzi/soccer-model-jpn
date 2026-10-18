@@ -133,3 +133,67 @@ class TournamentParams:
         names = sorted(self.stats.index)
         return pd.DataFrame([{'tournament': t, 'k': self.k(t), 'elo_hfa': round(self.elo_hfa(t), 1),
                               'avg_goals': round(self.avg_goals(t), 3)} for t in names])
+
+
+# --------------------------
+# Cup parameters: Elo-adjusted, split early/late, anchored to the leagues
+# --------------------------
+def fit_hfa_draw(elo_diffs, hg, ag):
+    """
+    Maximum-likelihood (hfa, level-teams draw rate) of the Davidson model given each match's
+    pre-match Elo difference (home - away, without HFA) and 90-minute score.
+
+    Unlike 400*log10(home wins / away wins), this separates home advantage from team strength,
+    which matters in cups where the home side is systematically stronger (pro clubs hosting
+    amateurs) or weaker (lower-division clubs hosting).
+    """
+    from scipy.optimize import minimize
+    d = np.asarray(elo_diffs, dtype=float)
+    outcome = np.where(np.asarray(hg) > np.asarray(ag), 0, np.where(np.asarray(hg) < np.asarray(ag), 1, 2))
+
+    def nll(x):
+        hfa, log_nu = x
+        theta = 10 ** ((d + hfa) / 400)
+        root = np.sqrt(theta)
+        nu = np.exp(log_nu)
+        den = theta + 1 + nu * root
+        p = np.stack([theta / den, 1 / den, nu * root / den], axis=1)[np.arange(len(d)), outcome]
+        return -np.log(np.clip(p, 1e-12, None)).sum()
+
+    hfa, log_nu = minimize(nll, [30.0, np.log(0.6)], method='Nelder-Mead').x
+    nu = np.exp(log_nu)
+    return float(hfa), float(nu / (2 + nu))
+
+
+def _group_fit(history: pd.DataFrame, labels) -> dict:
+    g = history[history['tournament'].isin(labels)]
+    if len(g) < MIN_MATCHES_FOR_AUTO:
+        return {'matches': len(g), 'hfa': np.nan, 'draw_rate': np.nan, 'total_goals': np.nan, 'raw_hfa': np.nan}
+    hfa, draw = fit_hfa_draw(g['home_elo'] - g['away_elo'], g['hg_90'], g['ag_90'])
+    hw, aw = (g['hg_90'] > g['ag_90']).sum(), (g['hg_90'] < g['ag_90']).sum()
+    return {'matches': len(g), 'hfa': hfa, 'draw_rate': draw,
+            'total_goals': float((g['hg_90'] + g['ag_90']).mean()),
+            'raw_hfa': 400 * np.log10(hw / aw) if hw and aw else np.nan}
+
+
+def cup_phase_params(history: pd.DataFrame, cfg: dict, cup: dict):
+    """
+    {'early': params, 'late': params} for one cup, plus a table of the fits.
+
+    Each phase is fitted on its own tournament labels (Elo-adjusted maximum likelihood), then
+    blended with the league anchor, which counts as `anchor_matches` matches:
+        value = (n_phase * phase_value + anchor_matches * anchor_value) / (n_phase + anchor_matches)
+    """
+    cp = cfg.get('cup_params', {}) or {}
+    anchor_w = float(cp.get('anchor_matches', 300))
+    anchor = _group_fit(history, cp.get('anchor', ['J1 League', 'J2 League', 'J3 League']))
+    rows = [{'cup': cup['name'], 'group': 'anchor', **anchor}]
+    out = {}
+    for phase in ('early', 'late'):
+        fit = _group_fit(history, cup.get(phase, []))
+        n = fit['matches'] if not np.isnan(fit['hfa']) else 0
+        blended = {k: (anchor[k] if n == 0 else (n * fit[k] + anchor_w * anchor[k]) / (n + anchor_w))
+                   for k in ('hfa', 'draw_rate', 'total_goals')}
+        out[phase] = blended
+        rows.append({'cup': cup['name'], 'group': phase, **fit, **{f'used_{k}': v for k, v in blended.items()}})
+    return out, pd.DataFrame(rows)

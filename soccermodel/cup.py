@@ -10,6 +10,8 @@ The draw file lists ties as they become known:
   ended level and went to penalties, put the team that went through in `winner`.
 * If the first remaining round has no draw rows yet, the teams still alive are
   worked out from this season's cup results.
+* A round can list `entrants`: seeded teams that join the competition at that round.
+* Each round can be priced with its own match model (e.g. early- v late-round parameters).
 """
 
 from collections import defaultdict
@@ -95,11 +97,23 @@ class PenaltyModel:
         return self._cache[key]
 
 
+def bracket_problem(start_teams: list, rounds: list):
+    """None if the team count works through every round down to one winner, else a message."""
+    n = len(start_teams)
+    for rnd in rounds:
+        n += len(rnd.get('entrants', []) or [])
+        if n % 2:
+            return f"{n} teams in {rnd['name']} (odd) - check `rounds`/`entrants` in config.yaml"
+        n //= 2
+    return None if n == 1 else f"the rounds end with {n} teams instead of 1 - check `rounds`/`entrants`"
+
+
 class CupSimulator:
-    def __init__(self, cup_cfg: dict, draw: pd.DataFrame, start_teams: list, model, rng,
+    def __init__(self, cup_cfg: dict, draw: pd.DataFrame, start_teams: list, models, rng,
                  penalties: PenaltyModel = None):
+        """models: one MatchModel for every round, or a dict round name -> MatchModel."""
         self.rounds = cup_cfg['rounds']
-        self.model = model
+        self.models = models if isinstance(models, dict) else {r['name']: models for r in self.rounds}
         self.rng = rng
         self.penalties = penalties or PenaltyModel({}, None)
         self.start_teams = start_teams
@@ -108,21 +122,21 @@ class CupSimulator:
             self.ties[row.round].setdefault(int(row.tie), []).append(row)
         self._cache = {}
 
-    def _match(self, home, away, neutral):
-        key = (home, away, neutral)
+    def _match(self, home, away, neutral, model):
+        key = (id(model), home, away, neutral)
         if key not in self._cache:
-            p = self.model.predict(home, away, neutral)
+            p = model.predict(home, away, neutral)
             cdf = scoreline_cdf(p['prob1'], p['probX'], p['prob2'], p['expg1'], p['expg2'])
             self._cache[key] = (cdf, p['expg1'], p['expg2'])
         return self._cache[key]
 
-    def _play_90(self, home, away, neutral):
-        cdf, _, _ = self._match(home, away, neutral)
+    def _play_90(self, home, away, neutral, model):
+        cdf, _, _ = self._match(home, away, neutral, model)
         hg, ag = sample_scores(cdf, self.rng.random(1))
         return int(hg[0]), int(ag[0])
 
-    def _extra_time_and_pens(self, home, away, neutral):
-        _, e1, e2 = self._match(home, away, neutral)
+    def _extra_time_and_pens(self, home, away, neutral, model):
+        _, e1, e2 = self._match(home, away, neutral, model)
         hg, ag = self.rng.poisson(e1 / 3), self.rng.poisson(e2 / 3)
         if hg != ag:
             return home if hg > ag else away
@@ -135,6 +149,7 @@ class CupSimulator:
         """a hosts leg 1. legs = scored/unscored rows from the draw file, or None."""
         neutral = bool(rnd.get('neutral', False))
         n_legs = int(rnd.get('legs', 1))
+        model = self.models[rnd['name']]
         goals = {a: 0, b: 0}
         for i in range(n_legs):
             home, away = (a, b) if i == 0 else (b, a)
@@ -147,11 +162,11 @@ class CupSimulator:
                         return row.winner
                     return self._shootout(home, away)
                 continue
-            hg, ag = self._play_90(home, away, neutral)
+            hg, ag = self._play_90(home, away, neutral, model)
             goals[home] += hg
             goals[away] += ag
             if i == n_legs - 1 and goals[a] == goals[b]:
-                return self._extra_time_and_pens(home, away, neutral)
+                return self._extra_time_and_pens(home, away, neutral, model)
         return a if goals[a] > goals[b] else b
 
     def run(self, n_sims: int) -> pd.DataFrame:
@@ -161,6 +176,7 @@ class CupSimulator:
             teams = list(self.start_teams)
             refs = {}
             for r_i, rnd in enumerate(self.rounds):
+                teams = teams + [t for t in rnd.get('entrants', []) or [] if t not in teams]
                 for t in teams:
                     reached[t][r_i] += 1
                 winners, used = [], set()

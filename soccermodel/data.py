@@ -145,3 +145,5 @@ def validate(results: pd.DataFrame, initial_elo: dict, cfg: dict):
         draw = load_fixture_file(cfg['dir'] / cup['draw'], cfg['aliases'])
         names = pd.concat([draw['home'], draw['away']])
         check_team_names(names[~names.str.startswith('W:')], known, cup['draw'])
+        entrants = [t for r in cup['rounds'] for t in (r.get('entrants') or [])]
+        check_team_names(entrants, known, f"{cup['name']} entrants in config.yaml")

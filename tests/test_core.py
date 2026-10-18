@@ -100,3 +100,40 @@ def test_calibrated_draw_rate_matches_average_and_exceeds_league_rate():
     level = calibrate_draw_rate(diffs, 0.26)
     assert level > 0.26
     assert davidson(diffs, nu_from_draw_rate(level))[1].mean() == pytest.approx(0.26, abs=1e-6)
+
+
+def test_bracket_check_counts_entrants():
+    from soccermodel.cup import bracket_problem
+    rounds = [{'name': 'PO'}, {'name': 'QF', 'entrants': ['E1', 'E2', 'E3', 'E4']}, {'name': 'SF'}, {'name': 'F'}]
+    assert bracket_problem([f'T{i}' for i in range(8)], rounds) is None
+    assert bracket_problem([f'T{i}' for i in range(10)], rounds) is not None
+
+
+def test_fit_separates_home_advantage_from_strength():
+    from soccermodel.params import fit_hfa_draw
+    rng = np.random.default_rng(3)
+    d = rng.normal(200, 120, 40000)                 # home side much stronger, as in early cup rounds
+    p1, px, p2 = davidson(d + 15, nu_from_draw_rate(0.25))
+    u = rng.random(len(d))
+    hg = np.where(u < p1, 1, 0)
+    ag = np.where(u > p1 + px, 1, 0)
+    hfa, draw = fit_hfa_draw(d, hg, ag)
+    assert hfa == pytest.approx(15, abs=8)
+    assert draw == pytest.approx(0.25, abs=0.01)
+    raw = 400 * np.log10((hg > ag).sum() / (hg < ag).sum())
+    assert raw > 150                                # the raw ratio would call this ~200 "HFA"
+
+
+def test_cup_entrants_join_and_one_winner():
+    from soccermodel.cup import CupSimulator
+
+    class Flat:
+        def predict(self, h, a, neutral=False):
+            return {'prob1': .4, 'probX': .3, 'prob2': .3, 'expg1': 1.3, 'expg2': 1.1}
+
+    cfg = {'rounds': [{'name': 'PO', 'legs': 2}, {'name': 'QF', 'entrants': ['E1', 'E2', 'E3', 'E4']},
+                      {'name': 'SF'}, {'name': 'Final', 'neutral': True}]}
+    draw = pd.DataFrame(columns=['round', 'tie', 'leg', 'home', 'away', 'played', 'hg', 'ag', 'winner'])
+    out = CupSimulator(cfg, draw, [f'T{i}' for i in range(8)], Flat(), np.random.default_rng(1)).run(500)
+    assert out['Winner'].sum() == pytest.approx(1)
+    assert out.set_index('team').loc['E1', 'Reach SF'] > 0

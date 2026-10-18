@@ -7,12 +7,12 @@ import numpy as np
 import pandas as pd
 
 from . import odds as odds_mod
-from .cup import CupSimulator, PenaltyModel, alive_from_results
+from .cup import CupSimulator, PenaltyModel, alive_from_results, bracket_problem
 from .data import load_config, load_fixture_file, load_initial_elo, load_results, validate
 from .elo import ClubEloWeights, run_elo
 from .goals import LambdaLookup, MatchModel, compute_tilts
 from .league import league_table, season_outputs, simulate_season
-from .params import TournamentParams, tournament_stats
+from .params import TournamentParams, cup_phase_params, tournament_stats
 from .poisson import calibrate_draw_rate, over_prob
 from .report import write_report
 
@@ -157,11 +157,24 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print) -> d
 
     # ---- cups
     penalties = PenaltyModel(cfg.get('penalties'), cfg['dir'])
+    cup_method = (cfg.get('cup_params', {}) or {}).get('method', 'first_round')
+    cup_fit_tables = []
     for key, cup in cfg['cups'].items():
-        first_t = cup['rounds'][0]['tournament']
-        pred_params = params.prediction(first_t, cup.get('predict'))
-        lookup = LambdaLookup(pred_params['draw_rate'], pred_params['total_goals'], lookup_step, CACHE_DIR)
-        model = MatchModel(ratings, tilts, pred_params, lookup)
+        overrides = cup.get('predict') or {}
+        if cup_method == 'anchored':
+            phases, fit_table = cup_phase_params(history, cfg, cup)
+            cup_fit_tables.append(fit_table)
+            phase_params = {ph: {**v, **{k: float(x) for k, x in overrides.items()}} for ph, v in phases.items()}
+            round_phase = {r['name']: 'early' if r['tournament'] in cup.get('early', []) else 'late'
+                           for r in cup['rounds']}
+        else:  # original behaviour: one parameter set from the first remaining round's label
+            phase_params = {'all': params.prediction(cup['rounds'][0]['tournament'], overrides)}
+            round_phase = {r['name']: 'all' for r in cup['rounds']}
+        phase_models = {}
+        for ph, pp in phase_params.items():
+            lookup = LambdaLookup(pp['draw_rate'], pp['total_goals'], lookup_step, CACHE_DIR)
+            phase_models[ph] = MatchModel(ratings, tilts, pp, lookup)
+        models = {name: phase_models[ph] for name, ph in round_phase.items()}
 
         draw = load_fixture_file(cfg['dir'] / cup['draw'], cfg['aliases'])
         draw['tie'] = draw.get('tie', pd.Series(range(1, len(draw) + 1))).fillna(0).astype(int)
@@ -186,19 +199,20 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print) -> d
             start = sorted(set(first_rows['home']) | set(first_rows['away']))
         else:
             start = alive_from_results(results, cup['results_prefix'], season, summary['warnings'])
-        expected = 2 ** len(cup['rounds'])
-        if len(start) != expected:
-            summary['warnings'].append(f"{cup['name']}: {len(start)} teams alive but the configured "
-                                       f"rounds need {expected} - check `rounds` in config.yaml")
+        problem = bracket_problem(start, cup['rounds'])
+        if problem:
+            summary['warnings'].append(f"{cup['name']}: {len(start)} teams in the first round; {problem}")
 
-        sim = CupSimulator(cup, draw, start, model, rng, penalties)
+        sim = CupSimulator(cup, draw, start, models, rng, penalties)
         probs = sim.run(n_sims)
         outrights = _outright_prices(probs, margins['outright'])
 
         upcoming = draw[~draw['played'] & ~draw['home'].str.startswith('W:') & ~draw['away'].str.startswith('W:')]
         neutral_rounds = {r['name'] for r in cup['rounds'] if r.get('neutral')}
         upcoming = upcoming.assign(neutral=upcoming['round'].isin(neutral_rounds))
-        preds = _price_matches(_predict(model, upcoming, 'neutral'), margins) if len(upcoming) else None
+        parts = [_predict(models[rnd], grp, 'neutral') for rnd, grp in upcoming.groupby('round', sort=False)
+                 if rnd in models]
+        preds = _price_matches(pd.concat(parts, ignore_index=True), margins) if parts else None
 
         cup_dir = out_dir / key
         cup_dir.mkdir(exist_ok=True)
@@ -207,9 +221,11 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print) -> d
             _round_preds(preds).to_csv(cup_dir / 'predictions.csv', index=False)
         summary['cups'][key] = {'name': cup['name'], 'start': start, 'outrights': outrights,
                                 'next': _round_preds(preds) if preds is not None else None,
-                                'params': pred_params, 'drawn': bool(len(first_rows))}
+                                'params': phase_params, 'drawn': bool(len(first_rows))}
         log(f"{cup['name']}: {len(start)} teams left, simulated {n_sims}x")
 
+    if cup_fit_tables:
+        pd.concat(cup_fit_tables, ignore_index=True).round(3).to_csv(out_dir / 'cup_params.csv', index=False)
     summary['warnings'] = params.warnings + summary['warnings']
     write_report(summary, out_dir)
     for w in summary['warnings']:

@@ -28,6 +28,16 @@ prediction_params:
   #              real matchups equals the observed rate (backtest: -0.07% log loss)
   draw_model: calibrated
 
+# Cup pricing parameters (HFA, level-teams draw rate, goals/game):
+#   first_round  raw values from the first remaining round's label (original)
+#   anchored     Elo-adjusted maximum-likelihood fit for each cup's early and late rounds
+#                (labels listed under each cup), blended with the league anchor, which
+#                counts as `anchor_matches` matches. A cup's `predict:` values still override.
+cup_params:
+  method: anchored
+  anchor: [J1 League, J2 League, J3 League]
+  anchor_matches: 300
+
 # Cup shoot-outs: coin = 50/50, skill = per-team conversion rates from penalties.csv
 penalties:
   method: skill
@@ -117,7 +127,9 @@ cups:
     name: Emperor's Cup
     results_prefix: Emperor Cup   # tournament labels belonging to this cup
     draw: cups/emperors_cup_2026-27.csv
-    predict: {hfa: 53.2, draw_rate: 0.255, total_goals: 2.627}
+    # predict: {hfa: 53.2, draw_rate: 0.255, total_goals: 2.627}   # fixed values (override cup_params)
+    early: [Emperor Cup]
+    late: [Emperor Cup R16, Emperor Cup QF, Emperor Cup SF]
     rounds:
       - {name: R16, tournament: Emperor Cup R16, legs: 1}
       - {name: QF, tournament: Emperor Cup QF, legs: 1}
@@ -127,9 +139,12 @@ cups:
     name: League Cup
     results_prefix: League Cup
     draw: cups/league_cup_2026-27.csv
-    predict: {hfa: 61.6, draw_rate: 0.267, total_goals: 2.88}
+    # predict: {hfa: 61.6, draw_rate: 0.267, total_goals: 2.88}    # fixed values (override cup_params)
+    early: [League Cup]
+    late: [League Cup PO, League Cup QF, League Cup SF]
     rounds:
       - {name: PO, tournament: League Cup PO, legs: 2}
-      - {name: QF, tournament: League Cup QF, legs: 2}
+      - {name: QF, tournament: League Cup QF, legs: 2,
+         entrants: [Machida Zelvia, Kashiwa Reysol, Kashima Antlers, Vissel Kobe]}   # seeded AFC clubs
       - {name: SF, tournament: League Cup SF, legs: 2}
       - {name: Final, tournament: League Cup Final, legs: 1, neutral: true}

@@ -53,10 +53,11 @@ def write_report(summary: dict, out_dir: Path):
                   '### Outrights', '', _md(_outright_view(lg['outrights'])), '']
 
     for cup in summary['cups'].values():
-        p = cup['params']
         source = 'draw from cup file' if cup['drawn'] else 'random draw (draw not entered yet)'
-        lines += [f"## {cup['name']}", '',
-                  f"{len(cup['start'])} teams left · {source} · HFA {p['hfa']:.1f} · draw rate {p['draw_rate']:.3f}", '']
+        phases = ' · '.join(f"{ph}: HFA {p['hfa']:.1f}, draw {p['draw_rate']:.3f}, goals {p['total_goals']:.2f}"
+                            for ph, p in cup['params'].items())
+        lines += [f"## {cup['name']}", '', f"{len(cup['start'])} teams in the first remaining round · {source}", '',
+                  f"Parameters — {phases}", '']
         if cup['next'] is not None and len(cup['next']):
             lines += ['### Next matches', '', _md(_odds_view(cup['next'])), '']
         lines += ['### Outrights', '', _md(_outright_view(cup['outrights'])), '']
