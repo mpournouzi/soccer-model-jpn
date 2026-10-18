@@ -1,9 +1,6 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-10-14** (18,333 matches). Generated 2026-10-18 09:19 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
-
-> **Warnings**
-> - League Cup: 10 teams alive but the configured rounds need 16 - check `rounds` in config.yaml
+Results up to **2026-10-14** (18,333 matches). Generated 2026-10-18 10:10 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 ## J1 League
 
@@ -303,69 +300,75 @@ HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/gam
 
 ## Emperor's Cup
 
-16 teams left · draw from cup file · HFA 53.2 · draw rate 0.255
+16 teams in the first remaining round · draw from cup file
+
+Parameters — early: HFA 15.4, draw 0.257, goals 3.02 · late: HFA 38.9, draw 0.264, goals 2.55
 
 ### Next matches
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-12-09 | Vissel Kobe | Shimizu S-Pulse | 1.6 | 4 | 5 | 2.25 | 1.57 | 1.565 | 0.723 |
-| 2026-12-09 | Kashima Antlers | Cerezo Osaka | 1.83 | 3.75 | 3.85 | 1.7 | 2.05 | 1.805 | 1.094 |
-| 2026-12-09 | Yokohama | Tokyo | 4.15 | 3.85 | 1.75 | 1.75 | 1.95 | 1.027 | 1.773 |
-| 2026-12-09 | Kawasaki Frontale | Yokohama F. Marinos | 2.5 | 3.6 | 2.55 | 1.42 | 2.75 | 1.763 | 1.717 |
-| 2026-12-09 | Machida Zelvia | Tokyo Verdy | 1.44 | 4.5 | 6.75 | 2.6 | 1.45 | 1.538 | 0.537 |
-| 2026-12-09 | Kashiwa Reysol | Fagiano Okayama | 1.75 | 3.85 | 4.15 | 1.8 | 1.9 | 1.769 | 0.99 |
-| 2026-12-09 | Kyoto Sanga | Sanfrecce Hiroshima | 4.25 | 3.85 | 1.72 | 1.8 | 1.9 | 0.977 | 1.748 |
-| 2026-12-09 | Gamba Osaka | Urawa Reds | 2.55 | 3.6 | 2.45 | 1.65 | 2.15 | 1.484 | 1.493 |
+| 2026-12-09 | Vissel Kobe | Shimizu S-Pulse | 1.65 | 3.85 | 4.85 | 2.35 | 1.53 | 1.495 | 0.729 |
+| 2026-12-09 | Kashima Antlers | Cerezo Osaka | 1.9 | 3.6 | 3.75 | 1.75 | 1.95 | 1.718 | 1.099 |
+| 2026-12-09 | Yokohama | Tokyo | 4.35 | 3.75 | 1.72 | 1.83 | 1.9 | 0.959 | 1.761 |
+| 2026-12-09 | Kawasaki Frontale | Yokohama F. Marinos | 2.6 | 3.45 | 2.45 | 1.45 | 2.6 | 1.665 | 1.717 |
+| 2026-12-09 | Machida Zelvia | Tokyo Verdy | 1.47 | 4.25 | 6.5 | 2.65 | 1.42 | 1.475 | 0.542 |
+| 2026-12-09 | Kashiwa Reysol | Fagiano Okayama | 1.8 | 3.6 | 4 | 1.85 | 1.85 | 1.685 | 0.995 |
+| 2026-12-09 | Kyoto Sanga | Sanfrecce Hiroshima | 4.5 | 3.8 | 1.7 | 1.87 | 1.83 | 0.912 | 1.736 |
+| 2026-12-09 | Gamba Osaka | Urawa Reds | 2.65 | 3.45 | 2.4 | 1.7 | 2.05 | 1.401 | 1.492 |
 
 ### Outrights
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Sanfrecce Hiroshima | 69.1 | 1.38 | 43.1 | 2.1 | 26 | 3.3 | 15.3 | 5.25 |
-| Machida Zelvia | 79.3 | 1.22 | 46.5 | 2 | 26.8 | 3.2 | 15.1 | 5.25 |
-| Kashima Antlers | 66 | 1.45 | 39.1 | 2.3 | 22.4 | 3.8 | 12.3 | 6.5 |
-| Vissel Kobe | 73.9 | 1.3 | 41.1 | 2.2 | 22.4 | 3.8 | 11.9 | 6.75 |
-| Kashiwa Reysol | 68.7 | 1.4 | 37.3 | 2.4 | 19.4 | 4.3 | 10.1 | 7.5 |
-| Tokyo | 68.9 | 1.4 | 36.7 | 2.45 | 19.1 | 4.35 | 9.8 | 8 |
-| Yokohama F. Marinos | 50.2 | 1.85 | 24.7 | 3.45 | 12 | 6.5 | 5.6 | 13 |
-| Urawa Reds | 49 | 1.87 | 21.8 | 3.85 | 9.3 | 8.5 | 3.7 | 19 |
-| Kawasaki Frontale | 49.8 | 1.85 | 21.8 | 3.85 | 9.2 | 8.5 | 3.7 | 19 |
-| Cerezo Osaka | 34 | 2.62 | 17 | 4.85 | 8.3 | 9 | 3.6 | 19 |
-| Gamba Osaka | 50.9 | 1.83 | 20.5 | 4.15 | 7.5 | 10 | 2.7 | 26 |
-| Fagiano Okayama | 31.3 | 2.85 | 13 | 6 | 5.2 | 13 | 2.1 | 34 |
-| Kyoto Sanga | 30.9 | 2.85 | 11.6 | 6.75 | 4.1 | 17 | 1.5 | 41 |
-| Shimizu S-Pulse | 26.1 | 3.3 | 9.8 | 8 | 3.5 | 19 | 1.2 | 51 |
-| Yokohama | 31.1 | 2.85 | 9.2 | 8.5 | 2.7 | 26 | 0.8 | 81 |
-| Tokyo Verdy | 20.7 | 4 | 6.7 | 11 | 2 | 34 | 0.5 | 101 |
+| Sanfrecce Hiroshima | 70.8 | 1.36 | 43.4 | 2.1 | 26.5 | 3.25 | 15.8 | 5.25 |
+| Machida Zelvia | 78.2 | 1.25 | 46.7 | 1.95 | 26.9 | 3.2 | 15.4 | 5.25 |
+| Kashima Antlers | 64.1 | 1.5 | 37.9 | 2.37 | 21.5 | 3.85 | 12 | 6.5 |
+| Vissel Kobe | 72.5 | 1.33 | 40.2 | 2.25 | 21.6 | 3.85 | 11.3 | 7 |
+| Tokyo | 70.6 | 1.36 | 38.2 | 2.35 | 20.4 | 4.15 | 10.2 | 7.5 |
+| Kashiwa Reysol | 67 | 1.42 | 36.7 | 2.45 | 19.2 | 4.33 | 9.8 | 8 |
+| Yokohama F. Marinos | 51.3 | 1.8 | 25.2 | 3.4 | 11.9 | 6.5 | 5.6 | 13 |
+| Urawa Reds | 51.3 | 1.8 | 22.7 | 3.75 | 9.7 | 8 | 4 | 17 |
+| Cerezo Osaka | 35.9 | 2.5 | 17.4 | 4.75 | 8.3 | 9 | 3.8 | 19 |
+| Kawasaki Frontale | 48.7 | 1.9 | 21.3 | 4 | 9 | 8.5 | 3.7 | 19 |
+| Gamba Osaka | 48.7 | 1.9 | 18.8 | 4.35 | 6.9 | 11 | 2.4 | 26 |
+| Fagiano Okayama | 33.1 | 2.65 | 14.1 | 5.75 | 5.4 | 13 | 2 | 34 |
+| Kyoto Sanga | 29.2 | 3 | 11 | 7.25 | 4 | 17 | 1.4 | 41 |
+| Shimizu S-Pulse | 27.5 | 3.15 | 10.2 | 7.5 | 3.8 | 19 | 1.3 | 51 |
+| Tokyo Verdy | 21.8 | 3.85 | 7.3 | 10 | 2.2 | 29 | 0.7 | 81 |
+| Yokohama | 29.4 | 2.95 | 8.8 | 8.5 | 2.5 | 26 | 0.7 | 81 |
 
 ## League Cup
 
-10 teams left · random draw (draw not entered yet) · HFA 61.6 · draw rate 0.267
+8 teams in the first remaining round · draw from cup file
+
+Parameters — early: HFA 50.0, draw 0.253, goals 2.63 · late: HFA 58.8, draw 0.268, goals 2.67
 
 ### Next matches
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-10-28 | Yokohama F. Marinos | Sanfrecce Hiroshima | 2.85 | 3.45 | 2.3 | 1.5 | 2.45 | 1.511 | 1.768 |
-| 2026-10-28 | Mito Hollyhock | Cerezo Osaka | 3.3 | 3.5 | 2.05 | 1.6 | 2.2 | 1.287 | 1.777 |
-| 2026-10-28 | Nagoya Grampus | Urawa Reds | 2.45 | 3.4 | 2.62 | 1.53 | 2.37 | 1.607 | 1.596 |
-| 2026-10-28 | Sagan Tosu | Kawasaki Frontale | 4 | 3.6 | 1.83 | 1.53 | 2.4 | 1.212 | 2.016 |
+| 2026-10-28 | Yokohama F. Marinos | Sanfrecce Hiroshima | 2.87 | 3.4 | 2.3 | 1.61 | 2.2 | 1.399 | 1.636 |
+| 2026-10-28 | Mito Hollyhock | Cerezo Osaka | 3.35 | 3.5 | 2.05 | 1.72 | 2 | 1.187 | 1.648 |
+| 2026-10-28 | Nagoya Grampus | Urawa Reds | 2.5 | 3.4 | 2.6 | 1.65 | 2.1 | 1.493 | 1.472 |
+| 2026-10-28 | Sagan Tosu | Kawasaki Frontale | 4 | 3.6 | 1.83 | 1.65 | 2.15 | 1.113 | 1.874 |
 
 ### Outrights
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Cerezo Osaka | 54.3 | 1.72 | 21 | 4 | 8.8 | 8.5 | 0 |  |
-| Kashiwa Reysol | 62 | 1.53 | 27.9 | 3.1 | 14.7 | 5.5 | 0 |  |
-| Kawasaki Frontale | 48.4 | 1.9 | 16.6 | 5 | 6 | 12 | 0 |  |
-| Machida Zelvia | 68.3 | 1.4 | 35.4 | 2.5 | 21.8 | 3.85 | 0 |  |
-| Mito Hollyhock | 30 | 2.9 | 6 | 12 | 1.3 | 51 | 0 |  |
-| Nagoya Grampus | 41.3 | 2.2 | 12 | 6.5 | 4 | 17 | 0 |  |
-| Sagan Tosu | 18.2 | 4.6 | 2.2 | 29 | 0.3 | 151 | 0 |  |
-| Sanfrecce Hiroshima | 71.7 | 1.35 | 39.2 | 2.3 | 25.8 | 3.35 | 0 |  |
-| Urawa Reds | 49.5 | 1.87 | 17.3 | 4.75 | 7 | 11 | 0 |  |
-| Yokohama F. Marinos | 56.5 | 1.66 | 22.4 | 3.75 | 10.3 | 7.5 | 0 |  |
+| Machida Zelvia | 100 | 1.001 | 60.8 | 1.55 | 35.6 | 2.5 | 19.6 | 4.25 |
+| Kashima Antlers | 100 | 1.001 | 60.6 | 1.55 | 34.7 | 2.55 | 18.8 | 4.35 |
+| Sanfrecce Hiroshima | 66.2 | 1.44 | 42.7 | 2.15 | 26.4 | 3.25 | 15 | 5.5 |
+| Vissel Kobe | 100 | 1.001 | 56.5 | 1.66 | 29.6 | 2.95 | 15 | 5.5 |
+| Kashiwa Reysol | 100 | 1.001 | 54.7 | 1.72 | 27.8 | 3.1 | 13.6 | 6 |
+| Cerezo Osaka | 73.3 | 1.32 | 31.8 | 2.75 | 12.8 | 6.25 | 5.5 | 13 |
+| Kawasaki Frontale | 80.4 | 1.22 | 30.5 | 2.87 | 11 | 7.25 | 3.9 | 17 |
+| Yokohama F. Marinos | 33.8 | 2.62 | 16.4 | 5 | 7.8 | 9.5 | 3.5 | 19 |
+| Urawa Reds | 58.2 | 1.62 | 23.1 | 3.6 | 8.6 | 9 | 3.3 | 21 |
+| Nagoya Grampus | 41.8 | 2.15 | 13.8 | 5.75 | 4.1 | 17 | 1.4 | 41 |
+| Mito Hollyhock | 26.7 | 3.25 | 6.4 | 12 | 1.2 | 51 | 0.2 | 201 |
+| Sagan Tosu | 19.6 | 4.25 | 2.7 | 26 | 0.4 | 151 | 0.1 | 751 |
 
 ## Top 30 Elo ratings
 
