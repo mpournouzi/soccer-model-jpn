@@ -263,8 +263,8 @@ Current values (late rounds; all remaining rounds this season are late):
 A cup's `predict: {hfa, draw_rate, total_goals}` in the config still overrides any of these. The full fits, raw and
 adjusted, are written to `output/japan/cup_params.csv` on every run.
 
-The **Elo updates** keep using the raw `hfa: auto` for cup labels. That's a deliberate choice, recorded under
-"Known limitations and ideas".
+For the **Elo updates**, the Emperor's Cup early rounds use HFA 10 (the Elo-adjusted venue effect); other cup labels use
+`hfa: auto`. See "Known limitations and ideas".
 
 ### The bracket
 
@@ -302,5 +302,6 @@ Each of the 20,000 runs plays out the rest of the bracket:
 | Ratings fixed within simulations (a team doesn't get stronger after winning simulated games) | Accepted for now |
 | Elo uses the score after extra time; tilts and parameters use 90-minute scores | Intentional |
 | Recency-weighted HFA/draw rate | Built (`shrink`), off: no gain in log loss or in parameter RMSE; true HFA varies only about ±12 Elo between seasons |
-| Elo updates use raw `hfa: auto` for cup labels (e.g. 161 for Emperor's Cup early rounds), adding a venue edge on top of the rating gap | Kept by choice; switching to the Elo-adjusted value (about 10) would change every cup participant's rating |
+| Emperor's Cup early rounds: Elo HFA | Set to 10 (Elo-adjusted venue effect) instead of the raw ~161, which mostly reflected pro clubs hosting. Walk-forward backtest: league matches −0.02% log loss (±0.01); early cup rounds +0.11% (±0.09). J1 ratings rose about 10–13 points. |
+| Higher-tier clubs underperform in early cup rounds (Emperor's Cup J1 clubs: 0.816 actual v 0.868 expected; likely rotation and priorities) | Ideas: a fitted "favourite discount" for early-round cup pricing; lower K for early cup rounds |
 | Shoot-out results not stored | Adding a `winner` to results would allow backtesting penalty skill |
