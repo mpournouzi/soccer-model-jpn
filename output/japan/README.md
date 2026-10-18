@@ -1,406 +1,406 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-10-14** (18,333 matches). Generated 2026-10-18 16:50 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-10-18** (18,371 matches). Generated 2026-10-18 17:12 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 ## J1 League
 
-HFA 29.8 Elo · draw rate 0.260 (level teams; league average 0.249) · goals/game 2.59 · 290 matches left
+HFA 29.3 Elo · draw rate 0.259 (level teams; league average 0.249) · goals/game 2.59 · 280 matches left
 
 ### Next matches
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-10-17 | Shimizu S-Pulse | Gamba Osaka | 2.45 | 3.5 | 2.6 | 1.87 | 1.83 | 1.358 | 1.291 |
-| 2026-10-17 | JEF United | Yokohama F. Marinos | 4.5 | 3.85 | 1.7 | 1.6 | 2.2 | 1.058 | 2.01 |
-| 2026-10-17 | Sanfrecce Hiroshima | Kyoto Sanga | 1.53 | 4.15 | 5.75 | 1.85 | 1.87 | 1.912 | 0.776 |
-| 2026-10-17 | Tokyo Verdy | Tokyo | 4.3 | 3.8 | 1.75 | 2.55 | 1.47 | 0.748 | 1.344 |
-| 2026-10-17 | Kashima Antlers | V-Varen Nagasaki | 1.53 | 4.15 | 5.75 | 1.75 | 2 | 2.006 | 0.82 |
-| 2026-10-17 | Cerezo Osaka | Kawasaki Frontale | 2.15 | 3.5 | 3 | 1.45 | 2.6 | 1.876 | 1.502 |
-| 2026-10-17 | Mito Hollyhock | Urawa Reds | 3.45 | 3.6 | 1.95 | 1.9 | 1.8 | 1.068 | 1.526 |
-| 2026-10-17 | Kashiwa Reysol | Nagoya Grampus | 1.8 | 3.75 | 4 | 1.57 | 2.25 | 1.977 | 1.14 |
-| 2026-10-17 | Fagiano Okayama | Vissel Kobe | 3.3 | 3.6 | 2 | 2.15 | 1.62 | 0.993 | 1.358 |
-| 2026-10-17 | Machida Zelvia | Avispa Fukuoka | 1.53 | 4.15 | 5.75 | 2.55 | 1.45 | 1.479 | 0.607 |
-| 2026-10-21 | Tokyo | Kashiwa Reysol | 2.35 | 3.5 | 2.75 | 1.8 | 1.95 | 1.455 | 1.317 |
-| 2026-10-21 | Kawasaki Frontale | Vissel Kobe | 3.05 | 3.5 | 2.15 | 1.65 | 2.1 | 1.317 | 1.654 |
-| 2026-10-21 | Yokohama F. Marinos | Tokyo Verdy | 1.66 | 3.85 | 4.75 | 2.15 | 1.62 | 1.575 | 0.786 |
-| 2026-10-21 | Shimizu S-Pulse | Machida Zelvia | 4.15 | 3.75 | 1.75 | 2.3 | 1.57 | 0.831 | 1.431 |
-| 2026-10-21 | Nagoya Grampus | Cerezo Osaka | 2.85 | 3.5 | 2.25 | 1.6 | 2.2 | 1.424 | 1.64 |
-| 2026-10-21 | Kyoto Sanga | Kashima Antlers | 4.15 | 3.75 | 1.75 | 1.87 | 1.83 | 0.964 | 1.683 |
-| 2026-10-21 | Fagiano Okayama | Mito Hollyhock | 1.87 | 3.75 | 3.75 | 2.1 | 1.67 | 1.497 | 0.939 |
-| 2026-10-21 | Avispa Fukuoka | Gamba Osaka | 2.65 | 3.5 | 2.4 | 2.05 | 1.67 | 1.184 | 1.258 |
-| 2026-10-21 | V-Varen Nagasaki | Sanfrecce Hiroshima | 5.25 | 4 | 1.6 | 1.72 | 2 | 0.907 | 1.962 |
-| 2026-10-21 | Urawa Reds | JEF United | 1.62 | 4 | 4.85 | 1.72 | 2 | 1.921 | 0.918 |
+| 2026-10-21 | Tokyo | Kashiwa Reysol | 2.15 | 3.5 | 3 | 1.72 | 2 | 1.584 | 1.255 |
+| 2026-10-21 | Kawasaki Frontale | Vissel Kobe | 3 | 3.5 | 2.15 | 1.61 | 2.2 | 1.36 | 1.674 |
+| 2026-10-21 | Yokohama F. Marinos | Tokyo Verdy | 1.65 | 3.85 | 4.85 | 2.15 | 1.62 | 1.584 | 0.772 |
+| 2026-10-21 | Shimizu S-Pulse | Machida Zelvia | 4.35 | 3.85 | 1.72 | 2.2 | 1.6 | 0.816 | 1.507 |
+| 2026-10-21 | Nagoya Grampus | Cerezo Osaka | 2.5 | 3.5 | 2.55 | 1.57 | 2.3 | 1.581 | 1.548 |
+| 2026-10-21 | Kyoto Sanga | Kashima Antlers | 4.35 | 3.8 | 1.72 | 1.87 | 1.83 | 0.933 | 1.705 |
+| 2026-10-21 | Fagiano Okayama | Mito Hollyhock | 1.9 | 3.6 | 3.6 | 2.1 | 1.66 | 1.474 | 0.946 |
+| 2026-10-21 | Avispa Fukuoka | Gamba Osaka | 2.85 | 3.5 | 2.3 | 2 | 1.72 | 1.173 | 1.335 |
+| 2026-10-21 | V-Varen Nagasaki | Sanfrecce Hiroshima | 5.5 | 4 | 1.57 | 1.72 | 2 | 0.876 | 1.984 |
+| 2026-10-21 | Urawa Reds | JEF United | 1.62 | 4 | 5 | 1.8 | 1.9 | 1.866 | 0.884 |
+| 2026-10-24 | Sanfrecce Hiroshima | Shimizu S-Pulse | 1.5 | 4.2 | 6 | 2 | 1.72 | 1.807 | 0.707 |
+| 2026-10-24 | Kashima Antlers | Kashiwa Reysol | 2 | 3.6 | 3.3 | 1.67 | 2.05 | 1.7 | 1.21 |
+| 2026-10-24 | Tokyo Verdy | Avispa Fukuoka | 2.5 | 3.5 | 2.55 | 3.05 | 1.35 | 0.94 | 0.927 |
+| 2026-10-24 | Gamba Osaka | Kyoto Sanga | 2.1 | 3.6 | 3.15 | 1.66 | 2.1 | 1.677 | 1.271 |
+| 2026-10-24 | Vissel Kobe | Machida Zelvia | 2.45 | 3.5 | 2.6 | 2.15 | 1.62 | 1.218 | 1.161 |
+| 2026-10-25 | Nagoya Grampus | Yokohama F. Marinos | 2.75 | 3.5 | 2.35 | 1.6 | 2.2 | 1.471 | 1.598 |
+| 2026-10-25 | Urawa Reds | V-Varen Nagasaki | 1.8 | 3.75 | 4 | 1.8 | 1.95 | 1.754 | 1.009 |
+| 2026-10-25 | Cerezo Osaka | JEF United | 1.65 | 4 | 4.85 | 1.62 | 2.15 | 2.025 | 0.98 |
+| 2026-10-25 | Tokyo | Mito Hollyhock | 1.53 | 4.2 | 6 | 2 | 1.72 | 1.784 | 0.713 |
+| 2026-10-25 | Kawasaki Frontale | Fagiano Okayama | 2.05 | 3.6 | 3.25 | 1.6 | 2.2 | 1.766 | 1.283 |
 
 ### Table and projection
 
 | pos | team | P | W | D | L | GF | GA | GD | Pts | exp_pts | exp_pos |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Kashiwa Reysol | 9 | 7 | 0 | 2 | 21 | 14 | 7 | 21 | 69.1 | 4.1 |
-| 2 | Sanfrecce Hiroshima | 9 | 6 | 2 | 1 | 22 | 6 | 16 | 20 | 73.1 | 2.78 |
-| 3 | Machida Zelvia | 9 | 6 | 2 | 1 | 22 | 10 | 12 | 20 | 71.6 | 3.24 |
-| 4 | Tokyo | 9 | 6 | 2 | 1 | 17 | 8 | 9 | 20 | 67.2 | 4.66 |
-| 5 | Vissel Kobe | 9 | 6 | 1 | 2 | 14 | 9 | 5 | 19 | 68.8 | 4.19 |
-| 6 | Kashima Antlers | 9 | 5 | 1 | 3 | 19 | 16 | 3 | 16 | 66.8 | 4.79 |
-| 7 | Yokohama F. Marinos | 9 | 4 | 3 | 2 | 13 | 9 | 4 | 15 | 60.8 | 6.94 |
-| 8 | Kawasaki Frontale | 9 | 3 | 4 | 2 | 17 | 14 | 3 | 13 | 52.8 | 10.05 |
-| 9 | Fagiano Okayama | 9 | 4 | 1 | 4 | 12 | 12 | 0 | 13 | 50.2 | 11.22 |
-| 10 | Shimizu S-Pulse | 9 | 4 | 1 | 4 | 8 | 9 | -1 | 13 | 47.1 | 12.61 |
-| 11 | Urawa Reds | 9 | 4 | 0 | 5 | 16 | 21 | -5 | 12 | 54.2 | 9.64 |
-| 12 | Cerezo Osaka | 9 | 3 | 3 | 3 | 7 | 12 | -5 | 12 | 55.4 | 9.15 |
-| 13 | Mito Hollyhock | 9 | 2 | 3 | 4 | 12 | 13 | -1 | 9 | 38.4 | 16.2 |
-| 14 | V-Varen Nagasaki | 9 | 2 | 3 | 4 | 11 | 16 | -5 | 9 | 39.8 | 15.71 |
-| 15 | Nagoya Grampus | 9 | 3 | 0 | 6 | 9 | 15 | -6 | 9 | 46.5 | 12.84 |
-| 16 | Kyoto Sanga | 9 | 2 | 2 | 5 | 11 | 16 | -5 | 8 | 41.8 | 14.85 |
-| 17 | Avispa Fukuoka | 9 | 2 | 1 | 6 | 11 | 13 | -2 | 7 | 38.8 | 15.96 |
-| 18 | Gamba Osaka | 9 | 1 | 3 | 5 | 8 | 16 | -8 | 6 | 42.4 | 14.58 |
-| 19 | JEF United | 9 | 1 | 2 | 6 | 8 | 19 | -11 | 5 | 30.5 | 18.83 |
-| 20 | Tokyo Verdy | 9 | 0 | 4 | 5 | 4 | 14 | -10 | 4 | 34.3 | 17.67 |
+| 1 | Sanfrecce Hiroshima | 10 | 7 | 2 | 1 | 25 | 6 | 19 | 23 | 74.6 | 2.59 |
+| 2 | Machida Zelvia | 10 | 7 | 2 | 1 | 25 | 10 | 15 | 23 | 73.1 | 3.01 |
+| 3 | Tokyo | 10 | 7 | 2 | 1 | 21 | 8 | 13 | 23 | 69.6 | 4.05 |
+| 4 | Vissel Kobe | 10 | 7 | 1 | 2 | 17 | 9 | 8 | 22 | 71.2 | 3.62 |
+| 5 | Kashiwa Reysol | 10 | 7 | 0 | 3 | 22 | 17 | 5 | 21 | 64.7 | 5.75 |
+| 6 | Kashima Antlers | 10 | 6 | 1 | 3 | 21 | 16 | 5 | 19 | 68.3 | 4.47 |
+| 7 | Kawasaki Frontale | 10 | 4 | 4 | 2 | 21 | 16 | 5 | 16 | 56.5 | 8.62 |
+| 8 | Yokohama F. Marinos | 10 | 4 | 4 | 2 | 13 | 9 | 4 | 16 | 59.1 | 7.67 |
+| 9 | Urawa Reds | 10 | 5 | 0 | 5 | 17 | 21 | -4 | 15 | 56.2 | 8.89 |
+| 10 | Shimizu S-Pulse | 10 | 4 | 1 | 5 | 10 | 12 | -2 | 13 | 44.7 | 13.56 |
+| 11 | Fagiano Okayama | 10 | 4 | 1 | 5 | 12 | 15 | -3 | 13 | 47.8 | 12.27 |
+| 12 | Nagoya Grampus | 10 | 4 | 0 | 6 | 12 | 16 | -4 | 12 | 51 | 10.92 |
+| 13 | Cerezo Osaka | 10 | 3 | 3 | 4 | 9 | 16 | -7 | 12 | 51.9 | 10.59 |
+| 14 | Mito Hollyhock | 10 | 2 | 3 | 5 | 12 | 14 | -2 | 9 | 36.7 | 16.66 |
+| 15 | Gamba Osaka | 10 | 2 | 3 | 5 | 11 | 18 | -7 | 9 | 45.3 | 13.23 |
+| 16 | V-Varen Nagasaki | 10 | 2 | 3 | 5 | 11 | 18 | -7 | 9 | 38.8 | 15.95 |
+| 17 | Kyoto Sanga | 10 | 2 | 2 | 6 | 11 | 19 | -8 | 8 | 40.6 | 15.23 |
+| 18 | Avispa Fukuoka | 10 | 2 | 1 | 7 | 11 | 16 | -5 | 7 | 37.5 | 16.32 |
+| 19 | JEF United | 10 | 1 | 3 | 6 | 8 | 19 | -11 | 6 | 31.2 | 18.5 |
+| 20 | Tokyo Verdy | 10 | 0 | 4 | 6 | 4 | 18 | -14 | 4 | 32.5 | 18.08 |
 
 ### Outrights
 
 | team | Winner % | Winner Yes | Top 3 % | Top 3 Yes | Relegation % | Relegation Yes |
 |---|---|---|---|---|---|---|
-| Sanfrecce Hiroshima | 33.3 | 2.65 | 70.3 | 1.37 | 0 |  |
-| Machida Zelvia | 23.7 | 3.6 | 61 | 1.55 | 0 |  |
-| Kashiwa Reysol | 13.2 | 6 | 44.5 | 2.05 | 0 |  |
-| Vissel Kobe | 12 | 6.5 | 42.8 | 2.15 | 0 |  |
-| Tokyo | 8.6 | 9 | 34.7 | 2.55 | 0 |  |
-| Kashima Antlers | 7.5 | 10 | 32.3 | 2.75 | 0 |  |
-| Yokohama F. Marinos | 1.3 | 51 | 9.6 | 8 | 0 | 1001 |
-| Cerezo Osaka | 0.2 | 301 | 1.9 | 34 | 0.4 | 151 |
-| Urawa Reds | 0.1 | 751 | 1.3 | 51 | 0.5 | 101 |
-| Kawasaki Frontale | 0.1 | 501 | 1 | 67 | 0.8 | 81 |
-| Fagiano Okayama | 0 | 2001 | 0.3 | 151 | 2.2 | 29 |
-| Shimizu S-Pulse | 0 |  | 0.1 | 501 | 5.3 | 13 |
-| Nagoya Grampus | 0 |  | 0.1 | 501 | 7.1 | 11 |
-| Gamba Osaka | 0 | 5001 | 0 | 2001 | 18.1 | 4.6 |
-| Kyoto Sanga | 0 |  | 0 | 5001 | 19.8 | 4.25 |
-| V-Varen Nagasaki | 0 |  | 0 | 5001 | 29.8 | 2.95 |
-| Avispa Fukuoka | 0 |  | 0 |  | 33.4 | 2.65 |
-| Mito Hollyhock | 0 |  | 0 |  | 36.9 | 2.45 |
-| Tokyo Verdy | 0 |  | 0 |  | 62.7 | 1.5 |
-| JEF United | 0 |  | 0 |  | 83.2 | 1.18 |
+| Sanfrecce Hiroshima | 35 | 2.55 | 74.5 | 1.3 | 0 |  |
+| Machida Zelvia | 25.6 | 3.35 | 65.7 | 1.45 | 0 |  |
+| Vissel Kobe | 16 | 5 | 53 | 1.75 | 0 | 5001 |
+| Tokyo | 11.3 | 7 | 43.8 | 2.1 | 0 |  |
+| Kashima Antlers | 8 | 9.5 | 35.4 | 2.5 | 0 |  |
+| Kashiwa Reysol | 3.1 | 21 | 17.8 | 4.6 | 0 | 5001 |
+| Yokohama F. Marinos | 0.5 | 101 | 4.8 | 15 | 0 | 3501 |
+| Kawasaki Frontale | 0.2 | 251 | 2.3 | 29 | 0.1 | 351 |
+| Urawa Reds | 0.1 | 351 | 1.9 | 34 | 0.2 | 301 |
+| Cerezo Osaka | 0 | 2501 | 0.4 | 151 | 0.9 | 67 |
+| Nagoya Grampus | 0 | 5001 | 0.2 | 251 | 1.2 | 51 |
+| Fagiano Okayama | 0 |  | 0.1 | 501 | 3.3 | 21 |
+| Gamba Osaka | 0 |  | 0.1 | 751 | 7.1 | 11 |
+| Shimizu S-Pulse | 0 |  | 0 | 2501 | 8.2 | 9 |
+| Kyoto Sanga | 0 |  | 0 | 3501 | 22.1 | 3.85 |
+| V-Varen Nagasaki | 0 |  | 0 |  | 31.2 | 2.85 |
+| Avispa Fukuoka | 0 |  | 0 |  | 37.1 | 2.4 |
+| Mito Hollyhock | 0 |  | 0 |  | 42 | 2.15 |
+| Tokyo Verdy | 0 |  | 0 |  | 69.4 | 1.38 |
+| JEF United | 0 |  | 0 |  | 77.2 | 1.25 |
 
 ## J2 League
 
-HFA 24.5 Elo · draw rate 0.285 (level teams; league average 0.276) · goals/game 2.45 · 280 matches left
+HFA 24.9 Elo · draw rate 0.286 (level teams; league average 0.277) · goals/game 2.46 · 270 matches left
 
 ### Next matches
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-10-17 | Consadole Sapporo | Blaublitz Akita | 2.87 | 3.2 | 2.37 | 2 | 1.72 | 1.153 | 1.335 |
-| 2026-10-17 | Vegalta Sendai | Tokushima Vortis | 1.8 | 3.5 | 4.5 | 2.25 | 1.57 | 1.474 | 0.819 |
-| 2026-10-17 | Tochigi City | Yokohama | 3.75 | 3.35 | 2 | 1.53 | 2.37 | 1.264 | 1.939 |
-| 2026-10-17 | Fujieda MYFC | Montedio Yamagata | 2.25 | 3.25 | 3.05 | 2.1 | 1.67 | 1.322 | 1.102 |
-| 2026-10-17 | Imabari | Vanraure Hachinohe | 2.25 | 3.25 | 3.1 | 2.87 | 1.38 | 1.058 | 0.872 |
-| 2026-10-17 | Sagan Tosu | Omiya Ardija | 2.65 | 3.2 | 2.55 | 1.8 | 1.9 | 1.337 | 1.414 |
-| 2026-10-17 | Oita Trinita | Albirex Niigata | 3.15 | 3.25 | 2.2 | 2.75 | 1.4 | 0.862 | 1.117 |
-| 2026-10-17 | Kataller Toyama | Shonan Bellmare | 2.35 | 3.25 | 2.95 | 1.83 | 1.87 | 1.434 | 1.259 |
-| 2026-10-17 | Tegevajaro Miyazaki | Jubilo Iwata | 2.1 | 3.25 | 3.35 | 1.8 | 1.9 | 1.559 | 1.182 |
-| 2026-10-18 | Iwaki | Ventforet Kofu | 2.15 | 3.25 | 3.25 | 2.25 | 1.57 | 1.282 | 0.997 |
-| 2026-10-21 | Montedio Yamagata | Consadole Sapporo | 2.35 | 3.2 | 2.9 | 1.66 | 2.1 | 1.564 | 1.384 |
-| 2026-10-21 | Vegalta Sendai | Imabari | 1.57 | 3.75 | 6 | 2.1 | 1.65 | 1.683 | 0.711 |
-| 2026-10-21 | Tochigi City | Fujieda MYFC | 2.75 | 3.2 | 2.5 | 1.83 | 1.9 | 1.302 | 1.413 |
-| 2026-10-21 | Omiya Ardija | Kataller Toyama | 2.35 | 3.2 | 2.9 | 1.47 | 2.5 | 1.752 | 1.558 |
-| 2026-10-21 | Shonan Bellmare | Iwaki | 2.25 | 3.25 | 3.05 | 2.1 | 1.66 | 1.316 | 1.104 |
-| 2026-10-21 | Ventforet Kofu | Yokohama | 3.8 | 3.35 | 1.95 | 2 | 1.7 | 0.958 | 1.528 |
-| 2026-10-21 | Albirex Niigata | Sagan Tosu | 2.4 | 3.2 | 2.85 | 2.35 | 1.53 | 1.164 | 1.059 |
-| 2026-10-21 | Jubilo Iwata | Oita Trinita | 2.2 | 3.25 | 3.2 | 2.45 | 1.5 | 1.207 | 0.957 |
-| 2026-10-21 | Tokushima Vortis | Vanraure Hachinohe | 1.9 | 3.4 | 4 | 3.1 | 1.35 | 1.133 | 0.716 |
-| 2026-10-21 | Tegevajaro Miyazaki | Blaublitz Akita | 2.2 | 3.25 | 3.15 | 2.25 | 1.6 | 1.272 | 1.036 |
+| 2026-10-21 | Montedio Yamagata | Consadole Sapporo | 2.4 | 3.2 | 2.85 | 1.72 | 2 | 1.484 | 1.371 |
+| 2026-10-21 | Vegalta Sendai | Imabari | 1.6 | 3.75 | 5.75 | 2.05 | 1.67 | 1.71 | 0.735 |
+| 2026-10-21 | Tochigi City | Fujieda MYFC | 2.65 | 3.2 | 2.55 | 1.87 | 1.83 | 1.279 | 1.362 |
+| 2026-10-21 | Omiya Ardija | Kataller Toyama | 2.4 | 3.2 | 2.85 | 1.5 | 2.5 | 1.713 | 1.586 |
+| 2026-10-21 | Shonan Bellmare | Iwaki | 2.37 | 3.2 | 2.9 | 2.05 | 1.7 | 1.299 | 1.167 |
+| 2026-10-21 | Ventforet Kofu | Yokohama | 4 | 3.4 | 1.87 | 2 | 1.75 | 0.939 | 1.588 |
+| 2026-10-21 | Albirex Niigata | Sagan Tosu | 2.65 | 3.2 | 2.55 | 2.2 | 1.6 | 1.126 | 1.191 |
+| 2026-10-21 | Jubilo Iwata | Oita Trinita | 2.3 | 3.2 | 2.95 | 2.3 | 1.55 | 1.196 | 1.044 |
+| 2026-10-21 | Tokushima Vortis | Vanraure Hachinohe | 1.9 | 3.4 | 4 | 3 | 1.36 | 1.161 | 0.727 |
+| 2026-10-21 | Tegevajaro Miyazaki | Blaublitz Akita | 2.15 | 3.25 | 3.25 | 2.3 | 1.57 | 1.27 | 0.998 |
+| 2026-10-24 | Omiya Ardija | Yokohama | 2.75 | 3.2 | 2.5 | 1.53 | 2.4 | 1.542 | 1.684 |
+| 2026-10-24 | Fujieda MYFC | Tokushima Vortis | 2.5 | 3.2 | 2.75 | 2.55 | 1.45 | 1.065 | 1.019 |
+| 2026-10-25 | Blaublitz Akita | Imabari | 2.05 | 3.3 | 3.5 | 2.3 | 1.55 | 1.314 | 0.94 |
+| 2026-10-25 | Montedio Yamagata | Tegevajaro Miyazaki | 3.05 | 3.25 | 2.25 | 1.85 | 1.85 | 1.19 | 1.475 |
+| 2026-10-25 | Albirex Niigata | Vegalta Sendai | 3.6 | 3.3 | 2 | 2.1 | 1.65 | 0.959 | 1.436 |
+| 2026-10-25 | Kataller Toyama | Consadole Sapporo | 2 | 3.3 | 3.6 | 1.61 | 2.2 | 1.79 | 1.256 |
+| 2026-10-25 | Sagan Tosu | Vanraure Hachinohe | 1.75 | 3.5 | 4.5 | 3 | 1.36 | 1.217 | 0.667 |
+| 2026-10-25 | Oita Trinita | Ventforet Kofu | 2.2 | 3.25 | 3.2 | 2.75 | 1.42 | 1.115 | 0.885 |
+| 2026-10-25 | Iwaki | Jubilo Iwata | 2.3 | 3.25 | 3 | 1.85 | 1.85 | 1.44 | 1.236 |
+| 2026-10-25 | Shonan Bellmare | Tochigi City | 2.05 | 3.3 | 3.45 | 1.72 | 2 | 1.635 | 1.199 |
 
 ### Table and projection
 
 | pos | team | P | W | D | L | GF | GA | GD | Pts | exp_pts | exp_pos |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Vegalta Sendai | 10 | 7 | 2 | 1 | 18 | 8 | 10 | 23 | 73.1 | 1.67 |
-| 2 | Omiya Ardija | 10 | 5 | 5 | 0 | 20 | 9 | 11 | 20 | 62.7 | 4.49 |
-| 3 | Albirex Niigata | 10 | 6 | 2 | 2 | 14 | 14 | 0 | 20 | 61.2 | 5.37 |
-| 4 | Kataller Toyama | 10 | 5 | 3 | 2 | 19 | 10 | 9 | 18 | 59.5 | 5.89 |
-| 5 | Yokohama | 10 | 5 | 2 | 3 | 19 | 13 | 6 | 17 | 63.1 | 4.33 |
-| 6 | Shonan Bellmare | 10 | 4 | 5 | 1 | 11 | 9 | 2 | 17 | 57.6 | 7.04 |
-| 7 | Oita Trinita | 10 | 3 | 5 | 2 | 11 | 8 | 3 | 14 | 47 | 13.14 |
-| 8 | Fujieda MYFC | 10 | 3 | 4 | 3 | 13 | 11 | 2 | 13 | 51.3 | 10.53 |
-| 9 | Blaublitz Akita | 10 | 3 | 4 | 3 | 12 | 11 | 1 | 13 | 51.6 | 10.39 |
-| 10 | Tegevajaro Miyazaki | 10 | 3 | 4 | 3 | 14 | 14 | 0 | 13 | 55.9 | 7.83 |
-| 11 | Jubilo Iwata | 10 | 4 | 1 | 5 | 12 | 13 | -1 | 13 | 50 | 11.41 |
-| 12 | Tokushima Vortis | 10 | 4 | 1 | 5 | 10 | 12 | -2 | 13 | 49.8 | 11.56 |
-| 13 | Montedio Yamagata | 10 | 4 | 0 | 6 | 11 | 9 | 2 | 12 | 47.1 | 13.08 |
-| 14 | Iwaki | 10 | 4 | 0 | 6 | 13 | 17 | -4 | 12 | 49.9 | 11.54 |
-| 15 | Sagan Tosu | 10 | 3 | 2 | 5 | 9 | 12 | -3 | 11 | 51 | 10.79 |
-| 16 | Tochigi City | 10 | 3 | 1 | 6 | 16 | 17 | -1 | 10 | 43.6 | 15.06 |
-| 17 | Imabari | 10 | 3 | 1 | 6 | 11 | 19 | -8 | 10 | 41.4 | 16.42 |
-| 18 | Ventforet Kofu | 10 | 3 | 1 | 6 | 9 | 18 | -9 | 10 | 42.9 | 15.65 |
-| 19 | Vanraure Hachinohe | 10 | 3 | 1 | 6 | 6 | 17 | -11 | 10 | 38.7 | 17.62 |
-| 20 | Consadole Sapporo | 10 | 2 | 2 | 6 | 12 | 19 | -7 | 8 | 41.6 | 16.18 |
+| 1 | Vegalta Sendai | 11 | 7 | 3 | 1 | 18 | 8 | 10 | 24 | 72 | 1.64 |
+| 2 | Omiya Ardija | 11 | 5 | 5 | 1 | 21 | 11 | 10 | 20 | 60.1 | 5.37 |
+| 3 | Albirex Niigata | 11 | 6 | 2 | 3 | 15 | 19 | -4 | 20 | 57.3 | 7.24 |
+| 4 | Kataller Toyama | 11 | 5 | 4 | 2 | 20 | 11 | 9 | 19 | 58.8 | 6.03 |
+| 5 | Yokohama | 11 | 5 | 3 | 3 | 20 | 14 | 6 | 18 | 62.2 | 4.42 |
+| 6 | Shonan Bellmare | 11 | 4 | 6 | 1 | 12 | 10 | 2 | 18 | 57.3 | 7.04 |
+| 7 | Oita Trinita | 11 | 4 | 5 | 2 | 16 | 9 | 7 | 17 | 51.4 | 10.43 |
+| 8 | Iwaki | 11 | 5 | 0 | 6 | 18 | 17 | 1 | 15 | 53.1 | 9.49 |
+| 9 | Fujieda MYFC | 11 | 3 | 5 | 3 | 13 | 11 | 2 | 14 | 50.7 | 10.94 |
+| 10 | Tegevajaro Miyazaki | 11 | 3 | 5 | 3 | 15 | 15 | 0 | 14 | 54.9 | 8.33 |
+| 11 | Jubilo Iwata | 11 | 4 | 2 | 5 | 13 | 14 | -1 | 14 | 50 | 11.45 |
+| 12 | Sagan Tosu | 11 | 4 | 2 | 5 | 11 | 13 | -2 | 14 | 53.8 | 9.14 |
+| 13 | Tokushima Vortis | 11 | 4 | 2 | 5 | 10 | 12 | -2 | 14 | 50.5 | 11.22 |
+| 14 | Montedio Yamagata | 11 | 4 | 1 | 6 | 11 | 9 | 2 | 13 | 46.8 | 13.36 |
+| 15 | Blaublitz Akita | 11 | 3 | 4 | 4 | 12 | 12 | 0 | 13 | 48.9 | 12.13 |
+| 16 | Tochigi City | 11 | 3 | 2 | 6 | 17 | 18 | -1 | 11 | 43.8 | 15.07 |
+| 17 | Consadole Sapporo | 11 | 3 | 2 | 6 | 13 | 19 | -6 | 11 | 44.4 | 14.94 |
+| 18 | Imabari | 11 | 3 | 2 | 6 | 14 | 22 | -8 | 11 | 40.7 | 16.82 |
+| 19 | Vanraure Hachinohe | 11 | 3 | 2 | 6 | 9 | 20 | -11 | 11 | 38.6 | 17.75 |
+| 20 | Ventforet Kofu | 11 | 3 | 1 | 7 | 9 | 23 | -14 | 10 | 40.1 | 17.18 |
 
 ### Outrights
 
 | team | Winner % | Winner Yes | Top 2 % | Top 2 Yes | Top 6 % | Top 6 Yes | Relegation % | Relegation Yes |
 |---|---|---|---|---|---|---|---|---|
-| Vegalta Sendai | 66.1 | 1.45 | 84.1 | 1.17 | 98.8 | 1.01 | 0 |  |
-| Yokohama | 10.2 | 7.5 | 30.3 | 2.9 | 81.1 | 1.2 | 0 | 751 |
-| Omiya Ardija | 9.7 | 8 | 29 | 3 | 79.3 | 1.22 | 0 | 1001 |
-| Albirex Niigata | 5.5 | 13 | 18.9 | 4.35 | 69.9 | 1.38 | 0.2 | 201 |
-| Kataller Toyama | 4.3 | 17 | 14.9 | 5.5 | 63.7 | 1.5 | 0.3 | 201 |
-| Shonan Bellmare | 2 | 34 | 8.8 | 8.5 | 50.3 | 1.85 | 0.7 | 81 |
-| Tegevajaro Miyazaki | 1.1 | 51 | 6 | 12 | 41.9 | 2.15 | 1.3 | 51 |
-| Blaublitz Akita | 0.2 | 201 | 1.6 | 41 | 19.7 | 4.25 | 5.1 | 15 |
-| Fujieda MYFC | 0.2 | 201 | 1.6 | 41 | 18.9 | 4.35 | 5.5 | 13 |
-| Sagan Tosu | 0.2 | 201 | 1.4 | 41 | 17 | 4.85 | 6 | 12 |
-| Jubilo Iwata | 0.2 | 301 | 0.9 | 67 | 13.7 | 5.75 | 7.7 | 10 |
-| Iwaki | 0.1 | 351 | 0.9 | 67 | 12.9 | 6.25 | 8.3 | 9 |
-| Tokushima Vortis | 0.1 | 751 | 0.8 | 67 | 12.8 | 6.25 | 8.5 | 9 |
-| Montedio Yamagata | 0 | 1501 | 0.3 | 201 | 6.8 | 11 | 15.2 | 5.25 |
-| Oita Trinita | 0 | 1001 | 0.3 | 151 | 6.4 | 11 | 15.6 | 5.25 |
-| Tochigi City | 0 | 3501 | 0.1 | 751 | 2.6 | 26 | 31.8 | 2.75 |
-| Ventforet Kofu | 0 |  | 0.1 | 751 | 1.7 | 34 | 37.9 | 2.37 |
-| Consadole Sapporo | 0 |  | 0 | 2501 | 1.1 | 51 | 44.1 | 2.05 |
-| Imabari | 0 |  | 0 | 2001 | 1 | 51 | 47.4 | 1.95 |
-| Vanraure Hachinohe | 0 |  | 0 | 3501 | 0.3 | 151 | 64.4 | 1.47 |
+| Vegalta Sendai | 68.7 | 1.4 | 84.9 | 1.16 | 98.6 | 1.01 | 0 |  |
+| Yokohama | 10.8 | 7.25 | 33 | 2.65 | 79 | 1.22 | 0.1 | 501 |
+| Omiya Ardija | 6.6 | 11 | 22.1 | 3.85 | 69.2 | 1.38 | 0.2 | 251 |
+| Kataller Toyama | 4.5 | 15 | 17 | 4.85 | 61.6 | 1.53 | 0.3 | 201 |
+| Shonan Bellmare | 2.7 | 26 | 10.7 | 7.25 | 51.4 | 1.8 | 0.8 | 67 |
+| Albirex Niigata | 2.5 | 26 | 10 | 7.5 | 48.7 | 1.9 | 0.9 | 67 |
+| Tegevajaro Miyazaki | 1.2 | 51 | 5.7 | 13 | 38.2 | 2.35 | 1.8 | 34 |
+| Sagan Tosu | 1 | 67 | 4.5 | 15 | 30.7 | 2.85 | 2.7 | 26 |
+| Iwaki | 0.7 | 81 | 3.8 | 19 | 27.6 | 3.15 | 3.1 | 21 |
+| Oita Trinita | 0.4 | 126 | 2.4 | 26 | 20.7 | 4 | 5.2 | 13 |
+| Fujieda MYFC | 0.2 | 201 | 1.6 | 41 | 17.8 | 4.6 | 6.5 | 11 |
+| Tokushima Vortis | 0.2 | 251 | 1.5 | 41 | 16.1 | 5 | 7.3 | 10 |
+| Jubilo Iwata | 0.2 | 251 | 1.3 | 51 | 14.7 | 5.5 | 7.6 | 10 |
+| Blaublitz Akita | 0.2 | 301 | 0.8 | 67 | 11 | 7 | 10.2 | 7.5 |
+| Montedio Yamagata | 0.1 | 501 | 0.4 | 126 | 6.9 | 11 | 17.2 | 4.75 |
+| Consadole Sapporo | 0 | 5001 | 0.1 | 351 | 2.9 | 23 | 29.3 | 2.95 |
+| Tochigi City | 0 | 3501 | 0.1 | 351 | 3.1 | 21 | 30.5 | 2.87 |
+| Imabari | 0 | 5001 | 0 | 1001 | 0.8 | 67 | 52.2 | 1.8 |
+| Ventforet Kofu | 0 |  | 0 | 2001 | 0.6 | 101 | 57.7 | 1.62 |
+| Vanraure Hachinohe | 0 |  | 0 | 3501 | 0.3 | 201 | 66.2 | 1.44 |
 
 ## J3 League
 
-HFA 40.6 Elo · draw rate 0.253 (level teams; league average 0.244) · goals/game 2.57 · 280 matches left
+HFA 40.9 Elo · draw rate 0.253 (level teams; league average 0.244) · goals/game 2.57 · 270 matches left
 
 ### Next matches
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-10-17 | Gifu | Fukushima United | 2 | 3.75 | 3.3 | 1.27 | 3.6 | 2.358 | 1.639 |
-| 2026-10-17 | Gainare Tottori | ThespaKusatsu Gunma | 1.87 | 3.75 | 3.6 | 1.5 | 2.45 | 2.019 | 1.265 |
-| 2026-10-17 | Giravanz Kitakyushu | Osaka | 3.45 | 3.75 | 1.95 | 2.3 | 1.57 | 0.928 | 1.337 |
-| 2026-10-17 | Zweigen Kanazawa | Nara Club | 2.4 | 3.6 | 2.62 | 1.61 | 2.2 | 1.58 | 1.456 |
-| 2026-10-17 | Kagoshima United | Ehime | 2.1 | 3.6 | 3.05 | 1.8 | 1.9 | 1.548 | 1.18 |
-| 2026-10-17 | Ryūkyū | Tochigi | 2.75 | 3.6 | 2.25 | 2.2 | 1.6 | 1.097 | 1.232 |
-| 2026-10-18 | Biwako Shiga | Sagamihara | 3.1 | 3.6 | 2.05 | 1.72 | 2 | 1.247 | 1.603 |
-| 2026-10-18 | Renofa Yamaguchi | Kochi United | 1.44 | 4.5 | 7 | 2.25 | 1.57 | 1.707 | 0.576 |
-| 2026-10-18 | Kamatamare Sanuki | Roasso Kumamoto | 3.85 | 3.8 | 1.83 | 2.1 | 1.67 | 0.931 | 1.497 |
-| 2026-10-18 | Parceiro Nagano | Matsumoto Yamaga | 2.87 | 3.6 | 2.2 | 2.2 | 1.6 | 1.073 | 1.246 |
-| 2026-10-21 | Fukushima United | Giravanz Kitakyushu | 1.95 | 3.75 | 3.4 | 1.37 | 2.9 | 2.156 | 1.454 |
-| 2026-10-21 | Tochigi | Biwako Shiga | 2.15 | 3.6 | 3 | 2.15 | 1.65 | 1.336 | 1.053 |
-| 2026-10-21 | Parceiro Nagano | Ryūkyū | 2.05 | 3.6 | 3.2 | 2.1 | 1.67 | 1.404 | 1.02 |
-| 2026-10-21 | Matsumoto Yamaga | ThespaKusatsu Gunma | 1.87 | 3.75 | 3.6 | 1.7 | 2.05 | 1.77 | 1.116 |
-| 2026-10-21 | Gifu | Sagamihara | 2.5 | 3.6 | 2.5 | 1.61 | 2.2 | 1.529 | 1.513 |
-| 2026-10-21 | Osaka | Nara Club | 2.25 | 3.6 | 2.85 | 1.85 | 1.85 | 1.453 | 1.212 |
-| 2026-10-21 | Kamatamare Sanuki | Zweigen Kanazawa | 3.85 | 3.8 | 1.83 | 1.8 | 1.95 | 1.06 | 1.705 |
-| 2026-10-21 | Ehime | Renofa Yamaguchi | 2.25 | 3.6 | 2.85 | 1.9 | 1.8 | 1.406 | 1.187 |
-| 2026-10-21 | Roasso Kumamoto | Gainare Tottori | 2.25 | 3.6 | 2.85 | 2 | 1.72 | 1.35 | 1.144 |
-| 2026-10-21 | Kagoshima United | Kochi United | 1.38 | 4.75 | 8 | 2.1 | 1.65 | 1.849 | 0.553 |
+| 2026-10-21 | Fukushima United | Giravanz Kitakyushu | 2.1 | 3.6 | 3.1 | 1.37 | 2.9 | 2.058 | 1.553 |
+| 2026-10-21 | Tochigi | Biwako Shiga | 2.15 | 3.6 | 2.95 | 2.2 | 1.61 | 1.312 | 1.036 |
+| 2026-10-21 | Parceiro Nagano | Ryūkyū | 2.05 | 3.6 | 3.2 | 2.1 | 1.66 | 1.397 | 1.013 |
+| 2026-10-21 | Matsumoto Yamaga | ThespaKusatsu Gunma | 1.95 | 3.75 | 3.4 | 1.7 | 2.05 | 1.722 | 1.158 |
+| 2026-10-21 | Gifu | Sagamihara | 2.55 | 3.6 | 2.45 | 1.65 | 2.15 | 1.486 | 1.492 |
+| 2026-10-21 | Osaka | Nara Club | 2.45 | 3.6 | 2.55 | 1.85 | 1.85 | 1.37 | 1.299 |
+| 2026-10-21 | Kamatamare Sanuki | Zweigen Kanazawa | 3.8 | 3.8 | 1.83 | 1.8 | 1.9 | 1.054 | 1.687 |
+| 2026-10-21 | Ehime | Renofa Yamaguchi | 2.35 | 3.6 | 2.65 | 1.87 | 1.83 | 1.395 | 1.254 |
+| 2026-10-21 | Roasso Kumamoto | Gainare Tottori | 2.15 | 3.6 | 2.95 | 2 | 1.7 | 1.381 | 1.104 |
+| 2026-10-21 | Kagoshima United | Kochi United | 1.36 | 4.85 | 8.5 | 2.05 | 1.7 | 1.919 | 0.534 |
+| 2026-10-24 | ThespaKusatsu Gunma | Kamatamare Sanuki | 1.75 | 3.85 | 4 | 1.53 | 2.35 | 2.032 | 1.156 |
+| 2026-10-24 | Sagamihara | Tochigi | 1.75 | 3.85 | 4.2 | 2.05 | 1.7 | 1.593 | 0.869 |
+| 2026-10-24 | Osaka | Kagoshima United | 3 | 3.6 | 2.1 | 2.15 | 1.62 | 1.05 | 1.301 |
+| 2026-10-24 | Nara Club | Ryūkyū | 1.65 | 4 | 4.75 | 1.67 | 2.1 | 1.977 | 0.953 |
+| 2026-10-25 | Gainare Tottori | Kochi United | 1.57 | 4.15 | 5.25 | 1.9 | 1.8 | 1.825 | 0.795 |
+| 2026-10-25 | Roasso Kumamoto | Gifu | 2.2 | 3.6 | 2.85 | 2.05 | 1.7 | 1.355 | 1.127 |
+| 2026-10-25 | Matsumoto Yamaga | Renofa Yamaguchi | 2.85 | 3.6 | 2.2 | 2.2 | 1.6 | 1.078 | 1.249 |
+| 2026-10-25 | Biwako Shiga | Zweigen Kanazawa | 2.75 | 3.6 | 2.3 | 1.9 | 1.8 | 1.246 | 1.379 |
+| 2026-10-25 | Giravanz Kitakyushu | Parceiro Nagano | 2.37 | 3.6 | 2.62 | 2.05 | 1.67 | 1.279 | 1.17 |
+| 2026-10-25 | Ehime | Fukushima United | 1.75 | 3.85 | 4.15 | 1.28 | 3.45 | 2.542 | 1.395 |
 
 ### Table and projection
 
 | pos | team | P | W | D | L | GF | GA | GD | Pts | exp_pts | exp_pos |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Ehime | 10 | 7 | 2 | 1 | 24 | 10 | 14 | 23 | 70.6 | 2.95 |
-| 2 | Kagoshima United | 10 | 7 | 2 | 1 | 19 | 11 | 8 | 23 | 72.6 | 2.5 |
-| 3 | Renofa Yamaguchi | 10 | 6 | 2 | 2 | 14 | 7 | 7 | 20 | 68.2 | 3.72 |
-| 4 | Nara Club | 10 | 6 | 2 | 2 | 21 | 16 | 5 | 20 | 64.5 | 5.11 |
-| 5 | Sagamihara | 10 | 5 | 3 | 2 | 18 | 12 | 6 | 18 | 62.6 | 5.81 |
-| 6 | Osaka | 10 | 4 | 5 | 1 | 18 | 9 | 9 | 17 | 61.3 | 6.27 |
-| 7 | Gifu | 10 | 5 | 1 | 4 | 20 | 10 | 10 | 16 | 57.5 | 7.97 |
-| 8 | Zweigen Kanazawa | 10 | 4 | 2 | 4 | 17 | 14 | 3 | 14 | 56.2 | 8.66 |
-| 9 | Roasso Kumamoto | 10 | 3 | 5 | 2 | 7 | 6 | 1 | 14 | 55.3 | 9.14 |
-| 10 | Biwako Shiga | 10 | 4 | 2 | 4 | 16 | 16 | 0 | 14 | 48.6 | 12.43 |
-| 11 | Parceiro Nagano | 10 | 4 | 2 | 4 | 14 | 14 | 0 | 14 | 47.5 | 13 |
-| 12 | Gainare Tottori | 10 | 4 | 1 | 5 | 12 | 19 | -7 | 13 | 55.4 | 9.25 |
-| 13 | Matsumoto Yamaga | 10 | 2 | 5 | 3 | 9 | 11 | -2 | 11 | 52.6 | 10.45 |
-| 14 | Ryūkyū | 10 | 3 | 2 | 5 | 11 | 14 | -3 | 11 | 40.7 | 15.84 |
-| 15 | Tochigi | 10 | 2 | 4 | 4 | 11 | 15 | -4 | 10 | 46.2 | 13.51 |
-| 16 | Giravanz Kitakyushu | 10 | 2 | 4 | 4 | 12 | 18 | -6 | 10 | 40.4 | 15.99 |
-| 17 | ThespaKusatsu Gunma | 10 | 3 | 0 | 7 | 10 | 19 | -9 | 9 | 42.6 | 15.14 |
-| 18 | Fukushima United | 10 | 2 | 2 | 6 | 20 | 25 | -5 | 8 | 44.4 | 14.26 |
-| 19 | Kamatamare Sanuki | 10 | 1 | 2 | 7 | 12 | 20 | -8 | 5 | 30.4 | 18.88 |
-| 20 | Kochi United | 10 | 1 | 2 | 7 | 4 | 23 | -19 | 5 | 29.5 | 19.12 |
+| 1 | Kagoshima United | 11 | 8 | 2 | 1 | 23 | 13 | 10 | 26 | 75 | 2.07 |
+| 2 | Ehime | 11 | 7 | 2 | 2 | 26 | 14 | 12 | 23 | 68.3 | 3.76 |
+| 3 | Renofa Yamaguchi | 11 | 7 | 2 | 2 | 16 | 7 | 9 | 23 | 69.5 | 3.47 |
+| 4 | Nara Club | 11 | 7 | 2 | 2 | 22 | 16 | 6 | 23 | 67.3 | 4.21 |
+| 5 | Sagamihara | 11 | 6 | 3 | 2 | 20 | 12 | 8 | 21 | 65.1 | 4.87 |
+| 6 | Gifu | 11 | 6 | 1 | 4 | 21 | 10 | 11 | 19 | 59.5 | 7.04 |
+| 7 | Osaka | 11 | 4 | 5 | 2 | 19 | 12 | 7 | 17 | 57.6 | 7.96 |
+| 8 | Roasso Kumamoto | 11 | 4 | 5 | 2 | 10 | 6 | 4 | 17 | 57.4 | 8.1 |
+| 9 | Parceiro Nagano | 11 | 5 | 2 | 4 | 16 | 15 | 1 | 17 | 50.5 | 11.51 |
+| 10 | Zweigen Kanazawa | 11 | 4 | 2 | 5 | 17 | 15 | 2 | 14 | 53.5 | 9.89 |
+| 11 | Biwako Shiga | 11 | 4 | 2 | 5 | 16 | 18 | -2 | 14 | 46.6 | 13.38 |
+| 12 | Ryūkyū | 11 | 4 | 2 | 5 | 12 | 14 | -2 | 14 | 43.7 | 14.72 |
+| 13 | Gainare Tottori | 11 | 4 | 2 | 5 | 13 | 20 | -7 | 14 | 54 | 9.84 |
+| 14 | Giravanz Kitakyushu | 11 | 3 | 4 | 4 | 15 | 19 | -4 | 13 | 44.3 | 14.45 |
+| 15 | Matsumoto Yamaga | 11 | 2 | 5 | 4 | 10 | 13 | -3 | 11 | 49.8 | 11.73 |
+| 16 | Tochigi | 11 | 2 | 4 | 5 | 11 | 16 | -5 | 10 | 43.7 | 14.62 |
+| 17 | ThespaKusatsu Gunma | 11 | 3 | 1 | 7 | 11 | 20 | -9 | 10 | 43.1 | 14.96 |
+| 18 | Fukushima United | 11 | 2 | 2 | 7 | 20 | 26 | -6 | 8 | 42.7 | 15.01 |
+| 19 | Kamatamare Sanuki | 11 | 1 | 2 | 8 | 12 | 23 | -11 | 5 | 28.6 | 19.16 |
+| 20 | Kochi United | 11 | 1 | 2 | 8 | 4 | 25 | -21 | 5 | 28.5 | 19.25 |
 
 ### Outrights
 
 | team | Winner % | Winner Yes | Top 2 % | Top 2 Yes | Top 6 % | Top 6 Yes | Bottom 2 % | Bottom 2 Yes |
 |---|---|---|---|---|---|---|---|---|
-| Kagoshima United | 38.8 | 2.3 | 62.5 | 1.53 | 96 | 1.04 | 0 |  |
-| Ehime | 28.1 | 3.1 | 52 | 1.8 | 93.4 | 1.06 | 0 |  |
-| Renofa Yamaguchi | 16.3 | 5 | 35.7 | 2.5 | 88 | 1.12 | 0 |  |
-| Nara Club | 6.6 | 11 | 17.8 | 4.6 | 72.1 | 1.33 | 0 |  |
-| Sagamihara | 4.6 | 15 | 12.7 | 6.25 | 63.1 | 1.5 | 0 |  |
-| Osaka | 3.1 | 21 | 9.4 | 8 | 56.6 | 1.66 | 0 |  |
-| Gifu | 1.1 | 51 | 3.6 | 19 | 35 | 2.55 | 0 | 1501 |
-| Zweigen Kanazawa | 0.6 | 101 | 2.2 | 29 | 27.6 | 3.15 | 0.1 | 751 |
-| Roasso Kumamoto | 0.3 | 151 | 1.4 | 41 | 22.2 | 3.8 | 0.1 | 351 |
-| Gainare Tottori | 0.4 | 151 | 1.6 | 41 | 21.6 | 3.85 | 0.1 | 351 |
-| Matsumoto Yamaga | 0.1 | 351 | 0.6 | 81 | 12.8 | 6.25 | 0.3 | 151 |
-| Biwako Shiga | 0 | 3501 | 0.1 | 351 | 4.2 | 17 | 1.2 | 51 |
-| Parceiro Nagano | 0 | 3501 | 0.1 | 501 | 2.8 | 23 | 1.9 | 34 |
-| Tochigi | 0 | 3501 | 0.1 | 751 | 2.2 | 29 | 3 | 23 |
-| Fukushima United | 0 |  | 0 | 1501 | 1.3 | 51 | 4.9 | 15 |
-| ThespaKusatsu Gunma | 0 |  | 0 | 5001 | 0.7 | 81 | 8.3 | 9 |
-| Ryūkyū | 0 |  | 0 |  | 0.3 | 151 | 12.6 | 6.25 |
-| Giravanz Kitakyushu | 0 |  | 0 |  | 0.3 | 201 | 13.9 | 5.75 |
-| Kamatamare Sanuki | 0 |  | 0 |  | 0 | 5001 | 73.5 | 1.32 |
-| Kochi United | 0 |  | 0 |  | 0 |  | 80 | 1.22 |
+| Kagoshima United | 49.6 | 1.87 | 72.4 | 1.33 | 98.1 | 1.02 | 0 |  |
+| Renofa Yamaguchi | 17 | 4.85 | 38.9 | 2.3 | 91 | 1.09 | 0 |  |
+| Ehime | 14.3 | 5.75 | 33.5 | 2.65 | 88.3 | 1.12 | 0 |  |
+| Nara Club | 9.7 | 8 | 26 | 3.3 | 84.4 | 1.16 | 0 |  |
+| Sagamihara | 6.8 | 11 | 18.1 | 4.6 | 76.8 | 1.27 | 0 | 5001 |
+| Gifu | 1.3 | 51 | 4.7 | 15 | 46.3 | 2 | 0 | 2001 |
+| Osaka | 0.6 | 101 | 2.4 | 26 | 34.2 | 2.6 | 0 | 2501 |
+| Roasso Kumamoto | 0.5 | 126 | 2.3 | 29 | 32 | 2.75 | 0 | 2501 |
+| Gainare Tottori | 0.1 | 501 | 0.5 | 101 | 15.8 | 5.25 | 0.2 | 251 |
+| Zweigen Kanazawa | 0.1 | 351 | 0.6 | 101 | 15.4 | 5.25 | 0.2 | 251 |
+| Parceiro Nagano | 0 | 1001 | 0.2 | 301 | 6.2 | 12 | 0.5 | 126 |
+| Matsumoto Yamaga | 0 | 1001 | 0.2 | 301 | 5.7 | 13 | 0.8 | 67 |
+| Biwako Shiga | 0 |  | 0 | 1501 | 2 | 34 | 2 | 34 |
+| Giravanz Kitakyushu | 0 | 5001 | 0 | 5001 | 1 | 67 | 4.2 | 17 |
+| Tochigi | 0 |  | 0 | 2001 | 0.8 | 67 | 4.9 | 15 |
+| Ryūkyū | 0 |  | 0 |  | 0.7 | 81 | 4.8 | 15 |
+| ThespaKusatsu Gunma | 0 |  | 0 | 5001 | 0.7 | 81 | 6.2 | 12 |
+| Fukushima United | 0 |  | 0 | 3501 | 0.6 | 81 | 6.8 | 11 |
+| Kamatamare Sanuki | 0 |  | 0 |  | 0 |  | 83.8 | 1.17 |
+| Kochi United | 0 |  | 0 |  | 0 |  | 85.6 | 1.15 |
 
 ## JFL
 
-HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/game 2.60 · 185 matches left
+HFA 15.7 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/game 2.61 · 177 matches left
 
 ### Next matches
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-10-17 | Honda | Maruyasu Okazaki | 1.72 | 3.75 | 4.35 | 2.3 | 1.57 | 1.466 | 0.8 |
-| 2026-10-17 | Honda Lock | J-Lease FC | 1.57 | 4 | 5.5 | 1.95 | 1.8 | 1.807 | 0.78 |
-| 2026-10-17 | Tokyo Musashino City | Urayasu | 3.15 | 3.5 | 2.1 | 2.45 | 1.5 | 0.94 | 1.221 |
-| 2026-10-17 | VONDS Ichihara | Okinawa SV | 2.4 | 3.5 | 2.65 | 1.85 | 1.87 | 1.389 | 1.296 |
-| 2026-10-17 | Veertien Mie | Azul Claro Numazu | 2.15 | 3.5 | 3.05 | 2.2 | 1.6 | 1.296 | 1.026 |
-| 2026-10-17 | YSCC | Reinmeer Aomori | 3.05 | 3.5 | 2.15 | 1.67 | 2.1 | 1.307 | 1.627 |
-| 2026-10-18 | TIAMO Hirakata | Grulla Morioka | 2.4 | 3.5 | 2.65 | 1.35 | 3.05 | 1.917 | 1.78 |
-| 2026-10-18 | Verspah Oita | Criacao Shinjuku | 2.1 | 3.5 | 3.15 | 2.55 | 1.45 | 1.179 | 0.905 |
+| 2026-10-24 | Reinmeer Aomori | Verspah Oita | 2.4 | 3.5 | 2.65 | 2.2 | 1.6 | 1.203 | 1.119 |
+| 2026-10-24 | Maruyasu Okazaki | Urayasu | 2.87 | 3.5 | 2.25 | 2.3 | 1.55 | 1.038 | 1.213 |
+| 2026-10-24 | Criacao Shinjuku | Honda Lock | 1.95 | 3.6 | 3.5 | 2.37 | 1.53 | 1.309 | 0.899 |
+| 2026-10-24 | J-Lease FC | Veertien Mie | 7 | 4.35 | 1.45 | 2.25 | 1.6 | 0.602 | 1.702 |
+| 2026-10-24 | Okinawa SV | Honda | 3.4 | 3.6 | 2 | 1.87 | 1.83 | 1.09 | 1.552 |
+| 2026-10-25 | Grulla Morioka | YSCC | 2.15 | 3.5 | 3.05 | 1.42 | 2.65 | 1.931 | 1.527 |
+| 2026-10-25 | Tokyo Musashino City | VONDS Ichihara | 3.25 | 3.5 | 2.05 | 2.2 | 1.61 | 0.999 | 1.337 |
+| 2026-10-25 | Azul Claro Numazu | TIAMO Hirakata | 2.05 | 3.5 | 3.25 | 1.47 | 2.5 | 1.904 | 1.403 |
 
 ### Table and projection
 
 | pos | team | P | W | D | L | GF | GA | GD | Pts | exp_pts | exp_pos |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Criacao Shinjuku | 7 | 5 | 1 | 1 | 8 | 4 | 4 | 16 | 48.3 | 5.3 |
-| 2 | Verspah Oita | 7 | 4 | 2 | 1 | 11 | 8 | 3 | 14 | 50.5 | 4.28 |
-| 3 | Reinmeer Aomori | 7 | 4 | 1 | 2 | 8 | 7 | 1 | 13 | 47.4 | 5.74 |
-| 4 | Honda | 7 | 4 | 1 | 2 | 7 | 6 | 1 | 13 | 53.2 | 3.2 |
-| 5 | Veertien Mie | 7 | 4 | 0 | 3 | 11 | 7 | 4 | 12 | 51.5 | 3.77 |
-| 6 | Azul Claro Numazu | 7 | 3 | 3 | 1 | 9 | 6 | 3 | 12 | 47.5 | 5.55 |
-| 7 | YSCC | 7 | 4 | 0 | 3 | 13 | 12 | 1 | 12 | 40.8 | 9.1 |
-| 8 | Okinawa SV | 7 | 3 | 2 | 2 | 11 | 7 | 4 | 11 | 42.6 | 8.01 |
-| 9 | VONDS Ichihara | 7 | 3 | 2 | 2 | 9 | 7 | 2 | 11 | 44.1 | 7.34 |
-| 10 | Honda Lock | 7 | 3 | 1 | 3 | 8 | 9 | -1 | 10 | 40.3 | 9.4 |
-| 11 | Grulla Morioka | 7 | 1 | 4 | 2 | 7 | 9 | -2 | 7 | 38.5 | 10.18 |
-| 12 | Maruyasu Okazaki | 7 | 2 | 0 | 5 | 8 | 10 | -2 | 6 | 35.2 | 11.72 |
-| 13 | J-Lease FC | 6 | 1 | 2 | 3 | 6 | 7 | -1 | 5 | 20.8 | 15.72 |
-| 14 | TIAMO Hirakata | 7 | 1 | 2 | 4 | 7 | 16 | -9 | 5 | 35.4 | 11.76 |
-| 15 | Urayasu | 7 | 1 | 1 | 5 | 6 | 12 | -6 | 4 | 36.2 | 11.3 |
-| 16 | Tokyo Musashino City | 6 | 1 | 0 | 5 | 8 | 10 | -2 | 3 | 30.1 | 13.62 |
+| 1 | Criacao Shinjuku | 8 | 6 | 1 | 1 | 9 | 4 | 5 | 19 | 51.1 | 4.12 |
+| 2 | Reinmeer Aomori | 8 | 5 | 1 | 2 | 10 | 7 | 3 | 16 | 50 | 4.56 |
+| 3 | Honda | 8 | 5 | 1 | 2 | 9 | 7 | 2 | 16 | 54.8 | 2.72 |
+| 4 | Verspah Oita | 8 | 4 | 2 | 2 | 11 | 9 | 2 | 14 | 47.9 | 5.43 |
+| 5 | Veertien Mie | 8 | 4 | 1 | 3 | 13 | 9 | 4 | 13 | 50.7 | 4.1 |
+| 6 | Azul Claro Numazu | 8 | 3 | 4 | 1 | 11 | 8 | 3 | 13 | 47.6 | 5.48 |
+| 7 | Okinawa SV | 8 | 3 | 3 | 2 | 12 | 8 | 4 | 12 | 42.4 | 7.97 |
+| 8 | VONDS Ichihara | 8 | 3 | 3 | 2 | 10 | 8 | 2 | 12 | 43.7 | 7.41 |
+| 9 | YSCC | 8 | 4 | 0 | 4 | 13 | 14 | -1 | 12 | 38.7 | 10.03 |
+| 10 | Grulla Morioka | 8 | 2 | 4 | 2 | 9 | 10 | -1 | 10 | 41 | 8.76 |
+| 11 | Honda Lock | 8 | 3 | 1 | 4 | 8 | 12 | -4 | 10 | 35.6 | 11.5 |
+| 12 | J-Lease FC | 7 | 2 | 2 | 3 | 9 | 7 | 2 | 8 | 25.3 | 15.03 |
+| 13 | Urayasu | 8 | 2 | 1 | 5 | 9 | 14 | -5 | 7 | 38.1 | 10.19 |
+| 14 | Maruyasu Okazaki | 8 | 2 | 0 | 6 | 9 | 12 | -3 | 6 | 33.9 | 12.09 |
+| 15 | TIAMO Hirakata | 8 | 1 | 2 | 5 | 8 | 18 | -10 | 5 | 33.1 | 12.53 |
+| 16 | Tokyo Musashino City | 7 | 1 | 0 | 6 | 10 | 13 | -3 | 3 | 28.3 | 14.09 |
 
 ### Outrights
 
 | team | Winner % | Winner Yes | Top 4 % | Top 4 Yes | Bottom 2 % | Bottom 2 Yes |
 |---|---|---|---|---|---|---|
-| Honda | 29.9 | 2.95 | 75.9 | 1.28 | 0 | 2001 |
-| Veertien Mie | 21.1 | 4 | 67.9 | 1.42 | 0 | 1501 |
-| Verspah Oita | 17.2 | 4.75 | 60.2 | 1.57 | 0.1 | 751 |
-| Criacao Shinjuku | 9.3 | 8.5 | 44.8 | 2.05 | 0.2 | 251 |
-| Azul Claro Numazu | 8.3 | 9 | 42.1 | 2.15 | 0.2 | 201 |
-| Reinmeer Aomori | 7.1 | 10 | 40 | 2.25 | 0.2 | 251 |
-| VONDS Ichihara | 2.9 | 23 | 22.4 | 3.8 | 0.9 | 67 |
-| Okinawa SV | 2.1 | 34 | 16.9 | 4.85 | 1.6 | 41 |
-| YSCC | 0.9 | 67 | 9.9 | 8 | 2.8 | 23 |
-| Honda Lock | 0.6 | 101 | 8.3 | 9 | 3.8 | 19 |
-| Grulla Morioka | 0.4 | 151 | 5.5 | 13 | 6.4 | 12 |
-| Urayasu | 0.2 | 301 | 2.4 | 26 | 12.8 | 6.25 |
-| Maruyasu Okazaki | 0.1 | 751 | 1.7 | 41 | 15.4 | 5.25 |
-| TIAMO Hirakata | 0.1 | 501 | 1.8 | 34 | 15.5 | 5.25 |
-| Tokyo Musashino City | 0 | 3501 | 0.2 | 201 | 45.6 | 2 |
-| J-Lease FC | 0 |  | 0 |  | 94.5 | 1.05 |
+| Honda | 37.7 | 2.37 | 83 | 1.18 | 0 | 5001 |
+| Veertien Mie | 16.1 | 5 | 62.5 | 1.53 | 0 | 1501 |
+| Criacao Shinjuku | 15.7 | 5.25 | 61.3 | 1.55 | 0 | 1001 |
+| Reinmeer Aomori | 12.1 | 6.5 | 55 | 1.7 | 0 | 1001 |
+| Verspah Oita | 7.4 | 10 | 41.7 | 2.2 | 0.2 | 301 |
+| Azul Claro Numazu | 6.7 | 11 | 40.9 | 2.2 | 0.2 | 251 |
+| VONDS Ichihara | 1.8 | 34 | 19.3 | 4.3 | 0.8 | 67 |
+| Okinawa SV | 1.2 | 51 | 14.5 | 5.5 | 1.3 | 51 |
+| Grulla Morioka | 0.7 | 81 | 9.9 | 8 | 2.4 | 29 |
+| YSCC | 0.2 | 201 | 4.5 | 15 | 4.8 | 15 |
+| Urayasu | 0.3 | 201 | 4.3 | 17 | 6.2 | 12 |
+| Honda Lock | 0 | 751 | 1.5 | 41 | 12.9 | 6.25 |
+| Maruyasu Okazaki | 0 | 1501 | 0.7 | 81 | 18.4 | 4.5 |
+| TIAMO Hirakata | 0 | 3501 | 0.7 | 81 | 23.5 | 3.6 |
+| Tokyo Musashino City | 0 |  | 0.1 | 751 | 53.2 | 1.75 |
+| J-Lease FC | 0 |  | 0 | 3501 | 76 | 1.28 |
 
 ## Emperor's Cup
 
 16 teams in the first remaining round · draw from cup file
 
-Parameters — early: HFA 13.5, draw 0.257, goals 3.02 · late: HFA 38.9, draw 0.264, goals 2.55
+Parameters — early: HFA 13.5, draw 0.257, goals 3.02 · late: HFA 39.0, draw 0.264, goals 2.55
 
 ### Next matches
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-12-09 | Vissel Kobe | Shimizu S-Pulse | 1.66 | 3.85 | 4.85 | 2.35 | 1.53 | 1.493 | 0.731 |
-| 2026-12-09 | Kashima Antlers | Cerezo Osaka | 1.9 | 3.6 | 3.75 | 1.75 | 1.95 | 1.716 | 1.101 |
-| 2026-12-09 | Yokohama | Tokyo | 4.6 | 3.8 | 1.7 | 1.83 | 1.9 | 0.931 | 1.789 |
-| 2026-12-09 | Kawasaki Frontale | Yokohama F. Marinos | 2.6 | 3.45 | 2.5 | 1.45 | 2.6 | 1.673 | 1.709 |
-| 2026-12-09 | Machida Zelvia | Tokyo Verdy | 1.47 | 4.25 | 6.5 | 2.65 | 1.42 | 1.48 | 0.537 |
-| 2026-12-09 | Kashiwa Reysol | Fagiano Okayama | 1.83 | 3.6 | 4 | 1.85 | 1.85 | 1.683 | 0.998 |
-| 2026-12-09 | Kyoto Sanga | Sanfrecce Hiroshima | 4.5 | 3.8 | 1.7 | 1.87 | 1.83 | 0.914 | 1.734 |
-| 2026-12-09 | Gamba Osaka | Urawa Reds | 2.65 | 3.45 | 2.45 | 1.7 | 2.05 | 1.41 | 1.484 |
+| 2026-12-09 | Vissel Kobe | Shimizu S-Pulse | 1.6 | 4 | 5.25 | 2.25 | 1.57 | 1.577 | 0.699 |
+| 2026-12-09 | Kashima Antlers | Cerezo Osaka | 1.8 | 3.6 | 4 | 1.72 | 2 | 1.795 | 1.049 |
+| 2026-12-09 | Yokohama | Tokyo | 4.85 | 3.85 | 1.65 | 1.8 | 1.9 | 0.906 | 1.843 |
+| 2026-12-09 | Kawasaki Frontale | Yokohama F. Marinos | 2.4 | 3.45 | 2.65 | 1.45 | 2.55 | 1.743 | 1.622 |
+| 2026-12-09 | Machida Zelvia | Tokyo Verdy | 1.44 | 4.35 | 7.25 | 2.6 | 1.45 | 1.549 | 0.522 |
+| 2026-12-09 | Kashiwa Reysol | Fagiano Okayama | 1.85 | 3.6 | 3.85 | 1.83 | 1.87 | 1.676 | 1.034 |
+| 2026-12-09 | Kyoto Sanga | Sanfrecce Hiroshima | 4.75 | 3.85 | 1.67 | 1.87 | 1.85 | 0.889 | 1.771 |
+| 2026-12-09 | Gamba Osaka | Urawa Reds | 2.62 | 3.45 | 2.45 | 1.7 | 2.05 | 1.428 | 1.48 |
 
 ### Outrights
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Sanfrecce Hiroshima | 70 | 1.37 | 43.2 | 2.1 | 26 | 3.3 | 15.6 | 5.25 |
-| Machida Zelvia | 78.6 | 1.25 | 46.5 | 2 | 26.9 | 3.2 | 15.3 | 5.25 |
-| Kashima Antlers | 63.9 | 1.5 | 37.9 | 2.37 | 21.6 | 3.85 | 12.1 | 6.5 |
-| Vissel Kobe | 72.4 | 1.33 | 40.4 | 2.25 | 21.5 | 3.85 | 11.2 | 7 |
-| Tokyo | 71.7 | 1.35 | 39.4 | 2.3 | 21.3 | 4 | 10.6 | 7.25 |
-| Kashiwa Reysol | 66.9 | 1.42 | 35.9 | 2.5 | 19.2 | 4.33 | 9.7 | 8 |
-| Yokohama F. Marinos | 50.4 | 1.83 | 24.8 | 3.45 | 11.6 | 6.75 | 5.5 | 13 |
-| Cerezo Osaka | 36.1 | 2.45 | 18 | 4.6 | 8.7 | 8.5 | 4.2 | 17 |
-| Urawa Reds | 50.7 | 1.83 | 22.5 | 3.75 | 9.5 | 8 | 4 | 17 |
-| Kawasaki Frontale | 49.6 | 1.87 | 21.6 | 3.85 | 9 | 8.5 | 3.6 | 19 |
-| Gamba Osaka | 49.3 | 1.87 | 18.8 | 4.5 | 6.9 | 11 | 2.4 | 29 |
-| Fagiano Okayama | 33.1 | 2.65 | 13.9 | 5.75 | 5.5 | 13 | 2 | 34 |
-| Kyoto Sanga | 30 | 2.9 | 11.3 | 7 | 4 | 17 | 1.4 | 41 |
-| Shimizu S-Pulse | 27.6 | 3.15 | 10.3 | 7.5 | 3.7 | 19 | 1.1 | 51 |
-| Tokyo Verdy | 21.4 | 4 | 7.2 | 10 | 2.2 | 29 | 0.7 | 81 |
-| Yokohama | 28.3 | 3.05 | 8.2 | 9 | 2.2 | 29 | 0.6 | 81 |
+| Sanfrecce Hiroshima | 71.7 | 1.35 | 45.1 | 2.05 | 28.3 | 3.05 | 16.9 | 4.85 |
+| Machida Zelvia | 79.7 | 1.22 | 47.4 | 1.95 | 27.2 | 3.2 | 15.4 | 5.25 |
+| Vissel Kobe | 74.7 | 1.3 | 43.3 | 2.1 | 24.1 | 3.5 | 13 | 6.25 |
+| Kashima Antlers | 67.1 | 1.42 | 39.4 | 2.3 | 22.3 | 3.8 | 12.2 | 6.5 |
+| Tokyo | 72.9 | 1.32 | 40.3 | 2.25 | 21.6 | 3.85 | 11.5 | 6.75 |
+| Kashiwa Reysol | 65.5 | 1.45 | 33.1 | 2.65 | 15.7 | 5.25 | 7.4 | 10 |
+| Yokohama F. Marinos | 47.8 | 1.95 | 23.3 | 3.6 | 11 | 7 | 4.8 | 15 |
+| Kawasaki Frontale | 52.2 | 1.8 | 24.2 | 3.5 | 10.7 | 7.25 | 4.5 | 15 |
+| Urawa Reds | 49.8 | 1.85 | 21.8 | 3.85 | 9.3 | 8 | 3.8 | 19 |
+| Cerezo Osaka | 32.9 | 2.65 | 15.4 | 5.25 | 6.8 | 11 | 2.9 | 23 |
+| Gamba Osaka | 50.2 | 1.85 | 20.1 | 4.15 | 7.6 | 10 | 2.9 | 23 |
+| Fagiano Okayama | 34.5 | 2.55 | 13.8 | 5.75 | 5.4 | 13 | 1.9 | 34 |
+| Kyoto Sanga | 28.3 | 3.05 | 10.1 | 7.5 | 3.4 | 21 | 1.1 | 51 |
+| Shimizu S-Pulse | 25.3 | 3.4 | 8.9 | 8.5 | 3 | 23 | 0.8 | 67 |
+| Tokyo Verdy | 20.3 | 4.15 | 6.1 | 12 | 1.7 | 41 | 0.5 | 126 |
+| Yokohama | 27.1 | 3.2 | 7.6 | 10 | 1.9 | 34 | 0.5 | 126 |
 
 ## League Cup
 
 8 teams in the first remaining round · draw from cup file
 
-Parameters — early: HFA 50.8, draw 0.254, goals 2.63 · late: HFA 58.8, draw 0.268, goals 2.67
+Parameters — early: HFA 50.8, draw 0.254, goals 2.63 · late: HFA 58.9, draw 0.268, goals 2.67
 
 ### Next matches
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026-10-28 | Yokohama F. Marinos | Sanfrecce Hiroshima | 2.87 | 3.4 | 2.3 | 1.61 | 2.2 | 1.397 | 1.638 |
-| 2026-10-28 | Mito Hollyhock | Cerezo Osaka | 3.4 | 3.5 | 2 | 1.72 | 2 | 1.174 | 1.661 |
-| 2026-10-28 | Nagoya Grampus | Urawa Reds | 2.5 | 3.4 | 2.6 | 1.65 | 2.1 | 1.496 | 1.469 |
-| 2026-10-28 | Sagan Tosu | Kawasaki Frontale | 4.15 | 3.6 | 1.8 | 1.65 | 2.15 | 1.093 | 1.894 |
+| 2026-10-28 | Yokohama F. Marinos | Sanfrecce Hiroshima | 3 | 3.45 | 2.2 | 1.65 | 2.15 | 1.34 | 1.641 |
+| 2026-10-28 | Mito Hollyhock | Cerezo Osaka | 3.25 | 3.5 | 2.05 | 1.72 | 2 | 1.207 | 1.637 |
+| 2026-10-28 | Nagoya Grampus | Urawa Reds | 2.37 | 3.4 | 2.75 | 1.66 | 2.1 | 1.53 | 1.414 |
+| 2026-10-28 | Sagan Tosu | Kawasaki Frontale | 4.25 | 3.6 | 1.75 | 1.61 | 2.2 | 1.093 | 1.946 |
 
 ### Outrights
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Machida Zelvia | 100 | 1.001 | 60.6 | 1.55 | 35.1 | 2.55 | 18.8 | 4.35 |
-| Kashima Antlers | 100 | 1.001 | 60.3 | 1.57 | 34.6 | 2.55 | 18.8 | 4.5 |
-| Vissel Kobe | 100 | 1.001 | 56.4 | 1.66 | 29.7 | 2.95 | 15.3 | 5.25 |
-| Sanfrecce Hiroshima | 66 | 1.45 | 42.8 | 2.15 | 26.5 | 3.25 | 15.2 | 5.25 |
-| Kashiwa Reysol | 100 | 1.001 | 54.6 | 1.72 | 27.7 | 3.15 | 13.6 | 6 |
-| Cerezo Osaka | 74 | 1.3 | 32.3 | 2.75 | 13.5 | 6 | 5.8 | 13 |
-| Kawasaki Frontale | 81 | 1.2 | 30.8 | 2.85 | 11 | 7 | 4 | 17 |
-| Yokohama F. Marinos | 34 | 2.6 | 16.4 | 5 | 7.6 | 10 | 3.5 | 19 |
-| Urawa Reds | 57.8 | 1.62 | 23.3 | 3.6 | 8.6 | 9 | 3.3 | 21 |
-| Nagoya Grampus | 42.2 | 2.15 | 13.8 | 5.75 | 3.9 | 17 | 1.4 | 41 |
-| Mito Hollyhock | 26 | 3.3 | 6.1 | 12 | 1.4 | 41 | 0.3 | 151 |
-| Sagan Tosu | 19 | 4.35 | 2.6 | 26 | 0.4 | 151 | 0 | 751 |
+| Machida Zelvia | 100 | 1.001 | 61.7 | 1.53 | 36.4 | 2.45 | 19.7 | 4.25 |
+| Kashima Antlers | 100 | 1.001 | 60.6 | 1.57 | 34.9 | 2.55 | 19.4 | 4.3 |
+| Vissel Kobe | 100 | 1.001 | 58.8 | 1.6 | 32.7 | 2.75 | 17.1 | 4.85 |
+| Sanfrecce Hiroshima | 68.5 | 1.4 | 44.4 | 2.05 | 27.6 | 3.15 | 15.7 | 5.25 |
+| Kashiwa Reysol | 100 | 1.001 | 48.8 | 1.9 | 22.2 | 3.8 | 9.8 | 8 |
+| Kawasaki Frontale | 82.3 | 1.18 | 34.2 | 2.6 | 13 | 6.25 | 5.2 | 13 |
+| Cerezo Osaka | 72.4 | 1.33 | 29.4 | 2.95 | 11.4 | 7 | 4.6 | 15 |
+| Urawa Reds | 55 | 1.7 | 22.5 | 3.75 | 8.6 | 9 | 3.4 | 21 |
+| Yokohama F. Marinos | 31.5 | 2.75 | 14.8 | 5.5 | 6.3 | 12 | 2.8 | 23 |
+| Nagoya Grampus | 45 | 2.05 | 16.3 | 5 | 5.5 | 13 | 2 | 34 |
+| Mito Hollyhock | 27.6 | 3.15 | 5.8 | 13 | 1.1 | 51 | 0.3 | 201 |
+| Sagan Tosu | 17.7 | 4.6 | 2.7 | 26 | 0.3 | 151 | 0.1 | 751 |
 
 ## Top 30 Elo ratings
 
 | team | elo | tilt | last_tournament |
 |---|---|---|---|
-| Sanfrecce Hiroshima | 1619 | 1.0369 | League Cup |
-| Machida Zelvia | 1595 | 0.9522 | J1 League |
-| Kashima Antlers | 1588 | 1.0212 | J1 League |
-| Vissel Kobe | 1569 | 0.9503 | J1 League |
-| Kashiwa Reysol | 1555 | 1.0998 | J1 League |
-| Tokyo | 1552 | 0.9728 | League Cup |
-| Yokohama F. Marinos | 1518 | 1.0981 | League Cup |
-| Cerezo Osaka | 1503 | 1.0806 | League Cup |
-| Urawa Reds | 1480 | 1.0167 | League Cup |
-| Kawasaki Frontale | 1472 | 1.2064 | League Cup |
-| Fagiano Okayama | 1448 | 0.9548 | League Cup |
-| Nagoya Grampus | 1431 | 1.094 | League Cup |
-| Gamba Osaka | 1426 | 1.1148 | J1 League |
-| Shimizu S-Pulse | 1408 | 0.9168 | League Cup |
-| Kyoto Sanga | 1398 | 1.0003 | J1 League |
-| Avispa Fukuoka | 1376 | 0.8454 | League Cup |
-| Vegalta Sendai | 1374 | 0.9815 | J2 League |
-| V-Varen Nagasaki | 1369 | 1.0677 | J1 League |
-| Tokyo Verdy | 1353 | 0.8296 | J1 League |
-| Mito Hollyhock | 1347 | 0.9844 | League Cup |
-| Yokohama | 1327 | 1.0955 | League Cup |
-| JEF United | 1304 | 1.0778 | J1 League |
-| Omiya Ardija | 1292 | 1.2064 | J2 League |
-| Tegevajaro Miyazaki | 1280 | 1.0475 | J2 League |
-| Kataller Toyama | 1277 | 1.1175 | J2 League |
-| Albirex Niigata | 1265 | 0.9747 | J2 League |
-| Shonan Bellmare | 1259 | 0.9813 | J2 League |
-| Sagan Tosu | 1257 | 0.929 | League Cup |
-| Blaublitz Akita | 1240 | 0.8974 | J2 League |
-| Kagoshima United | 1240 | 0.9904 | J3 League |
+| Sanfrecce Hiroshima | 1626 | 1.0392 | J1 League |
+| Machida Zelvia | 1602 | 0.9604 | J1 League |
+| Kashima Antlers | 1594 | 1.0151 | J1 League |
+| Vissel Kobe | 1583 | 0.9554 | J1 League |
+| Tokyo | 1564 | 0.9904 | J1 League |
+| Kashiwa Reysol | 1529 | 1.1058 | J1 League |
+| Yokohama F. Marinos | 1512 | 1.076 | J1 League |
+| Kawasaki Frontale | 1492 | 1.2249 | J1 League |
+| Urawa Reds | 1488 | 1.004 | J1 League |
+| Cerezo Osaka | 1483 | 1.0972 | J1 League |
+| Nagoya Grampus | 1457 | 1.1 | J1 League |
+| Gamba Osaka | 1438 | 1.1344 | J1 League |
+| Fagiano Okayama | 1433 | 0.9599 | J1 League |
+| Shimizu S-Pulse | 1396 | 0.9329 | J1 League |
+| Kyoto Sanga | 1391 | 1.0025 | J1 League |
+| Avispa Fukuoka | 1369 | 0.8527 | J1 League |
+| Vegalta Sendai | 1369 | 0.9618 | J2 League |
+| V-Varen Nagasaki | 1363 | 1.0614 | J1 League |
+| Tokyo Verdy | 1341 | 0.8446 | J1 League |
+| Mito Hollyhock | 1339 | 0.9723 | J1 League |
+| Yokohama | 1323 | 1.0872 | J2 League |
+| JEF United | 1309 | 1.0562 | J1 League |
+| Omiya Ardija | 1279 | 1.2085 | J2 League |
+| Tegevajaro Miyazaki | 1277 | 1.0419 | J2 League |
+| Kataller Toyama | 1276 | 1.1118 | J2 League |
+| Sagan Tosu | 1269 | 0.9306 | J2 League |
+| Shonan Bellmare | 1260 | 0.9762 | J2 League |
+| Kagoshima United | 1254 | 1.0142 | J3 League |
+| Iwaki | 1248 | 1.0285 | J2 League |
+| Albirex Niigata | 1235 | 1.0142 | J2 League |

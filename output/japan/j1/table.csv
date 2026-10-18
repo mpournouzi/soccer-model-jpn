@@ -1,21 +1,21 @@
 pos,team,P,W,D,L,GF,GA,GD,Pts
-1,Kashiwa Reysol,9,7,0,2,21,14,7,21
-2,Sanfrecce Hiroshima,9,6,2,1,22,6,16,20
-3,Machida Zelvia,9,6,2,1,22,10,12,20
-4,Tokyo,9,6,2,1,17,8,9,20
-5,Vissel Kobe,9,6,1,2,14,9,5,19
-6,Kashima Antlers,9,5,1,3,19,16,3,16
-7,Yokohama F. Marinos,9,4,3,2,13,9,4,15
-8,Kawasaki Frontale,9,3,4,2,17,14,3,13
-9,Fagiano Okayama,9,4,1,4,12,12,0,13
-10,Shimizu S-Pulse,9,4,1,4,8,9,-1,13
-11,Urawa Reds,9,4,0,5,16,21,-5,12
-12,Cerezo Osaka,9,3,3,3,7,12,-5,12
-13,Mito Hollyhock,9,2,3,4,12,13,-1,9
-14,V-Varen Nagasaki,9,2,3,4,11,16,-5,9
-15,Nagoya Grampus,9,3,0,6,9,15,-6,9
-16,Kyoto Sanga,9,2,2,5,11,16,-5,8
-17,Avispa Fukuoka,9,2,1,6,11,13,-2,7
-18,Gamba Osaka,9,1,3,5,8,16,-8,6
-19,JEF United,9,1,2,6,8,19,-11,5
-20,Tokyo Verdy,9,0,4,5,4,14,-10,4
+1,Sanfrecce Hiroshima,10,7,2,1,25,6,19,23
+2,Machida Zelvia,10,7,2,1,25,10,15,23
+3,Tokyo,10,7,2,1,21,8,13,23
+4,Vissel Kobe,10,7,1,2,17,9,8,22
+5,Kashiwa Reysol,10,7,0,3,22,17,5,21
+6,Kashima Antlers,10,6,1,3,21,16,5,19
+7,Kawasaki Frontale,10,4,4,2,21,16,5,16
+8,Yokohama F. Marinos,10,4,4,2,13,9,4,16
+9,Urawa Reds,10,5,0,5,17,21,-4,15
+10,Shimizu S-Pulse,10,4,1,5,10,12,-2,13
+11,Fagiano Okayama,10,4,1,5,12,15,-3,13
+12,Nagoya Grampus,10,4,0,6,12,16,-4,12
+13,Cerezo Osaka,10,3,3,4,9,16,-7,12
+14,Mito Hollyhock,10,2,3,5,12,14,-2,9
+15,Gamba Osaka,10,2,3,5,11,18,-7,9
+16,V-Varen Nagasaki,10,2,3,5,11,18,-7,9
+17,Kyoto Sanga,10,2,2,6,11,19,-8,8
+18,Avispa Fukuoka,10,2,1,7,11,16,-5,7
+19,JEF United,10,1,3,6,8,19,-11,6
+20,Tokyo Verdy,10,0,4,6,4,18,-14,4
