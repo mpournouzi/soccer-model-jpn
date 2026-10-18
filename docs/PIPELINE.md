@@ -44,7 +44,7 @@ flowchart TD
   match is already in `results.csv`.
 - Empty `hg_90` / `ag_90` are copied from `hg` / `ag`. They only differ when a match went to extra time.
 - Every team name is checked against `initial_elo.csv`. An unknown name stops the run with a "did you mean …?" suggestion
-  (standard text-similarity matching). This is what caught the `Thespakusatsu` / `ThespaKusatsu` spelling issue.
+  (standard text-similarity matching).
 
 ## 2. Tournament parameters (`params.py`)
 
@@ -161,7 +161,7 @@ The draw probability is highest for level teams and shrinks as the gap grows.
   is an average over real matchups, most of them uneven, and the model can only give *fewer* draws than the level-teams
   value for any uneven match. So its average draw rate across the league must come out below the observed rate.
   For small gaps `P(draw | d) ≈ P(draw | 0) · (1 − c·d²)`, so the shortfall grows with the **spread** of Elo gaps:
-  about 1–1.5 points in Japan, which is where the familiar "+1.5% on the draw" rule of thumb comes from.
+  about 1–1.5 points in Japan, which is where the empirical "+1.5% on the draw" rule of thumb comes from.
 - `calibrated` (current) chooses ν so that the **average** predicted draw probability over the league's actual past
   matchups equals the observed draw rate (moment matching). For Davidson this gives the same value as fitting ν by
   maximum likelihood. It's refitted for each league on every run.
@@ -288,10 +288,8 @@ Each of the 20,000 runs plays out the rest of the bracket:
   P(A wins) = P(A scores more in 5) + P(level after 5) · pA(1−pB) / (pA(1−pB) + pB(1−pA))
   ```
 
-  Rates come from the `skill` column (your adjusted values). Teams without one are shrunk towards the file average
+  Rates come from the `skill` column. Teams without one are shrunk towards the file average
   (`prior_kicks`), and teams not in the file use `default_skill` (0.77). With `coin`, every shoot-out is 50/50.
-  *Effect today:* cup winner chances move by up to about 0.9 points, close to simulation noise (±0.3 points for a 30% chance).
-  It can't be backtested, because `results.csv` doesn't record shoot-outs.
 - Finals marked `neutral` have no home advantage.
 
 ---
