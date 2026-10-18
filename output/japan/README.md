@@ -1,6 +1,6 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-10-11** (18,319 matches). Generated 2026-10-18 07:28 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-10-11** (18,319 matches). Generated 2026-10-18 07:47 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 ## J1 League
 
@@ -300,28 +300,41 @@ HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/gam
 
 ## Emperor's Cup
 
-16 teams left · random draw (draw not entered yet) · HFA 43.1 · draw rate 0.270
+16 teams left · draw from cup file · HFA 43.1 · draw rate 0.270
+
+### Next matches
+
+| date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
+|---|---|---|---|---|---|---|---|---|---|
+| 2026-12-09 | Vissel Kobe | Shimizu S-Pulse | 1.67 | 3.75 | 4.85 | 2.2 | 1.6 | 1.532 | 0.784 |
+| 2026-12-09 | Kashima Antlers | Cerezo Osaka | 1.9 | 3.5 | 3.75 | 1.7 | 2.05 | 1.753 | 1.147 |
+| 2026-12-09 | Yokohama | Tokyo | 4.5 | 3.75 | 1.72 | 1.72 | 2 | 0.995 | 1.853 |
+| 2026-12-09 | Kawasaki Frontale | Yokohama F. Marinos | 2.6 | 3.4 | 2.5 | 1.4 | 2.75 | 1.719 | 1.789 |
+| 2026-12-09 | Machida Zelvia | Tokyo Verdy | 1.5 | 4.15 | 6.5 | 2.5 | 1.5 | 1.54 | 0.598 |
+| 2026-12-09 | Kashiwa Reysol | Fagiano Okayama | 1.87 | 3.6 | 3.85 | 1.85 | 1.85 | 1.635 | 1.038 |
+| 2026-12-09 | Kyoto Sanga | Sanfrecce Hiroshima | 4.5 | 3.6 | 1.75 | 1.72 | 2 | 0.998 | 1.848 |
+| 2026-12-09 | Gamba Osaka | Urawa Reds | 2.55 | 3.4 | 2.55 | 1.66 | 2.1 | 1.461 | 1.48 |
 
 ### Outrights
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Sanfrecce Hiroshima | 65.3 | 1.45 | 41.4 | 2.2 | 25.6 | 3.35 | 15.7 | 5.25 |
-| Kashima Antlers | 62 | 1.53 | 37.9 | 2.37 | 22.1 | 3.85 | 12.5 | 6.25 |
-| Machida Zelvia | 61.3 | 1.55 | 36.8 | 2.45 | 21.7 | 3.85 | 12 | 6.5 |
-| Tokyo | 59.6 | 1.57 | 34.4 | 2.6 | 19.4 | 4.3 | 10.4 | 7.5 |
-| Vissel Kobe | 58.9 | 1.6 | 33.7 | 2.62 | 18.6 | 4.5 | 10.1 | 7.5 |
-| Kashiwa Reysol | 56.6 | 1.66 | 31.7 | 2.75 | 16.7 | 4.85 | 8.7 | 9 |
-| Yokohama F. Marinos | 52.8 | 1.75 | 27 | 3.2 | 13.2 | 6 | 6.1 | 12 |
-| Cerezo Osaka | 52.3 | 1.8 | 25.8 | 3.35 | 12.5 | 6.25 | 5.8 | 13 |
-| Urawa Reds | 47 | 1.95 | 20.9 | 4 | 9 | 8.5 | 3.9 | 19 |
-| Kawasaki Frontale | 46.9 | 1.95 | 20.8 | 4 | 8.5 | 9 | 3.5 | 19 |
-| Fagiano Okayama | 46.3 | 2 | 20.3 | 4.15 | 8.6 | 9 | 3.3 | 21 |
-| Gamba Osaka | 43.4 | 2.1 | 17.7 | 4.6 | 6.9 | 11 | 2.5 | 26 |
-| Shimizu S-Pulse | 40.4 | 2.25 | 16 | 5 | 5.8 | 13 | 2 | 34 |
-| Kyoto Sanga | 40 | 2.25 | 14.9 | 5.5 | 5.4 | 13 | 1.8 | 34 |
-| Tokyo Verdy | 34.9 | 2.55 | 11.2 | 7 | 3.4 | 21 | 1.1 | 51 |
-| Yokohama | 32 | 2.75 | 9.4 | 8 | 2.6 | 26 | 0.7 | 81 |
+| Sanfrecce Hiroshima | 69.8 | 1.38 | 43.3 | 2.1 | 26.5 | 3.25 | 15.8 | 5.25 |
+| Machida Zelvia | 77.6 | 1.25 | 45.4 | 2 | 25.9 | 3.35 | 14.2 | 5.75 |
+| Kashima Antlers | 64.7 | 1.47 | 37.3 | 2.4 | 21.8 | 3.85 | 12.1 | 6.5 |
+| Tokyo | 72.4 | 1.33 | 40.2 | 2.25 | 22.2 | 3.8 | 11.8 | 6.75 |
+| Vissel Kobe | 72.4 | 1.33 | 40.7 | 2.2 | 22.3 | 3.8 | 11.8 | 6.75 |
+| Kashiwa Reysol | 65.4 | 1.45 | 35.7 | 2.5 | 18.2 | 4.6 | 9.2 | 8.5 |
+| Yokohama F. Marinos | 51.6 | 1.8 | 24.8 | 3.45 | 11.8 | 6.75 | 5.3 | 13 |
+| Cerezo Osaka | 35.3 | 2.5 | 17.6 | 4.75 | 8 | 9.5 | 3.8 | 19 |
+| Urawa Reds | 49.6 | 1.87 | 21.1 | 4 | 8.6 | 9 | 3.4 | 21 |
+| Kawasaki Frontale | 48.4 | 1.9 | 20.3 | 4.15 | 8.2 | 9 | 3.4 | 21 |
+| Gamba Osaka | 50.4 | 1.83 | 20.3 | 4.15 | 7.6 | 10 | 2.6 | 26 |
+| Fagiano Okayama | 34.6 | 2.55 | 15.4 | 5.25 | 6.2 | 12 | 2.5 | 26 |
+| Kyoto Sanga | 30.2 | 2.9 | 11.2 | 7 | 4 | 17 | 1.4 | 41 |
+| Shimizu S-Pulse | 27.6 | 3.15 | 10.5 | 7.5 | 3.8 | 19 | 1.3 | 51 |
+| Tokyo Verdy | 22.4 | 3.8 | 7.6 | 10 | 2.5 | 26 | 0.7 | 81 |
+| Yokohama | 27.6 | 3.15 | 8.5 | 9 | 2.4 | 29 | 0.6 | 81 |
 
 ## League Cup
 
@@ -331,22 +344,22 @@ HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/gam
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Sanfrecce Hiroshima | 80.3 | 1.22 | 61.5 | 1.55 | 44.4 | 2.05 | 29 | 3 |
-| Tokyo | 74.1 | 1.3 | 50.5 | 1.83 | 32.4 | 2.75 | 18.7 | 4.5 |
-| Yokohama F. Marinos | 67.2 | 1.42 | 40.8 | 2.2 | 21.8 | 3.85 | 10.8 | 7.25 |
-| Cerezo Osaka | 65.9 | 1.45 | 39.7 | 2.3 | 21.5 | 3.85 | 10.3 | 7.5 |
-| Urawa Reds | 61.1 | 1.55 | 32 | 2.75 | 15.2 | 5.25 | 6.6 | 11 |
-| Kawasaki Frontale | 60.5 | 1.57 | 31.8 | 2.75 | 14.7 | 5.5 | 6.3 | 12 |
-| Fagiano Okayama | 58.9 | 1.6 | 30.4 | 2.87 | 13.5 | 6 | 5.8 | 13 |
-| Nagoya Grampus | 54.5 | 1.72 | 25.2 | 3.4 | 10.2 | 7.5 | 4.1 | 17 |
-| Shimizu S-Pulse | 52.6 | 1.75 | 23 | 3.75 | 8.7 | 8.5 | 3.2 | 21 |
-| Avispa Fukuoka | 49.5 | 1.87 | 20.4 | 4.15 | 7.3 | 10 | 2.5 | 26 |
-| Yokohama | 41.6 | 2.2 | 14.1 | 5.75 | 3.9 | 17 | 1.1 | 51 |
-| Mito Hollyhock | 42.1 | 2.15 | 14.1 | 5.75 | 4 | 17 | 1.1 | 51 |
-| Sagan Tosu | 28.6 | 3.05 | 6.4 | 11 | 1.1 | 51 | 0.2 | 251 |
-| Jubilo Iwata | 27.3 | 3.15 | 5.6 | 13 | 0.9 | 67 | 0.1 | 351 |
-| Matsumoto Yamaga | 17.6 | 4.6 | 2.1 | 29 | 0.2 | 251 | 0 | 1501 |
-| Gainare Tottori | 18.1 | 4.6 | 2.4 | 26 | 0.3 | 201 | 0 | 2501 |
+| Sanfrecce Hiroshima | 80.4 | 1.22 | 61.5 | 1.55 | 44.4 | 2.05 | 28.9 | 3 |
+| Tokyo | 73.9 | 1.3 | 50.6 | 1.83 | 32.4 | 2.75 | 18.8 | 4.5 |
+| Yokohama F. Marinos | 67.4 | 1.42 | 40.7 | 2.2 | 21.7 | 3.85 | 10.7 | 7.25 |
+| Cerezo Osaka | 66.6 | 1.44 | 39.9 | 2.25 | 21.6 | 3.85 | 10.3 | 7.5 |
+| Urawa Reds | 60.9 | 1.55 | 31.9 | 2.75 | 15.1 | 5.25 | 6.5 | 11 |
+| Kawasaki Frontale | 60.2 | 1.57 | 31.8 | 2.75 | 14.7 | 5.5 | 6.4 | 12 |
+| Fagiano Okayama | 59.1 | 1.6 | 30.4 | 2.87 | 13.6 | 6 | 5.9 | 12 |
+| Nagoya Grampus | 54.5 | 1.72 | 25.1 | 3.4 | 10.2 | 7.5 | 4.1 | 17 |
+| Shimizu S-Pulse | 52.6 | 1.75 | 22.9 | 3.75 | 8.8 | 8.5 | 3.3 | 21 |
+| Avispa Fukuoka | 49.3 | 1.87 | 20.4 | 4.15 | 7.2 | 10 | 2.5 | 26 |
+| Yokohama | 41.5 | 2.2 | 14 | 5.75 | 4 | 17 | 1.2 | 51 |
+| Mito Hollyhock | 42.2 | 2.15 | 14.1 | 5.75 | 3.9 | 17 | 1.1 | 51 |
+| Sagan Tosu | 28.4 | 3.05 | 6.4 | 12 | 1.1 | 51 | 0.2 | 201 |
+| Jubilo Iwata | 27.5 | 3.15 | 5.7 | 13 | 0.8 | 67 | 0.2 | 301 |
+| Matsumoto Yamaga | 17.6 | 4.75 | 2.1 | 29 | 0.2 | 251 | 0 | 1501 |
+| Gainare Tottori | 18 | 4.6 | 2.4 | 26 | 0.3 | 201 | 0 | 1501 |
 
 ## Top 30 Elo ratings
 
