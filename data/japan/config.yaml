@@ -33,7 +33,7 @@ penalties:
   method: skill
   file: penalties.csv
   prior_kicks: 70               # shrinkage for teams with scored/missed but no `skill` value
-  default_skill: 0.75           # teams not in the file
+  default_skill: 0.77           # teams not in the file
 
 # Elo update settings per tournament label used in results.csv.
 # hfa: auto  -> 400*log10(home wins / away wins) over all history, recomputed every run.
@@ -117,7 +117,7 @@ cups:
     name: Emperor's Cup
     results_prefix: Emperor Cup   # tournament labels belonging to this cup
     draw: cups/emperors_cup_2026-27.csv
-    predict: {hfa: 43.1, draw_rate: 0.27, total_goals: 2.66}
+    predict: {hfa: 53.2, draw_rate: 0.255, total_goals: 2.627}
     rounds:
       - {name: R16, tournament: Emperor Cup R16, legs: 1}
       - {name: QF, tournament: Emperor Cup QF, legs: 1}
@@ -127,9 +127,9 @@ cups:
     name: League Cup
     results_prefix: League Cup
     draw: cups/league_cup_2026-27.csv
-    predict: {hfa: 69.5, draw_rate: 0.265, total_goals: 2.66}
+    predict: {hfa: 61.6, draw_rate: 0.267, total_goals: 2.88}
     rounds:
-      - {name: R16, tournament: League Cup PO, legs: 2}
+      - {name: PO, tournament: League Cup PO, legs: 2}
       - {name: QF, tournament: League Cup QF, legs: 2}
       - {name: SF, tournament: League Cup SF, legs: 2}
       - {name: Final, tournament: League Cup Final, legs: 1, neutral: true}
