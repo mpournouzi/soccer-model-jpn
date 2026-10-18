@@ -1,6 +1,6 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-10-14** (18,333 matches). Generated 2026-10-18 08:20 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-10-14** (18,333 matches). Generated 2026-10-18 08:42 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 > **Warnings**
 > - League Cup: 8 teams alive but the configured rounds need 16 - check `rounds` in config.yaml
@@ -322,22 +322,22 @@ HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/gam
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Sanfrecce Hiroshima | 69.8 | 1.38 | 43.6 | 2.1 | 26.5 | 3.25 | 16 | 5 |
-| Machida Zelvia | 78.4 | 1.25 | 45.9 | 2 | 26.5 | 3.25 | 15 | 5.5 |
-| Kashima Antlers | 64.6 | 1.47 | 38 | 2.37 | 21.8 | 3.85 | 12.2 | 6.5 |
-| Vissel Kobe | 72 | 1.33 | 40 | 2.25 | 21.3 | 4 | 11.3 | 7 |
-| Tokyo | 71.5 | 1.35 | 38.6 | 2.35 | 20.3 | 4.15 | 10.3 | 7.5 |
-| Kashiwa Reysol | 67 | 1.42 | 36.7 | 2.45 | 19.1 | 4.35 | 9.6 | 8 |
-| Yokohama F. Marinos | 50.9 | 1.83 | 25.1 | 3.4 | 12.2 | 6.5 | 5.6 | 13 |
-| Urawa Reds | 50.6 | 1.83 | 22.3 | 3.8 | 9.6 | 8 | 3.9 | 17 |
-| Kawasaki Frontale | 49.1 | 1.87 | 21.8 | 3.85 | 9.3 | 8.5 | 3.8 | 19 |
-| Cerezo Osaka | 35.4 | 2.5 | 17.4 | 4.75 | 8.4 | 9 | 3.7 | 19 |
-| Gamba Osaka | 49.4 | 1.87 | 19.4 | 4.3 | 7 | 11 | 2.4 | 26 |
-| Fagiano Okayama | 33 | 2.65 | 13.8 | 5.75 | 5.6 | 13 | 2.1 | 34 |
-| Kyoto Sanga | 30.2 | 2.9 | 11.6 | 6.75 | 4.2 | 17 | 1.7 | 41 |
-| Shimizu S-Pulse | 28 | 3.1 | 10.8 | 7.25 | 3.8 | 19 | 1.3 | 51 |
+| Sanfrecce Hiroshima | 69.8 | 1.38 | 43.4 | 2.1 | 26.4 | 3.25 | 16 | 5 |
+| Machida Zelvia | 78.4 | 1.25 | 46.1 | 2 | 26.8 | 3.2 | 15.2 | 5.25 |
+| Kashima Antlers | 64.6 | 1.47 | 38.1 | 2.35 | 21.8 | 3.85 | 12.2 | 6.5 |
+| Vissel Kobe | 72.2 | 1.33 | 40.1 | 2.25 | 21.5 | 4 | 11.4 | 7 |
+| Tokyo | 70.3 | 1.37 | 37.9 | 2.37 | 19.8 | 4.2 | 9.9 | 8 |
+| Kashiwa Reysol | 67.1 | 1.42 | 36.9 | 2.4 | 19.3 | 4.33 | 9.9 | 8 |
+| Yokohama F. Marinos | 50.9 | 1.83 | 24.7 | 3.45 | 12 | 6.5 | 5.4 | 13 |
+| Urawa Reds | 50.7 | 1.83 | 22.3 | 3.8 | 9.5 | 8 | 3.8 | 19 |
+| Kawasaki Frontale | 49.1 | 1.87 | 22 | 3.85 | 9.5 | 8 | 3.8 | 19 |
+| Cerezo Osaka | 35.4 | 2.5 | 17.4 | 4.75 | 8.5 | 9 | 3.7 | 19 |
+| Gamba Osaka | 49.3 | 1.87 | 19.4 | 4.3 | 7 | 11 | 2.5 | 26 |
+| Fagiano Okayama | 32.9 | 2.65 | 13.6 | 6 | 5.6 | 13 | 2.1 | 29 |
+| Kyoto Sanga | 30.2 | 2.9 | 11.7 | 6.75 | 4.2 | 17 | 1.6 | 41 |
+| Shimizu S-Pulse | 27.8 | 3.1 | 10.4 | 7.5 | 3.6 | 19 | 1.2 | 51 |
+| Yokohama | 29.7 | 2.95 | 8.8 | 8.5 | 2.4 | 29 | 0.6 | 81 |
 | Tokyo Verdy | 21.6 | 3.85 | 7 | 11 | 2.2 | 29 | 0.6 | 101 |
-| Yokohama | 28.5 | 3.05 | 8.1 | 9.5 | 2.1 | 29 | 0.5 | 101 |
 
 ## League Cup
 
@@ -356,13 +356,13 @@ HFA 16.4 Elo · draw rate 0.262 (level teams; league average 0.248) · goals/gam
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Cerezo Osaka | 65.8 | 1.45 | 36.1 | 2.5 | 16.6 | 5 | 0 |  |
-| Kawasaki Frontale | 59.8 | 1.57 | 27.7 | 3.15 | 11.5 | 6.75 | 0 |  |
-| Mito Hollyhock | 37.9 | 2.37 | 10.5 | 7.5 | 2.6 | 26 | 0 |  |
-| Nagoya Grampus | 52.6 | 1.75 | 21 | 4 | 7.2 | 10 | 0 |  |
-| Sagan Tosu | 22.6 | 3.75 | 4 | 17 | 0.6 | 101 | 0 |  |
-| Sanfrecce Hiroshima | 66.2 | 1.44 | 50.1 | 1.85 | 37 | 2.4 | 0 |  |
-| Urawa Reds | 61.3 | 1.55 | 29.4 | 2.95 | 12.1 | 6.5 | 0 |  |
+| Cerezo Osaka | 65.6 | 1.45 | 35.9 | 2.5 | 16.6 | 5 | 0 |  |
+| Kawasaki Frontale | 59.6 | 1.57 | 27.7 | 3.15 | 11.5 | 6.75 | 0 |  |
+| Mito Hollyhock | 37.6 | 2.4 | 10.4 | 7.5 | 2.6 | 26 | 0 |  |
+| Nagoya Grampus | 52.5 | 1.75 | 20.9 | 4 | 7.3 | 10 | 0 |  |
+| Sagan Tosu | 23.5 | 3.6 | 4.4 | 17 | 0.6 | 101 | 0 |  |
+| Sanfrecce Hiroshima | 66.2 | 1.44 | 50.2 | 1.85 | 36.9 | 2.4 | 0 |  |
+| Urawa Reds | 61.1 | 1.55 | 29.3 | 3 | 12.1 | 6.5 | 0 |  |
 | Yokohama F. Marinos | 33.8 | 2.62 | 21.2 | 4 | 12.4 | 6.5 | 0 |  |
 
 ## Top 30 Elo ratings
