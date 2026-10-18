@@ -31,6 +31,7 @@ flowchart TD
 | `elo.lambda_match` | `expected_score` | `win_prob` (original scripts) / `expected_score` |
 | `prediction_params.method` | `history` | `history` / `shrink` (with `prior_matches`, default 300) |
 | `prediction_params.draw_model` | `calibrated` | `league_rate` (original) / `calibrated` |
+| `cup_params.method` | `anchored` | `first_round` (original) / `anchored` (with `anchor`, `anchor_matches` 300) |
 | `penalties.method` | `skill` | `coin` / `skill` |
 | `margins` | 1.08 / 1.08 / 1.08 | 1X2, over/under 2.5, outrights |
 | `simulation.n_sims` | 20,000 | any number; a fixed `seed` makes output reproducible |
@@ -181,7 +182,7 @@ The draw probability is highest for level teams and shrinks as the gap grows.
 | **Calibrated per league** | **−0.073%** | 25.5% |
 | Calibrated on the last 3 years only | −0.033% | 25.7% |
 
-Cups keep fixed values from the config (`predict: {hfa, draw_rate, total_goals}`).
+Cups have their own parameters; see step 8.
 
 **Expected goals.** For each Elo difference, the model finds Poisson goal rates that give the same home-win probability
 as Davidson and add up to the league's goals per game. This is stored as a share, "home gets X% of the goals",
@@ -214,12 +215,69 @@ expg1 = total × home share        expg2 = total × (1 − home share)
 
 Ratings stay fixed during a simulated season.
 
-## 8. Cup simulation (`cup.py`)
+## 8. Cup simulation (`cup.py`, `params.py`)
+
+### Cup parameters (`cup_params`)
+
+Cup matches are priced with the same Davidson + Poisson model as league matches (step 5), but with their own HFA,
+level-teams draw rate and goals per game.
+
+**Why not the simple league formula?** `400 · log10(home wins / away wins)` only measures home advantage when home and
+away sides are equally strong on average, which holds in a balanced league schedule. In cups it doesn't:
+
+| Group | Matches | Raw HFA | Elo-adjusted HFA | Avg home − away Elo |
+|---|---|---|---|---|
+| Emperor's Cup early rounds | 968 | 161 | 10 | +212 (pro clubs hosting amateurs) |
+| Emperor's Cup late rounds | 102 | 76 | 59 | +34 |
+| League Cup early rounds | 575 | 11 | 59 | −50 (lower-division clubs hosting) |
+| League Cup late rounds | 192 | 94 | 101 | 0 |
+| J1+J2+J3 (anchor) | 13,086 | 31 | 32 | +1 |
+
+The raw ratio mixes up "the home side is stronger" with "playing at home helps". For leagues the two methods agree;
+for cups they can be far apart, in either direction.
+
+**`anchored` method (current):**
+
+1. **Split into early and late rounds,** listed per cup in the config:
+   - Emperor's Cup: early = `Emperor Cup`; late = `Emperor Cup R16`, `QF`, `SF`.
+   - League Cup: early = `League Cup`; late = `League Cup PO`, `QF`, `SF`.
+   - Finals are excluded from the fit and priced with the late values and HFA 0 (neutral venue).
+2. **Elo-adjusted fit:** HFA and the level-teams draw rate are estimated by maximum likelihood with the Davidson model,
+   using each match's pre-match Elo gap. This separates home advantage from team strength. Goals per game is the raw average.
+3. **Anchor:** each group is blended with the J1+J2+J3 league fit, which counts as `anchor_matches` (300) matches:
+
+   ```
+   value = (n_group · group_value + 300 · anchor_value) / (n_group + 300)
+   ```
+
+   Small groups, like the Emperor's Cup late rounds (102 matches), lean mostly on the anchor; large groups mostly on their own data.
+4. **Priced round by round:** each round uses the parameters of the phase its tournament label belongs to.
+
+Current values (late rounds; all remaining rounds this season are late):
+
+| Cup | HFA | Level-teams draw | Goals/game |
+|---|---|---|---|
+| Emperor's Cup | 38.9 | 0.264 | 2.55 |
+| League Cup | 58.8 | 0.268 | 2.67 |
+
+A cup's `predict: {hfa, draw_rate, total_goals}` in the config still overrides any of these. The full fits, raw and
+adjusted, are written to `output/japan/cup_params.csv` on every run.
+
+The **Elo updates** keep using the raw `hfa: auto` for cup labels. That's a deliberate choice, recorded under
+"Known limitations and ideas".
+
+### The bracket
 
 Each of the 20,000 runs plays out the rest of the bracket:
 
-- **Known ties** come from the draw file. Played legs use the real scores; `W:QF-2` means "winner of QF tie 2".
-- **Ties not drawn yet** are drawn at random from the surviving teams, separately in each simulation.
+- **Known ties** come from the draw file (`round,tie,leg,…`). `tie` numbers the pairings within a round (1, 2, 3, …);
+  `leg` is 1, or 2 for the return match with home and away swapped. Played legs use the real scores; `W:QF-2` means
+  "winner of QF tie 2", which lets the draw file lay out a fixed bracket.
+- **Seeded entrants:** a round can list teams that join the competition there. For example, the League Cup QF has
+  `entrants: [Machida Zelvia, Kashiwa Reysol, Kashima Antlers, Vissel Kobe]`, the seeded AFC clubs, who meet the 4 PO winners.
+- **Ties not drawn yet** are drawn at random from the teams in that round, separately in each simulation.
+- **Bracket check:** the run counts teams through every round, including entrants, and warns if a round has an odd
+  number of teams or the bracket doesn't end with one winner.
 - **Two-legged ties** add up goals across both legs.
 - **A level tie** goes to extra time, simulated as Poisson with a third of each side's expected goals (30 of 90 minutes),
   then penalties.
@@ -231,7 +289,7 @@ Each of the 20,000 runs plays out the rest of the bracket:
   ```
 
   Rates come from the `skill` column (your adjusted values). Teams without one are shrunk towards the file average
-  (`prior_kicks`), and teams not in the file use `default_skill` (0.75). With `coin`, every shoot-out is 50/50.
+  (`prior_kicks`), and teams not in the file use `default_skill` (0.77). With `coin`, every shoot-out is 50/50.
   *Effect today:* cup winner chances move by up to about 0.9 points, close to simulation noise (±0.3 points for a 30% chance).
   It can't be backtested, because `results.csv` doesn't record shoot-outs.
 - Finals marked `neutral` have no home advantage.
@@ -246,4 +304,5 @@ Each of the 20,000 runs plays out the rest of the bracket:
 | Ratings fixed within simulations (a team doesn't get stronger after winning simulated games) | Accepted for now |
 | Elo uses the score after extra time; tilts and parameters use 90-minute scores | Intentional |
 | Recency-weighted HFA/draw rate | Built (`shrink`), off: no gain in log loss or in parameter RMSE; true HFA varies only about ±12 Elo between seasons |
+| Elo updates use raw `hfa: auto` for cup labels (e.g. 161 for Emperor's Cup early rounds), adding a venue edge on top of the rating gap | Kept by choice; switching to the Elo-adjusted value (about 10) would change every cup participant's rating |
 | Shoot-out results not stored | Adding a `winner` to results would allow backtesting penalty skill |
