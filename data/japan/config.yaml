@@ -84,7 +84,7 @@ tournaments:
   J2/J3:                {k: 30, hfa: 32.55}
   J3/JFL:               {k: 30, hfa: 28.5}
   JFL/JRL:              {k: 30, hfa: 16.45}
-  Emperor Cup:          {k: 20, hfa: 10}       # Elo-adjusted venue effect; raw ratio (~161) mostly reflects pro clubs hosting
+  Emperor Cup:          {k: 20, hfa: 23}       # Elo-adjusted venue effect; raw ratio (~161) mostly reflects pro clubs hosting
   Emperor Cup R16:      {k: 30, hfa: 0}
   Emperor Cup QF:       {k: 30, hfa: auto}
   Emperor Cup SF:       {k: 30, hfa: auto}
