@@ -12,7 +12,7 @@ so a corrected score is automatically reflected everywhere.
 ```mermaid
 flowchart TD
     A[Your data<br/>scores, fixtures, config] --> B[Tournament parameters<br/>HFA, draw rate, goals/game]
-    B --> C[Elo ratings<br/>ClubElo goal weighting]
+    B --> C[Ratings<br/>hierarchical: division level + club deviation<br/>ClubElo goal weighting]
     B --> D[Team tilts<br/>high/low scoring]
     C --> E[Match model<br/>Davidson 1X2 + Poisson goals]
     D --> E
@@ -28,6 +28,7 @@ flowchart TD
 
 | Setting | Value | Options |
 |---|---|---|
+| `elo.engine` | `hierarchical` (since 2026-10-28) | `elo` (plain Elo) / `hierarchical` (step 3b) |
 | `elo.lambda_match` | `expected_score` | `win_prob` (original scripts) / `expected_score` |
 | `prediction_params.method` | `history` | `history` / `shrink` (with `prior_matches`, default 300) |
 | `prediction_params.draw_model` | `calibrated` | `league_rate` (original) / `calibrated` |
@@ -44,7 +45,7 @@ best at 400 and no stakes effect in Japan).
 
 | Setting | Japan | What it does |
 |---|---|---|
-| `elo.engine` | `hierarchical` (since 2026-10-28) | `elo` (plain Elo, step 3) / `hierarchical`: division level + club deviation (settings under `hierarchical:`; see below) |
+| `elo.engine` | `hierarchical` (since 2026-10-28) | `elo` (plain Elo, step 3) / `hierarchical`: division level + club deviation (settings under `hierarchical:`; step 3b, fit below) |
 | `prediction_params.hfa_halflife` | off | `{league: half-life}`: price HFA from recency-weighted matches (Japan: tested neutral, HFA moves only about ±12 Elo) |
 | `prediction_params.scale` | off (400) | `{league: Davidson scale}`: steeper or flatter prices for the same ratings, HFA kept |
 | `tournaments.<league>.season_boost` | off | K × k_mult for each club's first part of its season |
@@ -133,9 +134,13 @@ Elo updates use the all-history values (`hfa: auto`) unless the config fixes a n
 
 Tournaments with fewer than 20 matches fall back to defaults and produce a warning.
 
-## 3. Elo ratings (`elo.py`)
+## 3. Ratings (`elo.py`, `hierarchical.py`)
 
-Every match since 2014 is processed in date order.
+Every match since 2014 is processed in date order. Two engines share the same inputs (expected score, K, HFA and the
+ClubElo goal weight G below) and produce the same outputs (current ratings plus each match's pre-match ratings).
+`elo.engine` picks one: `hierarchical` is live; `elo`, the plain update described first, is what it builds on.
+
+### 3a. Plain Elo (`elo.engine: elo`)
 
 1. **Expected result for the home team:** `E = 1 / (1 + 10^(−(R_home + HFA − R_away) / 400))`.
    A 100-point edge gives E ≈ 0.64. E is an *expected score*: the home team expects to collect 64% of the points,
@@ -166,6 +171,46 @@ Every match since 2014 is processed in date order.
 
    These normalisers are precomputed for every 10 Elo points and for goals-per-game levels from 2.0 to 3.5, then cached.
 
+### 3b. Hierarchical engine (`elo.engine: hierarchical`, live)
+
+A club's rating is **its division's level + its own deviation**, and each carries an uncertainty (a variance). The
+update is the simplified Kalman filter of Szczecinski & Tihon (2023), with the same E, K, HFA and G as plain Elo:
+
+```
+E   = 1 / (1 + 10^(−d / 400)),  d = R_home − R_away + HFA        I = E(1 − E) / c²,  c = 400 / ln 10
+w   = K / default_K
+innovation = w · G · (actual − E) / c / (1 + w · (u_home + u_away + P_home + P_away) · I)
+deviation  += u · innovation                (away side mirrored)
+u          ← u · (1 − w · u · I / den) + q²  (q = drift per match)
+```
+
+u is a club's variance and P a division level's. A club whose rating is uncertain (new, promoted, back after time
+away) moves a lot; a settled club moves little. In words:
+
+- **League match** (both clubs in one division): only the two deviations move, and the division's deviations are
+  re-centred to mean zero after every match, so a division can't inflate or deflate on its own results.
+- **Match between divisions** (cups, play-offs): the two division levels move as well, by their variance P. This is
+  how the model learns how far apart J1, J2, J3 and JFL are.
+- **J1 on plain Elo** (`plain_top: true`): J1 clubs move by exactly `K · G · (actual − E)` and add nothing to the
+  denominator, so a J1 league match is the plain Elo update of step 3a. The J1 *level* is learnt only from cups and
+  play-offs, so it affects cup prices and clubs changing division, never J1 league prices.
+- **Clubs outside the leagues** (cup-only sides) keep a plain rating with their own variance.
+
+**Season start.** A club keeps its rating, shrinks by `rho` (0.1) towards its old division's level and gains the summer
+variance (`s_low` 36.6). Promoted clubs gain `up` (15) per division climbed, relegated clubs lose `down` (0.3) per
+division dropped, plus `move` variance. Each division's level becomes the mean rating of its new members. A new club
+starts at `initial_elo + new` with sd `new_sd` (229): an unknown club can move fast. With `away_summers` a club
+returning after seasons without a match gets the summer variance once per season away, capped (`away_cap`) at a new
+club's.
+
+**Divisions** come from `hierarchical.tiers` (tournament → tier). A club's division in a season is the league it played
+most in; for the current season the fixture files count too, so clubs that haven't played yet are placed. The spring
+2026 transition season uses `next`: clubs of the J2/J3 100 Year Vision group belong to the division they play in
+2026-27.
+
+All `hierarchical.params` are maximum-likelihood fits from soccer-model-gr (values and backtest at the top of this
+page). They are not refitted on each run.
+
 > **The Poisson model, used throughout.** Each team's goals follow a Poisson distribution with an expected value λ.
 > For example, λ = 1.5 gives about a 22% chance of 0 goals, 33% of 1 and 25% of 2. The two teams' goals are treated as
 > independent, so the two λs give the probability of every scoreline, and from that win, draw, over 2.5, and so on.
@@ -185,7 +230,7 @@ new tilt = 0.98 · old tilt + 0.02 · (match goals / opponent's tilt / tournamen
 
 ## 5. Match probabilities and expected goals (`poisson.py`, `goals.py`, `pipeline.py`)
 
-For a fixture, the model takes the Elo difference plus home advantage, d.
+For a fixture, the model takes the rating difference plus home advantage, d.
 
 **1X2 probabilities: the Elo-Davidson model.** Plain Elo has no concept of a draw; Davidson adds one with a draw parameter ν:
 
@@ -208,14 +253,17 @@ The draw probability is highest for level teams and shrinks as the gap grows.
   matchups equals the observed draw rate (moment matching). For Davidson this gives the same value as fitting ν by
   maximum likelihood. It's refitted for each league on every run.
 
-| League | League draw rate | Calibrated level-teams rate | Implied bump | Spread of Elo gaps (sd) |
+| League | League draw rate | Calibrated level-teams rate | Implied bump | Spread of rating gaps (sd) |
 |---|---|---|---|---|
-| J1 | 0.249 | 0.260 | +1.1 | 117 |
-| J2 | 0.276 | 0.285 | +0.9 | 104 |
-| J3 | 0.244 | 0.253 | +0.9 | 103 |
-| JFL | 0.248 | 0.262 | +1.4 | 140 |
+| J1 | 0.250 | 0.259 | +0.9 | 112 |
+| J2 | 0.277 | 0.285 | +0.8 | 102 |
+| J3 | 0.243 | 0.251 | +0.8 | 99 |
+| JFL | 0.249 | 0.263 | +1.4 | 143 |
 
-*Walk-forward backtest* (refit at each season start on earlier matches only; 9,631 league matches since 2019; actual draws 26.0%):
+Values from the run of 2026-10-28, on the hierarchical ratings; the report shows the current ones for each league.
+
+*Walk-forward backtest* (plain Elo ratings; refit at each season start on earlier matches only; 9,631 league matches
+since 2019; actual draws 26.0%):
 
 | Draw model | Log loss vs original | Predicted draws |
 |---|---|---|
@@ -267,13 +315,17 @@ level-teams draw rate and goals per game.
 **Why not the simple league formula?** `400 · log10(home wins / away wins)` only measures home advantage when home and
 away sides are equally strong on average, which holds in a balanced league schedule. In cups it doesn't:
 
-| Group | Matches | Raw HFA | Elo-adjusted HFA | Avg home − away Elo |
+| Group | Matches | Raw HFA | Rating-adjusted HFA | Avg home − away rating |
 |---|---|---|---|---|
-| Emperor's Cup early rounds | 968 | 161 | 10 | +212 (pro clubs hosting amateurs) |
-| Emperor's Cup late rounds | 102 | 76 | 59 | +34 |
-| League Cup early rounds | 575 | 11 | 59 | −50 (lower-division clubs hosting) |
-| League Cup late rounds | 192 | 94 | 101 | 0 |
-| J1+J2+J3 (anchor) | 13,086 | 31 | 32 | +1 |
+| Emperor's Cup early rounds | 968 | 161 | 23 | +187 (pro clubs hosting amateurs) |
+| Emperor's Cup late rounds | 102 | 76 | 60 | +26 |
+| League Cup early rounds | 575 | 11 | 50 | −39 (lower-division clubs hosting) |
+| League Cup late rounds | 192 | 94 | 100 | 0 |
+| J1+J2+J3 (anchor) | 13,176 | 31 | 32 | +1 |
+
+Adjusted with the live hierarchical ratings (2026-10-28). On plain Elo the early-round fits were 8 (Emperor's Cup) and
+61 (League Cup): the hierarchical engine places lower-division and amateur sides closer to the clubs hosting them, so
+less of the early-round home record is explained by strength.
 
 The raw ratio mixes up "the home side is stronger" with "playing at home helps". For leagues the two methods agree;
 for cups they can be far apart, in either direction.
@@ -284,8 +336,8 @@ for cups they can be far apart, in either direction.
    - Emperor's Cup: early = `Emperor Cup`; late = `Emperor Cup R16`, `QF`, `SF`.
    - League Cup: early = `League Cup`; late = `League Cup PO`, `QF`, `SF`.
    - Finals are excluded from the fit and priced with the late values and HFA 0 (neutral venue).
-2. **Elo-adjusted fit:** HFA and the level-teams draw rate are estimated by maximum likelihood with the Davidson model,
-   using each match's pre-match Elo gap. This separates home advantage from team strength. Goals per game is the raw average.
+2. **Rating-adjusted fit:** HFA and the level-teams draw rate are estimated by maximum likelihood with the Davidson
+   model, using each match's pre-match rating gap from the live engine (refitted every run). This separates home advantage from team strength. Goals per game is the raw average.
 3. **Anchor:** each group is blended with the J1+J2+J3 league fit, which counts as `anchor_matches` (300) matches:
 
    ```
@@ -299,14 +351,15 @@ Current values (late rounds; all remaining rounds this season are late):
 
 | Cup | HFA | Level-teams draw | Goals/game |
 |---|---|---|---|
-| Emperor's Cup | 38.9 | 0.264 | 2.55 |
-| League Cup | 58.8 | 0.268 | 2.67 |
+| Emperor's Cup | 39.5 | 0.262 | 2.55 |
+| League Cup | 58.7 | 0.267 | 2.67 |
 
 A cup's `predict: {hfa, draw_rate, total_goals}` in the config still overrides any of these. The full fits, raw and
 adjusted, are written to `output/japan/cup_params.csv` on every run.
 
-For the **Elo updates**, the Emperor's Cup early rounds use HFA 10 (the Elo-adjusted venue effect); other cup labels use
-`hfa: auto`. See "Known limitations and ideas".
+For the **rating updates**, the Emperor's Cup early rounds use a fixed HFA 10 (the venue effect fitted on plain Elo
+ratings when it was set); other cup labels use `hfa: auto`. On the hierarchical ratings the same fit now gives about 23;
+see "Known limitations and ideas".
 
 ### The bracket
 
@@ -334,6 +387,19 @@ Each of the 20,000 runs plays out the rest of the bracket:
   (`prior_kicks`), and teams not in the file use `default_skill` (0.77). With `coin`, every shoot-out is 50/50.
 - Finals marked `neutral` have no home advantage.
 
+## 9. Report (`report.py`, `pipeline.py`)
+
+Everything lands in `output/japan/`:
+
+- `README.md`: per league the pricing parameters, the next matches, the table with projection and the outright prices;
+  per cup the next ties and outrights. "Next matches" covers 6 days from the first fixture after the latest result,
+  plus any overdue fixture still without a score (a postponed match stays listed until its score is entered).
+- `report.xlsx`: the same tables in one workbook.
+- `ratings.csv` (rating, tilt, last match), `tournament_params.csv`, `cup_params.csv` (raw and adjusted cup fits) and,
+  per competition, `table.csv`, `predictions.csv`, `positions.csv`, `outrights.csv`.
+
+Warnings (small tournaments, bracket problems) appear at the top of the report.
+
 ---
 
 ## Known limitations and ideas
@@ -342,8 +408,8 @@ Each of the 20,000 runs plays out the rest of the bracket:
 |---|---|
 | Draws fall away with the Elo gap faster than Davidson allows (27.9% actual v 26.7% model for gaps under 50; 23.2% v 25.6% at 100–150) | Idea: a second "draw decay" parameter fitted by maximum likelihood |
 | Ratings fixed within simulations (a team doesn't get stronger after winning simulated games) | Accepted for now |
-| Elo uses the score after extra time; tilts and parameters use 90-minute scores | Intentional |
+| Ratings use the score after extra time; tilts and parameters use 90-minute scores | Intentional |
 | Recency-weighted HFA/draw rate | Built (`shrink`), off: no gain in log loss or in parameter RMSE; true HFA varies only about ±12 Elo between seasons |
-| Emperor's Cup early rounds: Elo HFA | Set to 10 (Elo-adjusted venue effect) instead of the raw ~161, which mostly reflected pro clubs hosting. Walk-forward backtest: league matches −0.02% log loss (±0.01); early cup rounds +0.11% (±0.09). J1 ratings rose about 10–13 points. |
+| Emperor's Cup early rounds: rating-update HFA | Set to 10 (Elo-adjusted venue effect) instead of the raw ~161, which mostly reflected pro clubs hosting. Walk-forward backtest on plain Elo: league matches −0.02% log loss (±0.01); early cup rounds +0.11% (±0.09). J1 ratings rose about 10–13 points. On the hierarchical ratings the adjusted fit is about 23: worth re-testing before changing. |
 | Higher-tier clubs underperform in early cup rounds (Emperor's Cup J1 clubs: 0.816 actual v 0.868 expected; likely rotation and priorities) | Ideas: a fitted "favourite discount" for early-round cup pricing; lower K for early cup rounds |
 | Shoot-out results not stored | Adding a `winner` to results would allow backtesting penalty skill |
