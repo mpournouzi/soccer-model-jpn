@@ -36,19 +36,21 @@ flowchart TD
 | `margins` | 1.08 / 1.08 / 1.08 | 1X2, over/under 2.5, outrights |
 | `simulation.n_sims` | 20,000 | any number; a fixed `seed` makes output reproducible |
 
-The engine is shared with the Greek model (soccer-model-gr), which added the options below. All are off for Japan, so the
-outputs are what the original Japan engine gave (checked: every output CSV byte-for-byte identical). Each needs a Japan
-backtest before it is switched on; soccer-model-gr's docs/PIPELINE.md has the Greek tests.
+The engine is shared with the Greek model (soccer-model-gr), which added the options below. With all of them off the
+outputs are what the original Japan engine gave (checked: every output CSV byte-for-byte identical). Japan uses the
+hierarchical rating engine since 2026-10-28; the others need a Japan backtest before they are switched on
+(soccer-model-gr's docs/PIPELINE.md has the Greek tests; `tools/backtest.py japan scale|stakes` there found the scale
+best at 400 and no stakes effect in Japan).
 
 | Setting | Japan | What it does |
 |---|---|---|
-| `elo.engine` | `elo` (hierarchical fitted, in the shadow run) | `hierarchical`: division level + club deviation (settings under `hierarchical:`; see below) |
+| `elo.engine` | `hierarchical` (since 2026-10-28) | `elo` (plain Elo, step 3) / `hierarchical`: division level + club deviation (settings under `hierarchical:`; see below) |
 | `prediction_params.hfa_halflife` | off | `{league: half-life}`: price HFA from recency-weighted matches (Japan: tested neutral, HFA moves only about ±12 Elo) |
 | `prediction_params.scale` | off (400) | `{league: Davidson scale}`: steeper or flatter prices for the same ratings, HFA kept |
 | `tournaments.<league>.season_boost` | off | K × k_mult for each club's first part of its season |
 | `leagues.<league>.stakes` | off | price shift against sides with nothing left to play for |
 | `leagues.<league>.phases` / `final_groups`, cup `league_phase` / `ties` | not used | split-table phases with carried points, grouped leagues, league-phase cups |
-| `python -m soccermodel shadow` | every matchday | price each matchday with the hierarchical engine and log both, in `output/japan/shadow/` |
+| `python -m soccermodel shadow` | not run | price a matchday with the other engine and log both (`--engine elo`) |
 
 **Hierarchical rating for Japan** (fitted in soccer-model-gr, `tools/hierarchical.py japan --top-plain all
 --away-summers --away-cap`). A club's rating is its division's level plus its own deviation; league matches move only
@@ -70,7 +72,11 @@ v 136, drift 6–9 per match v 22), no relegation drop, and promoted clubs +15 t
 and JFL sides are placed better against the division above in cups, J1 sides now look a little too low against J2/J3
 (about 25 Elo, under one standard error), and the JFL level sits about 100 above live Elo (J3 sides were overrated
 against JFL in cups by both engines, 13 ties). Largest early moves are new clubs (J-Lease FC, university sides in the
-Emperor's Cup), which start with the uncertainty of an unknown club. The shadow run is the live test before switching.
+Emperor's Cup), which start with the uncertainty of an unknown club: J-Lease FC, out of the Regional League with only
+two Emperor's Cup matches in the data, sat at 728 on Elo against about 1,060 here, much closer to its JFL form.
+Switched on 2026-10-28; the shadow run was dropped. The J1 level is learnt from cups and play-offs only, where J1 sides
+may rotate: it doesn't affect league prices (a league match only sees the two clubs' deviations), only cups and clubs
+changing division.
 
 ---
 
