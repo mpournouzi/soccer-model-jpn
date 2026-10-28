@@ -16,6 +16,33 @@ elo:
   #   win_prob        Poisson P(win) = Elo expected score (original scripts; counts draws twice)
   #   expected_score  Poisson P(win) + P(draw)/2 = Elo expected score
   lambda_match: expected_score
+  # Rating engine: elo (above) or hierarchical (division level + club deviation, settings below; built
+  # in soccer-model-gr). Japan stays on elo; `python -m soccermodel shadow japan` prices with the other.
+  engine: elo
+
+# Hierarchical rating (elo.engine: hierarchical; docs/PIPELINE.md). Values are Elo points, fitted by
+# maximum likelihood of league + cup results of the seasons before 2026-27 (soccer-model-gr,
+# tools/hierarchical.py japan). Used by the shadow run only.
+hierarchical:
+  plain_top: true               # J1 on the plain Elo update
+  away_summers: true            # a club back after seasons without a match: summer variance per season away
+  away_cap: true                #   ... but no more than a new club's (new_sd)
+  # spring 2026 transition season: J1 group = J1; J2/J3 group clubs in the division they play in 2026-27
+  tiers: {J1 League: 1, J2 League: 2, J3 League: 3, JFL: 4, J1 100 Year Vision: 1, J2/3 100 Year Vision: next}
+  params:
+    q_top: 0.0                  # in-season drift sd per match: J1 (unused with plain_top) /
+    q_low: 9.4                  #   lower divisions
+    s_top: 0.0                  # summer sd: J1 (unused with plain_top) / lower divisions
+    s_low: 36.6
+    rho: 0.1                    # summer shrink toward the old division level
+    up: 15.0                    # promoted: + per division climbed
+    down: 0.3                   # relegated: - per division dropped
+    move: 3.6                   # extra sd on changing division
+    new: 2.3                    # new club: initial_elo + new, sd new_sd
+    new_sd: 229.0
+    init_sd: 261.7              # sd of every club in the first season
+    p_init: 13.2                # division level sd: new division / added each summer
+    p_summer: 25.0
 
 # HFA / draw rate / goals per game used to price fixtures (Elo updates are unaffected):
 #   history  all seasons equally

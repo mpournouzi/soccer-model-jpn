@@ -497,3 +497,18 @@ def test_hierarchical_tiers_change_by_season():
     # the current season's fixture lists place a club that hasn't played yet
     assert club_tiers(res, tiers, {('C', 'SL1', '2020-21'): 26}) == {('A', '2020-21'): 3, ('B', '2020-21'): 3,
                                                                   ('C', '2020-21'): 1}
+
+
+def test_hierarchical_transition_tournament_takes_the_next_seasons_division():
+    from soccermodel.hierarchical import club_tiers
+    # a spring group stage mixing two divisions, then the new season (one club placed by its fixture list)
+    tiers = {'D1': 1, 'D2': 2, 'D3': 3, 'G1': 1, 'G23': 'next'}
+    res = pd.DataFrame({'tournament': ['D2', 'D3', 'G23', 'G23', 'G1', 'D2', 'D3'],
+                        'season': ['s1', 's1', 's2', 's2', 's2', 's3', 's3'],
+                        'home': ['A', 'C', 'A', 'B', 'E', 'A', 'B'], 'away': ['X', 'D', 'C', 'D', 'F', 'C', 'X']})
+    t = club_tiers(res, tiers, {('D', 'D2', 's3'): 30})
+    assert [t[(c, 's2')] for c in 'ABCD'] == [2, 3, 2, 2]       # A, C, D play D2 in s3; B plays D3
+    assert t[('E', 's2')] == 1                                    # plain tier in the same season
+    res = res[res['season'] != 's3']
+    assert club_tiers(res, tiers)[('C', 's2')] == 3               # no next season: the previous one
+    assert club_tiers(res, tiers)[('B', 's2')] is None            # neither: outside the leagues

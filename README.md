@@ -27,6 +27,10 @@ python -m soccermodel update japan
 
 `python -m soccermodel check japan` only validates the data; `--sims 2000` gives a quicker run.
 
+The GitHub Action also runs `python -m soccermodel shadow japan` after the update: the same matchday priced with
+the hierarchical engine, compared with the live prices in `output/japan/shadow/` (README there; `log.csv` and
+`score.csv` score both engines on the same matches once played). The published outputs are untouched.
+
 ## Occasional jobs
 
 | When | What |

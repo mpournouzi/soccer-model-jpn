@@ -24,7 +24,9 @@ the tournament's K relative to elo.default_k and g the ClubElo goal multiplier (
   those extra summers stop at a new club's variance new_sd^2 (a club long away is no less known than a new one).
 * Clubs outside the leagues (cup-only) keep a plain rating with their own variance.
 
-Divisions come from `hierarchical.tiers`: tournament -> tier, or {first season: tier, ...} when it changed.
+Divisions come from `hierarchical.tiers`: tournament -> tier, or {first season: tier, ...} when it changed,
+or `next`: a transition tournament whose clubs belong to the division they play the following season (a
+group stage mixing two divisions, e.g. Japan's spring 2026 season; the previous season's if none).
 A club's division in a season is the league it played most in; for the current season the fixture lists
 count too, so clubs that haven't played yet are placed.
 """
@@ -63,7 +65,14 @@ def club_tiers(results: pd.DataFrame, tiers: dict, lengths: dict = None) -> dict
         if t in tiers and n > best.get((team, s), (0, None))[0]:
             best[(team, s)] = (n, t)
     main.update({k: t for k, (_, t) in best.items()})
-    return {(team, s): tier_of(tiers, t, s) for (team, s), t in main.items()}
+    out = {(team, s): tier_of(tiers, t, s) for (team, s), t in main.items()}
+    seasons = sorted({s for _, s in out})
+    for (team, s), t in list(out.items()):
+        if t == 'next':                            # transition tournament: the club's division next season
+            i = seasons.index(s)
+            after, before = out.get((team, seasons[i + 1])) if i + 1 < len(seasons) else None,                 out.get((team, seasons[i - 1])) if i else None
+            out[(team, s)] = next((x for x in (after, before) if x not in (None, 'next')), None)
+    return out
 
 
 def run_hierarchical(results: pd.DataFrame, initial_elo: dict, params, weights, hcfg: dict, lengths: dict = None):

@@ -42,13 +42,35 @@ backtest before it is switched on; soccer-model-gr's docs/PIPELINE.md has the Gr
 
 | Setting | Japan | What it does |
 |---|---|---|
-| `elo.engine` | `elo` | `hierarchical`: division level + club deviation (settings under `hierarchical:`; needs a Japan fit and the spring-2026 season mapped to its divisions) |
+| `elo.engine` | `elo` (hierarchical fitted, in the shadow run) | `hierarchical`: division level + club deviation (settings under `hierarchical:`; see below) |
 | `prediction_params.hfa_halflife` | off | `{league: half-life}`: price HFA from recency-weighted matches (Japan: tested neutral, HFA moves only about ±12 Elo) |
 | `prediction_params.scale` | off (400) | `{league: Davidson scale}`: steeper or flatter prices for the same ratings, HFA kept |
 | `tournaments.<league>.season_boost` | off | K × k_mult for each club's first part of its season |
 | `leagues.<league>.stakes` | off | price shift against sides with nothing left to play for |
 | `leagues.<league>.phases` / `final_groups`, cup `league_phase` / `ties` | not used | split-table phases with carried points, grouped leagues, league-phase cups |
-| `python -m soccermodel shadow` | not run | price each matchday with the other engine and log both (needs the hierarchical settings) |
+| `python -m soccermodel shadow` | every matchday | price each matchday with the hierarchical engine and log both, in `output/japan/shadow/` |
+
+**Hierarchical rating for Japan** (fitted in soccer-model-gr, `tools/hierarchical.py japan --top-plain all
+--away-summers --away-cap`). A club's rating is its division's level plus its own deviation; league matches move only
+the deviations (re-centred within the division), matches between divisions also move the levels, and J1 stays on the
+plain Elo update. The spring 2026 season is mapped with `tiers`: the J1 group is J1, and the J2/J3 group's clubs belong
+to the division they play in 2026-27 (`next`). Fitted before each season from 2021 to 2026-27 (rolling origins) and
+scored on that season against the live Elo on the same matches:
+
+| Check | Elo | Hierarchical |
+|---|---|---|
+| League log loss, 2022 to 2026-27: all / J1 / J2 / J3 / JFL | – | −0.09% (±0.07) / +0.08% / −0.15% / +0.04% / −0.41% (±0.23) |
+| Cup log loss (888 matches) | – | **−1.34%** (±0.63) |
+| Cup residual of the higher division: J1 v J2 / J1 v J3 / J2 v J3 / J3 v JFL | +0.013 / −0.016 / −0.163 / −0.301 | +0.036 / +0.041 / −0.110 / −0.249 |
+| Promoted into J3, first 10 matches (residual; + = rated too low) | +0.108 | +0.052 |
+| Lag: residual of matches 1–5 predicts 6–10 (slope) | +0.03 | +0.01 |
+
+Japan's fitted values differ from Greece's, as they should: much less movement in the lower divisions (summer sd 37–53
+v 136, drift 6–9 per match v 22), no relegation drop, and promoted clubs +15 to +34. Placing the divisions is mixed: J2
+and JFL sides are placed better against the division above in cups, J1 sides now look a little too low against J2/J3
+(about 25 Elo, under one standard error), and the JFL level sits about 100 above live Elo (J3 sides were overrated
+against JFL in cups by both engines, 13 ties). Largest early moves are new clubs (J-Lease FC, university sides in the
+Emperor's Cup), which start with the uncertainty of an unknown club. The shadow run is the live test before switching.
 
 ---
 
