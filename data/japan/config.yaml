@@ -170,7 +170,7 @@ cups:
     early: [League Cup]
     late: [League Cup PO, League Cup QF, League Cup SF]
     rounds:
-      - {name: PO, tournament: League Cup PO, legs: 2}
+      - {name: PO, tournament: League Cup, legs: 1}   # 2026-27 4th round: single match, ET + penalties
       - {name: QF, tournament: League Cup QF, legs: 2,
          entrants: [Machida Zelvia, Kashiwa Reysol, Kashima Antlers, Vissel Kobe]}   # seeded AFC clubs
       - {name: SF, tournament: League Cup SF, legs: 2}
