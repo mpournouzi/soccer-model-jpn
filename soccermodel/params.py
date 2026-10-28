@@ -13,6 +13,15 @@ season's rates towards earlier seasons (method: shrink):
 
 applied to the home-win, away-win and draw shares and to goals per game, so a handful of
 early-season matches moves the estimate only a little and a full season moves it a lot.
+
+`hfa_halflife: {tournament: h}` replaces the prediction HFA of those tournaments (either method) with
+one from exponentially weighted matches: the latest match counts 1, a match h matches earlier 1/2:
+
+  hfa_recent = 400 * log10(sum w * home win / sum w * away win),   w = 0.5 ** (matches since / h)
+
+`scale: {tournament: s}` sets the Davidson scale used to price those tournaments (default 400, the Elo
+scale): the rating difference counts 400 / s times as much, while HFA and price shifts keep their meaning,
+so level teams still get the observed home/away win ratio. The Elo update always uses 400.
 """
 
 import numpy as np
@@ -41,12 +50,22 @@ def _derived(c: dict) -> dict:
     }
 
 
-def tournament_stats(results: pd.DataFrame, season: str) -> pd.DataFrame:
+def _recent_hfa(grp: pd.DataFrame, halflife: float) -> float:
+    g = grp[grp['hg_90'].notna()]
+    w = 0.5 ** (np.arange(len(g))[::-1] / halflife)        # results are in date order: last match weight 1
+    hw, aw = (w * (g['hg_90'] > g['ag_90'])).sum(), (w * (g['hg_90'] < g['ag_90'])).sum()
+    return 400 * np.log10(hw / aw) if hw and aw else np.nan
+
+
+def tournament_stats(results: pd.DataFrame, season: str, hfa_halflife: dict = None) -> pd.DataFrame:
+    """hfa_halflife: {tournament: half-life in matches} adds hfa_recent for those tournaments."""
+    hfa_halflife = hfa_halflife or {}
     rows = []
     for name, grp in results.groupby('tournament'):
         current = grp['season'] == season
         overall, now, before = _counts(grp), _counts(grp[current]), _counts(grp[~current])
-        rows.append({'tournament': name, **_derived(overall),
+        recent = {'hfa_recent': _recent_hfa(grp, float(hfa_halflife[name]))} if name in hfa_halflife else {}
+        rows.append({'tournament': name, **_derived(overall), **recent,
                      **{f'season_{k}': v for k, v in _derived(now).items()},
                      **{f'season_{k}': v for k, v in now.items() if k != 'matches'},
                      **{f'prior_{k}': v for k, v in before.items()}})
@@ -68,6 +87,8 @@ class TournamentParams:
         self.prior_matches = float(pred_cfg.get('prior_matches', 300))
         if self.pred_method not in ('history', 'shrink'):
             raise ValueError(f"prediction_params.method must be history or shrink, not {self.pred_method!r}")
+        self.hfa_halflife = pred_cfg.get('hfa_halflife') or {}
+        self.scale = pred_cfg.get('scale') or {}
         self.warnings = []
 
     def _auto(self, tournament: str, field: str, fallback: float, min_matches: int = MIN_MATCHES_FOR_AUTO) -> float:
@@ -82,6 +103,11 @@ class TournamentParams:
 
     def k(self, tournament: str) -> float:
         return float(self.tournaments.get(tournament, {}).get('k', self.default_k))
+
+    def season_boost(self, tournament: str):
+        """(k_mult, share) from `season_boost: {k_mult, share}`, or None."""
+        b = self.tournaments.get(tournament, {}).get('season_boost')
+        return (float(b['k_mult']), float(b.get('share', 0.5))) if b else None
 
     def elo_hfa(self, tournament: str) -> float:
         value = self.tournaments.get(tournament, {}).get('hfa', 'auto')
@@ -112,7 +138,7 @@ class TournamentParams:
                 share(r['prior_goals'], r['season_goals']))
 
     def prediction(self, tournament: str, overrides: dict = None) -> dict:
-        """hfa / draw_rate / total_goals for predicting fixtures in one competition."""
+        """hfa / draw_rate / total_goals / scale for predicting fixtures in one competition."""
         overrides = overrides or {}
         shrunk = self._shrunk(tournament) if self.pred_method == 'shrink' else None
         if shrunk:
@@ -121,12 +147,17 @@ class TournamentParams:
             auto = {'hfa': lambda: self._auto(tournament, 'hfa_elo', 0.0),
                     'draw_rate': lambda: self._auto(tournament, 'draw_rate', 0.25),
                     'total_goals': lambda: self.avg_goals(tournament)}
+        if tournament in self.hfa_halflife:
+            if 'hfa_recent' not in self.stats.columns:
+                raise ValueError(f"prediction_params.hfa_halflife set for {tournament}: pass it to tournament_stats")
+            auto['hfa'] = lambda: self._auto(tournament, 'hfa_recent', 0.0)
         out = {}
         for key in ('hfa', 'draw_rate', 'total_goals'):
             if key in overrides:
                 out[key] = float(overrides[key])
             else:
                 out[key] = float(auto[key]() if callable(auto[key]) else auto[key])
+        out['scale'] = float(overrides.get('scale', self.scale.get(tournament, 400)))
         return out
 
     def elo_table(self) -> pd.DataFrame:

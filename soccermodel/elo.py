@@ -61,21 +61,49 @@ class ClubEloWeights:
                 pickle.dump(self.tables, f)
 
 
+def season_lengths(results: pd.DataFrame, tournaments) -> dict:
+    """(team, tournament, season) -> matches the team played in that tournament-season."""
+    lg = results[results['tournament'].isin(list(tournaments))]
+    long = pd.concat([lg[['home', 'tournament', 'season']].set_axis(['team', 'tournament', 'season'], axis=1),
+                      lg[['away', 'tournament', 'season']].set_axis(['team', 'tournament', 'season'], axis=1)])
+    return long.groupby(['team', 'tournament', 'season']).size().to_dict()
+
+
 def run_elo(results: pd.DataFrame, initial_elo: dict, params, weights: ClubEloWeights,
-            scale: float = 400):
+            scale: float = 400, lengths: dict = None):
     """
     Process all results chronologically.
 
     Returns (ratings dict, history DataFrame with pre-match ratings for every match).
     Uses the final score (hg/ag, including extra time) as the original scripts did.
+
+    A tournament's `season_boost: {k_mult, share}` multiplies K for each team's matches in the
+    first `share` of its season in that tournament (match n of N counts while (n + 0.5) / N < share),
+    so ratings adapt quickly after the summer and settle later. lengths: (team, tournament, season)
+    -> N, e.g. including this season's remaining fixtures; defaults to the matches in `results`.
+    Each side gets its own multiplier, so a boosted update isn't zero-sum.
     """
     ratings = dict(initial_elo)
-    k_by_t = {t: params.k(t) for t in results['tournament'].unique()}
-    hfa_by_t = {t: params.elo_hfa(t) for t in results['tournament'].unique()}
-    goals_by_t = {t: params.avg_goals(t) for t in results['tournament'].unique()}
+    names = results['tournament'].unique()
+    k_by_t = {t: params.k(t) for t in names}
+    hfa_by_t = {t: params.elo_hfa(t) for t in names}
+    goals_by_t = {t: params.avg_goals(t) for t in names}
+    boost = {t: params.season_boost(t) for t in names if params.season_boost(t)}
+    if boost:
+        lengths = {**season_lengths(results, boost), **(lengths or {})}
+    played = {}
+
+    def mult(team, t, season):
+        if t not in boost:
+            return 1.0
+        key = (team, t, season)
+        n = played.get(key, 0)
+        played[key] = n + 1
+        k_mult, share = boost[t]
+        return k_mult if (n + 0.5) / lengths[key] < share else 1.0
 
     pre_home, pre_away = [], []
-    for t, home, away, hg, ag in results[['tournament', 'home', 'away', 'hg', 'ag']].itertuples(index=False):
+    for t, s, home, away, hg, ag in results[['tournament', 'season', 'home', 'away', 'hg', 'ag']].itertuples(index=False):
         rh, ra = ratings[home], ratings[away]
         pre_home.append(rh)
         pre_away.append(ra)
@@ -85,8 +113,8 @@ def run_elo(results: pd.DataFrame, initial_elo: dict, params, weights: ClubEloWe
         actual = 1.0 if hg > ag else (0.5 if hg == ag else 0.0)
         g_mult = weights.multiplier(elo_diff, abs(hg - ag), hg > ag, goals_by_t[t])
         delta = k_by_t[t] * g_mult * (actual - expected)
-        ratings[home] = rh + delta
-        ratings[away] = ra - delta
+        ratings[home] = rh + delta * mult(home, t, s)
+        ratings[away] = ra - delta * mult(away, t, s)
 
     weights.save()
     history = results.assign(home_elo=pre_home, away_elo=pre_away)

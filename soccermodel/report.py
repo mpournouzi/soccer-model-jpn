@@ -19,9 +19,11 @@ def _md(df: pd.DataFrame) -> str:
 
 
 def _odds_view(next_df: pd.DataFrame) -> pd.DataFrame:
-    cols = ['date', 'home', 'away', 'odds1', 'oddsX', 'odds2', 'oddsO25', 'oddsU25', 'expg1', 'expg2']
-    return next_df[cols].rename(columns={'odds1': '1', 'oddsX': 'X', 'odds2': '2',
+    cols = (['group'] if 'group' in next_df else []) + ['date', 'home', 'away', 'odds1', 'oddsX', 'odds2', 'oddsO25', 'oddsU25', 'expg1', 'expg2']
+    view = next_df[cols].rename(columns={'odds1': '1', 'oddsX': 'X', 'odds2': '2',
                                          'oddsO25': 'O2.5', 'oddsU25': 'U2.5'})
+    # non-breaking hyphens: GitHub otherwise wraps dates in wide tables
+    return view.assign(date=view['date'].astype(str).str.replace('-', '‑'))
 
 
 def _outright_view(outrights: pd.DataFrame) -> pd.DataFrame:
@@ -45,12 +47,45 @@ def write_report(summary: dict, out_dir: Path):
                   f"HFA {p['hfa']:.1f} Elo · draw rate {p['draw_rate']:.3f}"
                   + (f" (level teams; league average {p['league_draw_rate']:.3f})" if 'league_draw_rate' in p else '')
                   + f" · goals/game {p['total_goals']:.2f} · "
-                  f"{lg['remaining']} matches left", '']
+                  + (f"scale {p['scale']:.0f} · " if p.get('scale', 400) != 400 else '')
+                  + f"{lg['remaining']} matches left", '']
+        if lg.get('phases'):
+            lines += [f"Format {lg['phases'][0]}", '']
+        if lg.get('stakes'):
+            shift = lg['stakes'].get('shift', 70)
+            names = lg['settled']
+            if not names:
+                lines += ["Stakes: no side has nothing left to play for yet (no stakes adjustment).", '']
+            elif len(names) <= 10:
+                lines += [f"Stakes: {', '.join(names)} have nothing left to play for and are priced −{shift:g} Elo "
+                          "in their remaining matches.", '']
+            else:
+                lines += ['<details>', f"<summary>Stakes: {len(names)} sides have nothing left to play for and are priced "
+                          f"−{shift:g} Elo in their remaining matches</summary>", '', ', '.join(names), '', '</details>', '']
         if len(lg['next']):
             lines += ['### Next matches', '', _md(_odds_view(lg['next'])), '']
         table = lg['table'].merge(lg['positions'][['team', 'exp_pts', 'exp_pos']], on='team')
-        lines += ['### Table and projection', '', _md(table), '',
-                  '### Outrights', '', _md(_outright_view(lg['outrights'])), '']
+        if not lg.get('grouped'):
+            lines += ['### Table and projection', '', _md(table), '',
+                      '### Outrights', '', _md(_outright_view(lg['outrights'])), '']
+            if lg.get('regular'):
+                reg = lg['regular']
+                view = lg['table'][['team', 'P', 'Pts']].merge(
+                    reg['positions'][['team', 'exp_pts', 'exp_pos']], on='team').merge(
+                    _outright_view(reg['outrights']), on='team').sort_values('exp_pos')
+                lines += ['### Regular season (before the play-off split)', '', _md(view), '']
+            continue
+        if lg.get('final_markets'):
+            m = lg['final_markets'][0]
+            top = lg['outrights'].sort_values(m, ascending=False).head(12)
+            lines += [f"### {m[:-2]} (group winners' play-off groups)", '',
+                      _md(top[['group', 'team'] + [c for c in top.columns if c in lg['final_markets'] or
+                                                   c.replace(' Yes', ' %') in lg['final_markets']]]), '']
+        lines += ['### Tables, projections and outrights by group', '']
+        for g, grp in table.groupby('group', sort=False):
+            outr = lg['outrights'][lg['outrights']['group'] == g].drop(columns='group')
+            lines += ['<details>', f'<summary>Group {g} — leader {grp.iloc[0]["team"]}</summary>', '',
+                      _md(grp.drop(columns='group')), '', _md(_outright_view(outr)), '', '</details>', '']
 
     for cup in summary['cups'].values():
         source = 'draw from cup file' if cup['drawn'] else 'random draw (draw not entered yet)'
@@ -60,6 +95,10 @@ def write_report(summary: dict, out_dir: Path):
                   f"Parameters — {phases}", '']
         if cup['next'] is not None and len(cup['next']):
             lines += ['### Next matches', '', _md(_odds_view(cup['next'])), '']
+        if cup.get('league_phase') is not None:
+            lp = cup['league_phase']
+            keep = [c for c in lp.columns if not c.endswith(' No')]
+            lines += ['### League phase', '', _md(lp[keep]), '']
         lines += ['### Outrights', '', _md(_outright_view(cup['outrights'])), '']
 
     top = summary['ratings'].head(30)[['team', 'elo', 'tilt', 'last_tournament']]
@@ -73,7 +112,11 @@ def write_report(summary: dict, out_dir: Path):
             for part, df in (('table', lg['table']), ('next', lg['next']),
                              ('outrights', lg['outrights']), ('positions', lg['positions'])):
                 df.to_excel(xl, sheet_name=f'{key} {part}'[:31], index=False)
+            if lg.get('regular'):
+                lg['regular']['outrights'].to_excel(xl, sheet_name=f'{key} regular season'[:31], index=False)
         for key, cup in summary['cups'].items():
             cup['outrights'].to_excel(xl, sheet_name=f'{key} outrights'[:31], index=False)
+            if cup.get('league_phase') is not None:
+                cup['league_phase'].to_excel(xl, sheet_name=f'{key} league phase'[:31], index=False)
             if cup['next'] is not None:
                 cup['next'].to_excel(xl, sheet_name=f'{key} next'[:31], index=False)

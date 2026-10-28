@@ -36,6 +36,20 @@ flowchart TD
 | `margins` | 1.08 / 1.08 / 1.08 | 1X2, over/under 2.5, outrights |
 | `simulation.n_sims` | 20,000 | any number; a fixed `seed` makes output reproducible |
 
+The engine is shared with the Greek model (soccer-model-gr), which added the options below. All are off for Japan, so the
+outputs are what the original Japan engine gave (checked: every output CSV byte-for-byte identical). Each needs a Japan
+backtest before it is switched on; soccer-model-gr's docs/PIPELINE.md has the Greek tests.
+
+| Setting | Japan | What it does |
+|---|---|---|
+| `elo.engine` | `elo` | `hierarchical`: division level + club deviation (settings under `hierarchical:`; needs a Japan fit and the spring-2026 season mapped to its divisions) |
+| `prediction_params.hfa_halflife` | off | `{league: half-life}`: price HFA from recency-weighted matches (Japan: tested neutral, HFA moves only about ±12 Elo) |
+| `prediction_params.scale` | off (400) | `{league: Davidson scale}`: steeper or flatter prices for the same ratings, HFA kept |
+| `tournaments.<league>.season_boost` | off | K × k_mult for each club's first part of its season |
+| `leagues.<league>.stakes` | off | price shift against sides with nothing left to play for |
+| `leagues.<league>.phases` / `final_groups`, cup `league_phase` / `ties` | not used | split-table phases with carried points, grouped leagues, league-phase cups |
+| `python -m soccermodel shadow` | not run | price each matchday with the other engine and log both (needs the hierarchical settings) |
+
 ---
 
 ## 1. Loading and checking the data (`data.py`)

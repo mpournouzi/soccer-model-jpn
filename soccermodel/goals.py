@@ -76,13 +76,18 @@ class MatchModel:
         self.ratings = ratings
         self.tilts = tilts
         self.hfa = pred['hfa']
+        self.spread = 400 / pred.get('scale', 400)       # Davidson scale s: rating difference x 400 / s
         self.total_goals = pred['total_goals']
         self.nu = nu_from_draw_rate(pred['draw_rate'])
         self.lookup = lookup
 
-    def predict(self, home: str, away: str, neutral: bool = False) -> dict:
+    def predict(self, home: str, away: str, neutral: bool = False, shift: float = 0.0) -> dict:
+        """
+        shift: extra Elo points for the home side in this match only (e.g. the stakes adjustment).
+        elo_diff_adj = rating difference x spread + HFA + shift, on the 400 scale the probabilities use.
+        """
         diff = self.ratings[home] - self.ratings[away]
-        diff_adj = diff + (0.0 if neutral else self.hfa)
+        diff_adj = diff * self.spread + (0.0 if neutral else self.hfa) + shift
         p1, px, p2 = davidson(diff_adj, self.nu)
         th, ta = self.tilts.get(home, 1.0), self.tilts.get(away, 1.0)
         expg1, expg2 = self.lookup.expg(diff_adj, self.total_goals * th * ta)

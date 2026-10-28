@@ -14,6 +14,8 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
+from .cup import cup_rounds
+
 RESULT_COLS = ['tournament', 'season', 'date', 'home', 'away', 'hg', 'ag', 'hg_90', 'ag_90']
 SCORE_COLS = ['hg', 'ag', 'hg_90', 'ag_90']
 
@@ -87,7 +89,7 @@ def load_results(cfg: dict) -> pd.DataFrame:
         entered.append(played)
     for cup in cfg['cups'].values():
         draw = load_fixture_file(base / cup['draw'], cfg['aliases'])
-        labels = {r['name']: r['tournament'] for r in cup['rounds']}
+        labels = {r['name']: r['tournament'] for r in cup_rounds(cup)}
         played = draw[draw['played']].copy()
         played['tournament'] = played['round'].map(labels)
         played['season'] = cfg['season']
@@ -113,9 +115,27 @@ def load_results(cfg: dict) -> pd.DataFrame:
 
 
 def load_initial_elo(cfg: dict) -> dict:
+    """
+    Starting ratings. A team with aliases starts from the rating of whichever of its names
+    appears first in results.csv (e.g. Iraklis Thessaloniki 2013 -> shown as Iraklis 1908 later).
+    """
     df = _read_csv(cfg['dir'] / cfg.get('initial_elo', 'initial_elo.csv'))
     df['team'] = df['team'].astype(str).str.strip()
-    return dict(zip(df['team'], df['ini_elo'].astype(float)))
+    ini = dict(zip(df['team'], df['ini_elo'].astype(float)))
+    if cfg['aliases']:
+        raw = _read_csv(cfg['dir'] / cfg.get('results', 'results.csv'))
+        raw['date'] = pd.to_datetime(raw['date'], errors='coerce')
+        long = pd.concat([raw[['date', 'home']].set_axis(['date', 'team'], axis=1),
+                          raw[['date', 'away']].set_axis(['date', 'team'], axis=1)])
+        first_seen = long.groupby('team')['date'].min()
+        names = {}
+        for src, dst in cfg['aliases'].items():
+            names.setdefault(dst, {dst}).add(src)
+        for dst, group in names.items():
+            seen = [n for n in group if n in first_seen.index and n in ini]
+            if seen:
+                ini[dst] = ini[min(seen, key=lambda n: first_seen[n])]
+    return ini
 
 
 def check_team_names(names, known: set, where: str):
@@ -132,7 +152,40 @@ def check_team_names(names, known: set, where: str):
     raise DataError(f"Unknown team name(s) in {where}:\n" + "\n".join(lines))
 
 
+def check_alias_overlap(cfg: dict):
+    """
+    An alias joins one club's names. Two names are two clubs if they played each other, or if
+    joining them would give the club two matches on the same day (e.g. Chania and AOX Kissamikos,
+    both in the Football League 2013-17). Using both names in one season is fine (Panionios2 in
+    old rows, Panionios in new ones).
+    """
+    if not cfg['aliases']:
+        return
+    raw = _read_csv(cfg['dir'] / cfg.get('results', 'results.csv'))
+    raw['date'] = pd.to_datetime(raw['date'], errors='coerce')
+    groups = {}
+    for src, dst in cfg['aliases'].items():
+        groups.setdefault(dst, {dst}).add(src)
+    problems = []
+    for dst, names in groups.items():
+        names = sorted(names)
+        dates = {n: set(raw.loc[(raw['home'] == n) | (raw['away'] == n), 'date']) for n in names}
+        for i, a in enumerate(names):
+            for b in names[i + 1:]:
+                met = ((raw['home'] == a) & (raw['away'] == b)) | ((raw['home'] == b) & (raw['away'] == a))
+                both = sorted(dates[a] & dates[b])
+                if met.any():
+                    problems.append(f"  '{a}' and '{b}' played each other ({raw.loc[met, 'date'].min():%Y-%m-%d})")
+                elif both:
+                    problems.append(f"  '{a}' and '{b}' both played on {both[0]:%Y-%m-%d}"
+                                    + (f" (+{len(both) - 1} more days)" if len(both) > 1 else ''))
+    if problems:
+        raise DataError("Aliased names look like different clubs - remove the alias or fix the names:\n"
+                        + "\n".join(problems))
+
+
 def validate(results: pd.DataFrame, initial_elo: dict, cfg: dict):
+    check_alias_overlap(cfg)
     known = set(initial_elo)
     check_team_names(pd.concat([results['home'], results['away']]), known, 'results')
     bad = results[(results['hg_90'] > results['hg']) | (results['ag_90'] > results['ag'])]
