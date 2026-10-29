@@ -453,6 +453,22 @@ def test_hierarchical_top_division_alone_is_plain_elo():
     assert [hier[t] for t in top] == pytest.approx([elo[t] for t in top])
 
 
+def test_hierarchical_top_k_is_plain_elo_at_that_k():
+    from soccermodel.elo import run_elo
+    from soccermodel.params import TournamentParams, tournament_stats
+    from soccermodel.hierarchical import run_hierarchical
+    results, initial = hierarchical_league()
+    results = results[(results['tournament'] == 'A1') & (results['season'] == 's1')]
+    params, weights = hierarchical_inputs(results)
+    k20 = TournamentParams({'elo': {'default_k': 20}, 'tournaments': {'A1': {'k': 20, 'hfa': 60}}},
+                           tournament_stats(results, 's3'))
+    top = ['T1', 'T2', 'T3', 'T4']
+    elo, _ = run_elo(results, initial, k20, weights)
+    hier, _ = run_hierarchical(results, initial, params, weights, {**H_CFG, 'top_k': 20})
+    assert [hier[t] for t in top] == pytest.approx([elo[t] for t in top])
+    base, _ = run_hierarchical(results, initial, params, weights, H_CFG)
+    assert [hier[t] for t in top] != pytest.approx([base[t] for t in top])
+
 def test_hierarchical_league_matches_keep_the_division_mean():
     from soccermodel.hierarchical import run_hierarchical
     results, initial = hierarchical_league()

@@ -46,6 +46,7 @@ best at 400 and no stakes effect in Japan).
 | Setting | Japan | What it does |
 |---|---|---|
 | `elo.engine` | `hierarchical` (since 2026-10-28) | `elo` (plain Elo, step 3) / `hierarchical`: division level + club deviation (settings under `hierarchical:`; step 3b, fit below) |
+| `hierarchical.top_k` | 20 (since 2026-10-29) | K of top-division clubs with `plain_top`, in every match they play (tournament weights on top); default `elo.default_k` (30) |
 | `prediction_params.hfa_halflife` | off | `{league: half-life}`: price HFA from recency-weighted matches (Japan: tested neutral, HFA moves only about ±12 Elo) |
 | `prediction_params.scale` | off (400) | `{league: Davidson scale}`: steeper or flatter prices for the same ratings, HFA kept |
 | `tournaments.<league>.season_boost` | off | K × k_mult for each club's first part of its season |
@@ -78,6 +79,12 @@ two Emperor's Cup matches in the data, sat at 728 on Elo against about 1,060 her
 Switched on 2026-10-28; the shadow run was dropped. The J1 level is learnt from cups and play-offs only, where J1 sides
 may rotate: it doesn't affect league prices (a league match only sees the two clubs' deviations), only cups and clubs
 changing division.
+
+**J1 at K 20** (`top_k: 20`, 2026-10-29). Top-division K was the one setting not fitted: J1 clubs used `default_k` 30.
+Tested 10 to 40, refitting the other values each time (rolling origins as above): K 20 is best, against K 30 league
+−0.07% (±0.03), J1 −0.23% (±0.10), J2 −0.06%, cups +0.07% (±0.10, neutral). Setting `J1 League: k: 20` instead lowers
+K only in J1 league matches and leaves J1 sides at full cup K: cups got worse (+0.14%). Lower-division and cup-only
+clubs are unaffected either way (their moves come from their own uncertainty). Greece: flat from 10 to 40, stays at 30.
 
 ---
 
@@ -191,14 +198,15 @@ away) moves a lot; a settled club moves little. In words:
   re-centred to mean zero after every match, so a division can't inflate or deflate on its own results.
 - **Match between divisions** (cups, play-offs): the two division levels move as well, by their variance P. This is
   how the model learns how far apart J1, J2, J3 and JFL are.
-- **J1 on plain Elo** (`plain_top: true`): J1 clubs move by exactly `K · G · (actual − E)` and add nothing to the
+- **J1 on plain Elo** (`plain_top: true`): J1 clubs move by exactly `K · G · (actual − E)`, with K = `top_k` (20)
+  times the tournament weight (league 20, early cup rounds 13.3, finals 26.7), and add nothing to the
   denominator, so a J1 league match is the plain Elo update of step 3a. The J1 *level* is learnt only from cups and
   play-offs, so it affects cup prices and clubs changing division, never J1 league prices.
 - **Clubs outside the leagues** (cup-only sides) keep a plain rating with their own variance.
 
 **Season start.** A club keeps its rating, shrinks by `rho` (0.1) towards its old division's level and gains the summer
-variance (`s_low` 36.6). Promoted clubs gain `up` (15) per division climbed, relegated clubs lose `down` (0.3) per
-division dropped, plus `move` variance. Each division's level becomes the mean rating of its new members. A new club
+variance (`s_low` 39.1). Promoted clubs gain `up` (7.5) per division climbed, relegated clubs lose `down` (−1.9, i.e.
+gain 1.9) per division dropped, plus `move` variance. Each division's level becomes the mean rating of its new members. A new club
 starts at `initial_elo + new` with sd `new_sd` (229): an unknown club can move fast. With `away_summers` a club
 returning after seasons without a match gets the summer variance once per season away, capped (`away_cap`) at a new
 club's.

@@ -84,7 +84,7 @@ def run_hierarchical(results: pd.DataFrame, initial_elo: dict, params, weights, 
     tiers = hcfg['tiers']
     q = {True: p['q_top'] ** 2, False: p['q_low'] ** 2}
     summer = {True: p['s_top'] ** 2, False: p['s_low'] ** 2}
-    floor = float(params.default_k) * C           # plain-Elo gain: K default ~ variance K * c
+    floor = float(hcfg.get('top_k', params.default_k)) * C   # plain-Elo gain: K ~ variance K * c
 
     names = results['tournament'].unique()
     w_by_t = {t: params.k(t) / float(params.default_k) for t in names}
