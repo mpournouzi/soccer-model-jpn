@@ -1,6 +1,6 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-10-28** (18,442 matches). Generated 2026-10-29 13:20 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-10-28** (18,442 matches). Generated 2026-10-31 06:27 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 ## J1 League
 
