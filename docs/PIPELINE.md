@@ -37,11 +37,10 @@ flowchart TD
 | `margins` | 1.08 / 1.08 / 1.08 | 1X2, over/under 2.5, outrights |
 | `simulation.n_sims` | 20,000 | any number; a fixed `seed` makes output reproducible |
 
-The engine is shared with the Greek model (soccer-model-gr), which added the options below. With all of them off the
-outputs are what the original Japan engine gave (checked: every output CSV byte-for-byte identical). Japan uses the
-hierarchical rating engine since 2026-10-28; the others need a Japan backtest before they are switched on
-(soccer-model-gr's docs/PIPELINE.md has the Greek tests; `tools/backtest.py japan scale|stakes` there found the scale
-best at 400 and no stakes effect in Japan).
+The engine also supports the options below. With all of them off the outputs are what the original Japan engine gave
+(checked: every output CSV byte-for-byte identical). Japan uses the hierarchical rating engine since 2026-10-28 (J1 at
+K 20 since 2026-10-29); the others stay off until a Japan backtest supports them. Tested so far: the Davidson scale is
+best at 400 (the default) and stakes showed no effect in Japan.
 
 | Setting | Japan | What it does |
 |---|---|---|
@@ -54,12 +53,13 @@ best at 400 and no stakes effect in Japan).
 | `leagues.<league>.phases` / `final_groups`, cup `league_phase` / `ties` | not used | split-table phases with carried points, grouped leagues, league-phase cups |
 | `python -m soccermodel shadow` | not run | price a matchday with the other engine and log both (`--engine elo`) |
 
-**Hierarchical rating for Japan** (fitted in soccer-model-gr, `tools/hierarchical.py japan --top-plain all
---away-summers --away-cap`). A club's rating is its division's level plus its own deviation; league matches move only
+**Hierarchical rating for Japan** (fitted offline by maximum likelihood, with J1 on plain Elo, `away_summers` and
+`away_cap`). A club's rating is its division's level plus its own deviation; league matches move only
 the deviations (re-centred within the division), matches between divisions also move the levels, and J1 stays on the
 plain Elo update. The spring 2026 season is mapped with `tiers`: the J1 group is J1, and the J2/J3 group's clubs belong
 to the division they play in 2026-27 (`next`). Fitted before each season from 2021 to 2026-27 (rolling origins) and
-scored on that season against the live Elo on the same matches:
+scored on that season against plain Elo on the same matches. This first fit had J1 at K 30; the K 20 refit below
+improves on it:
 
 | Check | Elo | Hierarchical |
 |---|---|---|
@@ -69,13 +69,15 @@ scored on that season against the live Elo on the same matches:
 | Promoted into J3, first 10 matches (residual; + = rated too low) | +0.108 | +0.052 |
 | Lag: residual of matches 1–5 predicts 6–10 (slope) | +0.03 | +0.01 |
 
-Japan's fitted values differ from Greece's, as they should: much less movement in the lower divisions (summer sd 37–53
-v 136, drift 6–9 per match v 22), no relegation drop, and promoted clubs +15 to +34. Placing the divisions is mixed: J2
+The fitted values describe stable lower divisions: little movement over a summer (sd 39) or within a season (drift 9
+per match), promoted clubs +7.5 per division climbed and essentially no relegation drop (current values in step 3b).
+Placing the divisions is mixed: J2
 and JFL sides are placed better against the division above in cups, J1 sides now look a little too low against J2/J3
 (about 25 Elo, under one standard error), and the JFL level sits about 100 above live Elo (J3 sides were overrated
 against JFL in cups by both engines, 13 ties). Largest early moves are new clubs (J-Lease FC, university sides in the
 Emperor's Cup), which start with the uncertainty of an unknown club: J-Lease FC, out of the Regional League with only
-two Emperor's Cup matches in the data, sat at 728 on Elo against about 1,060 here, much closer to its JFL form.
+two Emperor's Cup matches in the data, sat at 728 on Elo against about 1,060 here (1,059 now), much closer to its JFL
+form.
 Switched on 2026-10-28; the shadow run was dropped. The J1 level is learnt from cups and play-offs only, where J1 sides
 may rotate: it doesn't affect league prices (a league match only sees the two clubs' deviations), only cups and clubs
 changing division.
@@ -84,7 +86,18 @@ changing division.
 Tested 10 to 40, refitting the other values each time (rolling origins as above): K 20 is best, against K 30 league
 −0.07% (±0.03), J1 −0.23% (±0.10), J2 −0.06%, cups +0.07% (±0.10, neutral). Setting `J1 League: k: 20` instead lowers
 K only in J1 league matches and leaves J1 sides at full cup K: cups got worse (+0.14%). Lower-division and cup-only
-clubs are unaffected either way (their moves come from their own uncertainty). Greece: flat from 10 to 40, stays at 30.
+clubs are unaffected either way (their moves come from their own uncertainty).
+
+Refitting at K 20 moved the other values too; the largest changes:
+
+| Parameter | K 30 fit | K 20 fit (live) |
+|---|---|---|
+| Promoted, per division climbed (`up`) | +15.0 | +7.5 |
+| Relegated, per division dropped (`down`) | 0.3 | −1.9 (a small gain) |
+| Division level spread (`p_init` / `p_summer`) | 13.2 / 25.0 | 16.1 / 22.6 |
+| Summer spread, lower divisions (`s_low`) | 36.6 | 39.1 |
+
+With J1 clubs moving less, less of a promoted club's step up has to be added by hand.
 
 ---
 
@@ -216,8 +229,8 @@ most in; for the current season the fixture files count too, so clubs that haven
 2026 transition season uses `next`: clubs of the J2/J3 100 Year Vision group belong to the division they play in
 2026-27.
 
-All `hierarchical.params` are maximum-likelihood fits from soccer-model-gr (values and backtest at the top of this
-page). They are not refitted on each run.
+All `hierarchical.params` are maximum-likelihood fits on league and cup results before 2026-27, made at `top_k` 20
+(backtest at the top of this page). They are not refitted on each run.
 
 > **The Poisson model, used throughout.** Each team's goals follow a Poisson distribution with an expected value λ.
 > For example, λ = 1.5 gives about a 22% chance of 0 goals, 33% of 1 and 25% of 2. The two teams' goals are treated as
@@ -263,12 +276,12 @@ The draw probability is highest for level teams and shrinks as the gap grows.
 
 | League | League draw rate | Calibrated level-teams rate | Implied bump | Spread of rating gaps (sd) |
 |---|---|---|---|---|
-| J1 | 0.250 | 0.259 | +0.9 | 112 |
+| J1 | 0.250 | 0.258 | +0.8 | 101 |
 | J2 | 0.277 | 0.285 | +0.8 | 102 |
 | J3 | 0.243 | 0.251 | +0.8 | 99 |
 | JFL | 0.249 | 0.263 | +1.4 | 143 |
 
-Values from the run of 2026-10-28, on the hierarchical ratings; the report shows the current ones for each league.
+Values from the run of 2026-10-29 (J1 at K 20, which narrows the spread of J1 ratings), on the hierarchical ratings; the report shows the current ones for each league.
 
 *Walk-forward backtest* (plain Elo ratings; refit at each season start on earlier matches only; 9,631 league matches
 since 2019; actual draws 26.0%):
@@ -325,13 +338,13 @@ away sides are equally strong on average, which holds in a balanced league sched
 
 | Group | Matches | Raw HFA | Rating-adjusted HFA | Avg home − away rating |
 |---|---|---|---|---|
-| Emperor's Cup early rounds | 968 | 161 | 23 | +187 (pro clubs hosting amateurs) |
+| Emperor's Cup early rounds | 968 | 161 | 24 | +185 (pro clubs hosting amateurs) |
 | Emperor's Cup late rounds | 102 | 76 | 60 | +26 |
-| League Cup early rounds | 575 | 11 | 50 | −39 (lower-division clubs hosting) |
-| League Cup late rounds | 192 | 94 | 100 | 0 |
+| League Cup early rounds | 579 | 10 | 49 | −39 (lower-division clubs hosting) |
+| League Cup late rounds | 192 | 94 | 99 | 0 |
 | J1+J2+J3 (anchor) | 13,176 | 31 | 32 | +1 |
 
-Adjusted with the live hierarchical ratings (2026-10-28). On plain Elo the early-round fits were 8 (Emperor's Cup) and
+Adjusted with the live hierarchical ratings (2026-10-29). On plain Elo the early-round fits were 8 (Emperor's Cup) and
 61 (League Cup): the hierarchical engine places lower-division and amateur sides closer to the clubs hosting them, so
 less of the early-round home record is explained by strength.
 
@@ -359,15 +372,14 @@ Current values (late rounds; all remaining rounds this season are late):
 
 | Cup | HFA | Level-teams draw | Goals/game |
 |---|---|---|---|
-| Emperor's Cup | 39.5 | 0.262 | 2.55 |
-| League Cup | 58.7 | 0.267 | 2.67 |
+| Emperor's Cup | 39.2 | 0.261 | 2.55 |
+| League Cup | 58.1 | 0.266 | 2.67 |
 
 A cup's `predict: {hfa, draw_rate, total_goals}` in the config still overrides any of these. The full fits, raw and
 adjusted, are written to `output/japan/cup_params.csv` on every run.
 
-For the **rating updates**, the Emperor's Cup early rounds use a fixed HFA 10 (the venue effect fitted on plain Elo
-ratings when it was set); other cup labels use `hfa: auto`. On the hierarchical ratings the same fit now gives about 23;
-see "Known limitations and ideas".
+For the **rating updates**, the Emperor's Cup early rounds use a fixed HFA 23 (the rating-adjusted venue effect on the
+hierarchical ratings; 10 on plain Elo); other cup labels use `hfa: auto`. See "Known limitations and ideas".
 
 ### The bracket
 
@@ -378,6 +390,8 @@ Each of the 20,000 runs plays out the rest of the bracket:
   "winner of QF tie 2", which lets the draw file lay out a fixed bracket.
 - **Seeded entrants:** a round can list teams that join the competition there. For example, the League Cup QF has
   `entrants: [Machida Zelvia, Kashiwa Reysol, Kashima Antlers, Vissel Kobe]`, the seeded AFC clubs, who meet the 4 PO winners.
+  In 2026-27 the PO round is the single-match 4th round (label `League Cup`, so it is priced with the early-round
+  values); in earlier seasons it was two-legged (`League Cup PO`).
 - **Ties not drawn yet** are drawn at random from the teams in that round, separately in each simulation.
 - **Bracket check:** the run counts teams through every round, including entrants, and warns if a round has an odd
   number of teams or the bracket doesn't end with one winner.
@@ -418,6 +432,6 @@ Warnings (small tournaments, bracket problems) appear at the top of the report.
 | Ratings fixed within simulations (a team doesn't get stronger after winning simulated games) | Accepted for now |
 | Ratings use the score after extra time; tilts and parameters use 90-minute scores | Intentional |
 | Recency-weighted HFA/draw rate | Built (`shrink`), off: no gain in log loss or in parameter RMSE; true HFA varies only about ±12 Elo between seasons |
-| Emperor's Cup early rounds: rating-update HFA | Set to 10 (Elo-adjusted venue effect) instead of the raw ~161, which mostly reflected pro clubs hosting. Walk-forward backtest on plain Elo: league matches −0.02% log loss (±0.01); early cup rounds +0.11% (±0.09). J1 ratings rose about 10–13 points. On the hierarchical ratings the adjusted fit is about 23: worth re-testing before changing. |
+| Emperor's Cup early rounds: rating-update HFA | Set to 10 (Elo-adjusted venue effect) instead of the raw ~161, which mostly reflected pro clubs hosting. Walk-forward backtest on plain Elo (HFA 10): league matches −0.02% log loss (±0.01); early cup rounds +0.11% (±0.09). J1 ratings rose about 10–13 points. Raised to 23 on 2026-10-28 to match the fit on hierarchical ratings (now 24); not yet backtested at that value. |
 | Higher-tier clubs underperform in early cup rounds (Emperor's Cup J1 clubs: 0.816 actual v 0.868 expected; likely rotation and priorities) | Ideas: a fitted "favourite discount" for early-round cup pricing; lower K for early cup rounds |
 | Shoot-out results not stored | Adding a `winner` to results would allow backtesting penalty skill |

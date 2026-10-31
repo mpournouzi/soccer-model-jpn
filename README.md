@@ -48,9 +48,10 @@ and logs both in `output/japan/shadow/`; it isn't part of the matchday run.
    uses these; a number overrides (0 for neutral venues).
 2. **Ratings** — hierarchical engine (`elo.engine: hierarchical`, live since 2026-10-28): each club's rating is its
    division's level plus its own deviation, both with an uncertainty. League matches move only the deviations; cups
-   and play-offs also move the division levels; J1 clubs use the plain Elo update. All updates use ClubElo dynamic
-   goal weighting (K·√margin / E[√margin | win]) and the final score incl. extra time. `elo.engine: elo` switches
-   back to plain Elo. Backtest v plain Elo: cup log loss −1.34%, league −0.09%.
+   and play-offs also move the division levels; J1 clubs use the plain Elo update at K 20 (`hierarchical.top_k`).
+   All updates use ClubElo dynamic goal weighting (K·√margin / E[√margin | win]) and the final score incl. extra
+   time. `elo.engine: elo` switches back to plain Elo. Backtest v plain Elo: cup log loss −1.34%, league −0.09%;
+   J1 at K 20 v 30 a further −0.23% on J1 matches.
 3. **Tilts** — each team's tendency for high/low-scoring games (0.98/0.02 exponential update).
 4. **Match prices** — 1X2 from Elo-Davidson with the draw parameter calibrated per league; expected goals from the
    lambda lookup × both teams' tilts; O/U 2.5 from Poisson. Configurable power-method margins (1.08 for 1X2, 1.08
@@ -66,11 +67,12 @@ and logs both in `output/japan/shadow/`; it isn't part of the matchday run.
 ### Optional model switches (`config.yaml`)
 
 Current values are listed in [docs/PIPELINE.md](docs/PIPELINE.md#current-model-settings), which also covers the
-options shared with the Greek model (recency-weighted HFA, Davidson scale, stakes, split-table phases).
+engine's other options, all off for Japan (recency-weighted HFA, Davidson scale, stakes, split-table phases).
 
 | Setting | Options | Effect |
 |---|---|---|
 | `elo.engine` | `elo` / `hierarchical` | Plain Elo, or division level + club deviation (live). Settings under `hierarchical:`. |
+| `hierarchical.top_k` | number (Japan 20) | K of J1 clubs in every match they play; unset = `elo.default_k` (30). |
 | `elo.lambda_match` | `win_prob` (original) / `expected_score` | How an Elo edge becomes Poisson goal rates for the ClubElo goal weights. `expected_score` stops counting draws twice. |
 | `prediction_params.method` | `history` / `shrink` | Pricing HFA, draw rate and goals/game from all seasons, or this season blended with earlier ones (`prior_matches`). |
 | `prediction_params.draw_model` | `league_rate` / `calibrated` | Davidson draw parameter set to the league draw rate, or calibrated per league so average predicted draws match observed draws. |

@@ -16,13 +16,13 @@ elo:
   #   win_prob        Poisson P(win) = Elo expected score (original scripts; counts draws twice)
   #   expected_score  Poisson P(win) + P(draw)/2 = Elo expected score
   lambda_match: expected_score
-  # Rating engine: elo (above) or hierarchical (division level + club deviation, settings below; built
-  # in soccer-model-gr). Hierarchical from 2026-10-28: cups -1.34%, league -0.09% v elo (docs/PIPELINE.md).
+  # Rating engine: elo (above) or hierarchical (division level + club deviation, settings below).
+  # Hierarchical from 2026-10-28: cups -1.34%, league -0.09% v elo (docs/PIPELINE.md).
   engine: hierarchical
 
 # Hierarchical rating (elo.engine: hierarchical; docs/PIPELINE.md). Values are Elo points, fitted by
-# maximum likelihood of league + cup results of the seasons before 2026-27 (soccer-model-gr,
-# tools/hierarchical.py japan). The live rating engine (elo.engine).
+# maximum likelihood of league + cup results of the seasons before 2026-27, with top_k 20.
+# The live rating engine (elo.engine).
 hierarchical:
   plain_top: true               # J1 on the plain Elo update
   top_k: 20                     #   ... at K 20 (x tournament weight) in every J1 club's match; default elo.default_k
