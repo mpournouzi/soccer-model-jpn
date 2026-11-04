@@ -112,7 +112,7 @@ def _league_phases(lg: dict, n_teams: int):
     return [dict(p) for p in phases or []]
 
 
-def _simulate_league_group(lg, fixtures, season_res, model, sampler, margins, n_sims, rng, warnings, shifts=None):
+def _simulate_league_group(lg, fixtures, season_res, model, sampler, margins, n_sims, rng, shifts=None):
     """One table: the regular fixture list, then any position phases (see league.py)."""
     n_teams = len(set(fixtures['home']) | set(fixtures['away']))
     phases = _league_phases(lg, n_teams)
@@ -276,8 +276,7 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print, engi
         def simulate(shifts):
             parts, sims = [], {}
             for g, (g_fx, g_res) in groups.items():
-                part = _simulate_league_group(lg, g_fx, g_res, model, sampler, margins, n_sims, rng,
-                                              summary['warnings'], shifts)
+                part = _simulate_league_group(lg, g_fx, g_res, model, sampler, margins, n_sims, rng, shifts)
                 part['group'] = g
                 if g is not None:
                     part['outrights'] = part['outrights'].assign(group=g)

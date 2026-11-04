@@ -1,7 +1,7 @@
 """
 Hierarchical rating (`elo.engine: hierarchical`): a club's rating is its division's level plus its own
 deviation, each with an uncertainty, updated by the simplified Kalman filter of Szczecinski & Tihon (2023).
-Port of the prototype tools/hierarchical.py (rolling-origin backtests in docs/PIPELINE.md).
+Parameters and rolling-origin backtests: docs/PIPELINE.md.
 
 For a match, d = r_home - r_away + HFA, E = logistic(d), I = E(1 - E) / c^2 with c = 400 / ln 10; w is
 the tournament's K relative to elo.default_k and g the ClubElo goal multiplier (as in elo.py):
@@ -13,8 +13,12 @@ the tournament's K relative to elo.default_k and g the ClubElo goal multiplier (
 * League matches (both clubs in one division) move only the two deviations, and the division's deviations
   are re-centred to mean zero after every match, so a division can't inflate or deflate on its own.
 * Matches between divisions (cups, play-offs) also move the two division levels, by their variance P.
-* Top division on plain Elo (`plain_top: true`): its clubs move by exactly default_k * g * (y - E) * w and
-  add nothing to the denominator, so SL1 league matches are the plain Elo update.
+* Top division on plain Elo (`plain_top: true`): its clubs move by exactly top_k * g * (y - E) * w and
+  add nothing to the denominator, so top-division league matches are the plain Elo update. Against another
+  division the division variances still enter the denominator, the division level moves, and the re-centring
+  spreads the move over the division, so those matches are close to, not exactly, plain Elo. A top-division
+  club's variance is held at top_k * c, which is also what it carries into a lower division when relegated.
+* `tournaments.<t>.season_boost` (elo.py) isn't supported here: setting it stops the run.
 * Season start: a club keeps its rating, shrinks by `rho` toward its old division level, adds the summer
   variance (s_top / s_low), and on changing division `up` Elo per division climbed (or -`down` per division
   dropped) plus move^2 variance. A new club starts at initial_elo + `new` with variance new_sd^2 (clubs of
@@ -70,7 +74,8 @@ def club_tiers(results: pd.DataFrame, tiers: dict, lengths: dict = None) -> dict
     for (team, s), t in list(out.items()):
         if t == 'next':                            # transition tournament: the club's division next season
             i = seasons.index(s)
-            after, before = out.get((team, seasons[i + 1])) if i + 1 < len(seasons) else None,                 out.get((team, seasons[i - 1])) if i else None
+            after = out.get((team, seasons[i + 1])) if i + 1 < len(seasons) else None
+            before = out.get((team, seasons[i - 1])) if i else None
             out[(team, s)] = next((x for x in (after, before) if x not in (None, 'next')), None)
     return out
 
@@ -84,9 +89,13 @@ def run_hierarchical(results: pd.DataFrame, initial_elo: dict, params, weights, 
     tiers = hcfg['tiers']
     q = {True: p['q_top'] ** 2, False: p['q_low'] ** 2}
     summer = {True: p['s_top'] ** 2, False: p['s_low'] ** 2}
-    floor = float(hcfg.get('top_k', params.default_k)) * C   # plain-Elo gain: K ~ variance K * c
+    top_gain = float(hcfg.get('top_k', params.default_k)) * C   # plain-Elo gain: K ~ variance K * c
 
     names = results['tournament'].unique()
+    boosted = [t for t in names if params.season_boost(t)]
+    if boosted:
+        raise ValueError(f"season_boost isn't supported by elo.engine: hierarchical (set for {', '.join(boosted)}); "
+                         "remove it or use elo.engine: elo")
     w_by_t = {t: params.k(t) / float(params.default_k) for t in names}
     hfa_by_t = {t: params.elo_hfa(t) for t in names}
     goals_by_t = {t: params.avg_goals(t) for t in names}
@@ -165,7 +174,7 @@ def run_hierarchical(results: pd.DataFrame, initial_elo: dict, params, weights, 
         top_h, top_a = plain_top and th == 1, plain_top and ta == 1
         vh, va = var[home], var[away]
         uh, ua = (0.0 if top_h else vh), (0.0 if top_a else va)          # uncertainty
-        gh, ga = (floor if top_h else vh), (floor if top_a else va)      # gain
+        gh, ga = (top_gain if top_h else vh), (top_gain if top_a else va)      # gain
         d = rh - ra + hfa_by_t[t]
         e = 1 / (1 + 10 ** (-d / 400))
         y = 1.0 if hg > ag else (0.5 if hg == ag else 0.0)
@@ -190,8 +199,8 @@ def run_hierarchical(results: pd.DataFrame, initial_elo: dict, params, weights, 
         if pa:
             level[ta] -= pa * innov
             pvar[ta] = pa * (1 - w * pa * info / den)
-        var[home] = floor if top_h else vh * (1 - w * vh * info / den) + q[last_t.get(home) == 1]
-        var[away] = floor if top_a else va * (1 - w * va * info / den) + q[last_t.get(away) == 1]
+        var[home] = top_gain if top_h else vh * (1 - w * vh * info / den) + q[last_t.get(home) == 1]
+        var[away] = top_gain if top_a else va * (1 - w * va * info / den) + q[last_t.get(away) == 1]
 
     weights.save()
     last = seasons[-1]

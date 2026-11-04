@@ -4,7 +4,7 @@ Command line:
     python -m soccermodel update japan            # full matchday run
     python -m soccermodel update japan --sims 2000  # quicker run while checking
     python -m soccermodel check japan             # validate data only (team names, scores)
-    python -m soccermodel shadow greece           # after update: price with the other engine, compare
+    python -m soccermodel shadow japan            # after update: price with the other engine, compare
 """
 
 import argparse
@@ -21,7 +21,8 @@ def main(argv=None):
     parser.add_argument('command', choices=['update', 'check', 'shadow'])
     parser.add_argument('country', help='folder name under data/, e.g. japan')
     parser.add_argument('--sims', type=int, default=None, help='override number of simulations')
-    parser.add_argument('--engine', default='hierarchical', help='shadow: rating engine to compare (default hierarchical)')
+    parser.add_argument('--engine', default=None,
+                        help="shadow: rating engine to compare (default: the one elo.engine doesn't use)")
     args = parser.parse_args(argv)
 
     country_dir = ROOT / 'data' / args.country

@@ -391,7 +391,7 @@ def hierarchical_inputs(results):
     return TournamentParams(cfg, tournament_stats(results, 's3')), _WEIGHTS[0]
 
 
-# Pre-match ratings from the prototype, tools/hierarchical.py (run_hierarchical, top_plain='all'), on
+# Pre-match ratings from the original prototype (backtest tooling outside this repo; top_plain='all'), on
 # hierarchical_league() with H_PARAMS: the first and last match of each season, and the sums over all 87
 # (on the full Greek data the engine matched the prototype exactly for all six rolling-origin fits).
 PROTOTYPE_PRE = {0: (1600.0, 1500.0), 28: (900.0, 1612.1415), 29: (1612.6374, 1454.672), 57: (893.1728, 1612.9198),
@@ -528,3 +528,13 @@ def test_hierarchical_transition_tournament_takes_the_next_seasons_division():
     res = res[res['season'] != 's3']
     assert club_tiers(res, tiers)[('C', 's2')] == 3               # no next season: the previous one
     assert club_tiers(res, tiers)[('B', 's2')] is None            # neither: outside the leagues
+
+
+def test_hierarchical_rejects_season_boost():
+    from soccermodel.hierarchical import run_hierarchical
+    from soccermodel.params import TournamentParams, tournament_stats
+    results, initial = hierarchical_league()
+    _, weights = hierarchical_inputs(results)
+    cfg = {'elo': {'default_k': 30}, 'tournaments': {'A1': {'k': 30, 'hfa': 60, 'season_boost': {'k_mult': 2, 'share': 0.3}}}}
+    with pytest.raises(ValueError, match='season_boost'):
+        run_hierarchical(results, initial, TournamentParams(cfg, tournament_stats(results, 's3')), weights, H_CFG)

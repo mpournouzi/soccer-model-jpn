@@ -1,6 +1,6 @@
 """
 Shadow run: price the same matchday with another rating engine and compare it with the live prices,
-without touching the published outputs (`python -m soccermodel shadow greece`, after `update`).
+without touching the published outputs (`python -m soccermodel shadow japan`, after `update`).
 
 Everything goes to output/<country>/shadow/:
 
@@ -107,8 +107,10 @@ def _table(df: pd.DataFrame) -> str:
                           for row in df.itertuples(index=False))
 
 
-def shadow(country_dir: Path, live_dir: Path, engine: str = 'hierarchical', n_sims: int = None, log=print) -> Path:
+def shadow(country_dir: Path, live_dir: Path, engine: str = None, n_sims: int = None, log=print) -> Path:
+    """engine: the engine to compare with the live one; default the one `elo.engine` doesn't use."""
     cfg = load_config(country_dir)
+    engine = engine or ('elo' if cfg.get('elo', {}).get('engine', 'elo') == 'hierarchical' else 'hierarchical')
     out = live_dir / 'shadow'
     out.mkdir(parents=True, exist_ok=True)
     comps = _competitions(cfg)

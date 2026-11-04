@@ -77,7 +77,7 @@ penalties:
 # hfa: auto  -> 400*log10(home wins / away wins) over all history, recomputed every run.
 # A number fixes it (0 for neutral venues).
 tournaments:
-  J1 League:            {k: 30, hfa: auto}
+  J1 League:            {k: 30, hfa: auto}   # weight 1: J1 clubs update at hierarchical.top_k (20)
   J2 League:            {k: 30, hfa: auto}
   J3 League:            {k: 30, hfa: auto}
   JFL:                  {k: 30, hfa: auto}

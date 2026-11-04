@@ -26,7 +26,7 @@ python -m soccermodel update japan
 ```
 
 `python -m soccermodel check japan` only validates the data; `--sims 2000` gives a quicker run.
-`python -m soccermodel shadow japan --engine elo` (after an update) prices the matchday with the other rating engine
+`python -m soccermodel shadow japan` (after an update) prices the matchday with the other rating engine
 and logs both in `output/japan/shadow/`; it isn't part of the matchday run.
 
 **How it works, step by step, with the maths and backtests → [docs/PIPELINE.md](docs/PIPELINE.md)**
@@ -48,7 +48,7 @@ and logs both in `output/japan/shadow/`; it isn't part of the matchday run.
    uses these; a number overrides (0 for neutral venues).
 2. **Ratings** — hierarchical engine (`elo.engine: hierarchical`, live since 2026-10-28): each club's rating is its
    division's level plus its own deviation, both with an uncertainty. League matches move only the deviations; cups
-   and play-offs also move the division levels; J1 clubs use the plain Elo update at K 20 (`hierarchical.top_k`).
+   and play-offs also move the division levels; J1 league matches use the plain Elo update at K 20 (`hierarchical.top_k`).
    All updates use ClubElo dynamic goal weighting (K·√margin / E[√margin | win]) and the final score incl. extra
    time. `elo.engine: elo` switches back to plain Elo. Backtest v plain Elo: cup log loss −1.34%, league −0.09%;
    J1 at K 20 v 30 a further −0.23% on J1 matches.
