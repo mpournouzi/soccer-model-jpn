@@ -99,6 +99,32 @@ tournaments:
   J1 100 Year Vision:   {k: 30, hfa: auto}
   J2/3 100 Year Vision: {k: 30, hfa: auto}
 
+# Odds shadow (`python -m soccermodel odds-shadow japan`, after an update; docs/PIPELINE.md): the live J1
+# prices corrected by how the closing market rated each club in its earlier matches. Shadow only: written
+# to output/japan/odds_shadow/, the published prices are untouched.
+odds_shadow:
+  league: j1
+  file: odds/JPN.csv              # closing odds of played matches (J1 only), refreshed by --download
+  url: https://football-data.co.uk/new/JPN.csv
+  columns: [AvgCH, AvgCD, AvgCA]  # average closing odds, home / draw / away
+  k: 0.3                          # Elo step on a club's market-minus-model gap (backtest pick, 2022 on)
+  train_from: '2016'              # first season used to fit the tilt
+  names:                          # odds-file club names -> names used here
+    Chiba: JEF United
+    FC Tokyo: Tokyo
+    Hokkaido Consadole Sapporo: Consadole Sapporo
+    Iwata: Jubilo Iwata
+    Kofu: Ventforet Kofu
+    Kumamoto: Roasso Kumamoto
+    Kyoto: Kyoto Sanga
+    Machida: Machida Zelvia
+    Mito: Mito Hollyhock
+    Okayama: Fagiano Okayama
+    Tokushima: Tokushima Vortis
+    Verdy: Tokyo Verdy
+    Yamaga: Matsumoto Yamaga
+    Yokohama FC: Yokohama
+
 margins:
   three_way: 1.08               # 1X2
   two_way: 1.08                 # over/under 2.5

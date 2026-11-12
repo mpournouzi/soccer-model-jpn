@@ -28,6 +28,8 @@ python -m soccermodel update japan
 `python -m soccermodel check japan` only validates the data; `--sims 2000` gives a quicker run.
 `python -m soccermodel shadow japan` (after an update) prices the matchday with the other rating engine
 and logs both in `output/japan/shadow/`; it isn't part of the matchday run.
+`python -m soccermodel odds-shadow japan --download` (after an update) corrects the live J1 prices with past
+closing odds and logs both in `output/japan/odds_shadow/`; the published prices are untouched.
 
 **How it works, step by step, with the maths and backtests → [docs/PIPELINE.md](docs/PIPELINE.md)**
 

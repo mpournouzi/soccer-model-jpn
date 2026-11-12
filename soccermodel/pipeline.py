@@ -194,6 +194,39 @@ def current_season_lengths(cfg: dict, results: pd.DataFrame) -> dict:
     return out
 
 
+def rate(cfg: dict, results: pd.DataFrame, initial_elo: dict, engine: str = None):
+    """Tournament stats and parameters, then the rating engine: (stats, params, ratings, history with
+    pre-match home_elo / away_elo, season lengths, engine name)."""
+    stats = tournament_stats(results, cfg['season'], (cfg.get('prediction_params') or {}).get('hfa_halflife'))
+    params = TournamentParams(cfg, stats)
+    elo_cfg = cfg.get('elo', {})
+    weights = ClubEloWeights(step=int(elo_cfg.get('lookup_step', 10)), cache_dir=CACHE_DIR,
+                             lambda_match=elo_cfg.get('lambda_match', 'win_prob'))
+    lengths = current_season_lengths(cfg, results)
+    engine = engine or elo_cfg.get('engine', 'elo')
+    if engine == 'hierarchical':
+        ratings, history = run_hierarchical(results, initial_elo, params, weights, cfg['hierarchical'], lengths)
+    elif engine == 'elo':
+        ratings, history = run_elo(results, initial_elo, params, weights, lengths=lengths)
+    else:
+        raise ValueError(f"elo.engine must be elo or hierarchical, not {engine!r}")
+    return stats, params, ratings, history, lengths, engine
+
+
+def league_pred_params(cfg: dict, lg: dict, params: TournamentParams, history: pd.DataFrame) -> dict:
+    """HFA / draw rate / goals / scale that price a league's fixtures (draw rate calibrated if configured)."""
+    tournament = lg['tournament']
+    pred_params = params.prediction(tournament, lg.get('predict'))
+    draw_model = cfg.get('prediction_params', {}).get('draw_model', 'league_rate')
+    if draw_model == 'calibrated' and 'draw_rate' not in (lg.get('predict') or {}):
+        past = history[history['tournament'] == tournament]
+        pred_params['league_draw_rate'] = pred_params['draw_rate']
+        pred_params['draw_rate'] = calibrate_draw_rate(
+            (past['home_elo'] - past['away_elo']) * 400 / pred_params['scale'] + pred_params['hfa'],
+            pred_params['draw_rate'])
+    return pred_params
+
+
 def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print, engine: str = None) -> dict:
     """Matchday run into out_dir. engine: rating engine replacing the config's elo.engine (shadow runs)."""
     cfg = load_config(country_dir)
@@ -211,19 +244,7 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print, engi
     log(f"{len(results)} results loaded, latest {results['date'].max():%Y-%m-%d}")
 
     # ---- parameters, Elo, tilts
-    stats = tournament_stats(results, season, (cfg.get('prediction_params') or {}).get('hfa_halflife'))
-    params = TournamentParams(cfg, stats)
-    elo_cfg = cfg.get('elo', {})
-    weights = ClubEloWeights(step=int(elo_cfg.get('lookup_step', 10)), cache_dir=CACHE_DIR,
-                             lambda_match=elo_cfg.get('lambda_match', 'win_prob'))
-    lengths = current_season_lengths(cfg, results)
-    engine = engine or elo_cfg.get('engine', 'elo')
-    if engine == 'hierarchical':
-        ratings, history = run_hierarchical(results, initial_elo, params, weights, cfg['hierarchical'], lengths)
-    elif engine == 'elo':
-        ratings, history = run_elo(results, initial_elo, params, weights, lengths=lengths)
-    else:
-        raise ValueError(f"elo.engine must be elo or hierarchical, not {engine!r}")
+    stats, params, ratings, history, lengths, engine = rate(cfg, results, initial_elo, engine)
     tilts = compute_tilts(results, params)
     log(f"Ratings ({engine}) and tilts updated")
 
@@ -246,17 +267,10 @@ def update(country_dir: Path, out_dir: Path, n_sims: int = None, log=print, engi
                'leagues': {}, 'cups': {}, 'warnings': []}
 
     # ---- leagues
-    lookup_step = int(elo_cfg.get('expg_lookup_step', 5))
+    lookup_step = int(cfg.get('elo', {}).get('expg_lookup_step', 5))
     for key, lg in cfg['leagues'].items():
         tournament = lg['tournament']
-        pred_params = params.prediction(tournament, lg.get('predict'))
-        draw_model = cfg.get('prediction_params', {}).get('draw_model', 'league_rate')
-        if draw_model == 'calibrated' and 'draw_rate' not in (lg.get('predict') or {}):
-            past = history[history['tournament'] == tournament]
-            pred_params['league_draw_rate'] = pred_params['draw_rate']
-            pred_params['draw_rate'] = calibrate_draw_rate(
-                (past['home_elo'] - past['away_elo']) * 400 / pred_params['scale'] + pred_params['hfa'],
-                pred_params['draw_rate'])
+        pred_params = league_pred_params(cfg, lg, params, history)
         lookup = LambdaLookup(pred_params['draw_rate'], pred_params['total_goals'], lookup_step, CACHE_DIR)
         model = MatchModel(ratings, tilts, pred_params, lookup)
 

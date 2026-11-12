@@ -538,3 +538,55 @@ def test_hierarchical_rejects_season_boost():
     cfg = {'elo': {'default_k': 30}, 'tournaments': {'A1': {'k': 30, 'hfa': 60, 'season_boost': {'k_mult': 2, 'share': 0.3}}}}
     with pytest.raises(ValueError, match='season_boost'):
         run_hierarchical(results, initial, TournamentParams(cfg, tournament_stats(results, 's3')), weights, H_CFG)
+
+
+def test_odds_shadow_states_learn_from_past_gaps_only():
+    from soccermodel.odds_shadow import club_states
+
+    home = np.array(['A', 'C', 'A', 'B'])
+    away = np.array(['B', 'A', 'C', 'C'])
+    gap = np.array([0.4, -0.4, np.nan, 0.0])          # the market rates A 0.4 above the model, home or away
+    feature, state = club_states(home, away, gap, 0.5)
+    assert feature[0] == 0                              # nothing known before the first match
+    assert feature[1] == pytest.approx(-0.2)            # C v A: A's state after one match is +0.2
+    assert feature[2] == pytest.approx(0.4)             # A 0.3 v C -0.1: a match without odds reads the states ...
+    assert feature[3] == pytest.approx(-0.1)            # ... and leaves them alone (B -0.2 v C -0.1)
+    assert state['A'] == pytest.approx(0.3) and state['C'] == pytest.approx(-0.15)
+    assert sum(state.values()) == pytest.approx(0)      # zero-sum: every gap is shared by the two clubs
+
+
+def test_odds_shadow_tilt_moves_probability_between_home_and_away():
+    from soccermodel.odds_shadow import fit_tilt, tilt
+
+    p = (np.array([0.45]), np.array([0.27]), np.array([0.28]))
+    q = tilt(*p, 0.5)
+    assert sum(x[0] for x in q) == pytest.approx(1)
+    assert q[0][0] > 0.45 and q[2][0] < 0.28
+    assert np.log(q[0][0] / q[2][0]) == pytest.approx(np.log(0.45 / 0.28) + 0.5)
+    assert tilt(*p, 0.0)[1][0] == pytest.approx(0.27)
+
+    rng = np.random.default_rng(1)                      # outcomes drawn from prices tilted by 0.8 x feature
+    n = 20000
+    base = (np.full(n, 0.40), np.full(n, 0.27), np.full(n, 0.33))
+    f = rng.normal(0, 0.5, n)
+    true = np.stack(tilt(*base, 0.8 * f), axis=1)
+    outcome = (rng.random(n)[:, None] > true.cumsum(axis=1)).sum(axis=1)
+    a, b = fit_tilt(*base, f, outcome)
+    assert b == pytest.approx(0.8, abs=0.1)
+
+
+def test_odds_shadow_reads_odds_file_and_matches_within_a_day(tmp_path):
+    from soccermodel.odds_shadow import attach_odds, load_odds
+
+    (tmp_path / 'odds.csv').write_text(
+        'Country,League,Season,Date,Time,Home,Away,HG,AG,Res,AvgCH,AvgCD,AvgCA\n'
+        'Japan,J1 League,2026,07/03/2026,05:00,Chiba,FC Tokyo,1,0,H,2.0,4.0,4.0\n'
+        'Japan,J1 League,2026,14/03/2026,05:00,FC Tokyo,Chiba,1,0,H,,,\n', encoding='utf-8-sig')
+    odds = load_odds(tmp_path / 'odds.csv', ['AvgCH', 'AvgCD', 'AvgCA'], {'Chiba': 'JEF United', 'FC Tokyo': 'Tokyo'})
+    assert len(odds) == 1 and odds.loc[0, 'home'] == 'JEF United'           # rows without odds are dropped
+    assert odds.loc[0, ['mk1', 'mkX', 'mk2']].tolist() == pytest.approx([0.5, 0.25, 0.25])   # margin removed
+    matches = pd.DataFrame({'date': pd.to_datetime(['2026-03-14', '2026-03-08', '2026-03-20']),
+                            'home': ['Tokyo', 'JEF United', 'JEF United'], 'away': ['JEF United', 'Tokyo', 'Tokyo']})
+    m = attach_odds(matches, odds)
+    assert m['home'].tolist() == matches['home'].tolist()                   # row order kept
+    assert m['mk1'].isna().tolist() == [True, False, True]                  # a day apart matches, 13 days does not

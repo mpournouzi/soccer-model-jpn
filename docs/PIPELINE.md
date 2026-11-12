@@ -52,6 +52,27 @@ best at 400 (the default) and stakes showed no effect in Japan.
 | `leagues.<league>.stakes` | off | price shift against sides with nothing left to play for |
 | `leagues.<league>.phases` / `final_groups`, cup `league_phase` / `ties` | not used | split-table phases with carried points, grouped leagues, league-phase cups |
 | `python -m soccermodel shadow` | not run | price a matchday with the other engine and log both (default: the engine `elo.engine` doesn't use) |
+| `python -m soccermodel odds-shadow` | shadow, J1 only | live prices corrected by past closing odds, logged against the live prices (below) |
+
+**Odds shadow (J1)**. `python -m soccermodel odds-shadow japan --download` runs after an update and writes
+`output/japan/odds_shadow/`; the published prices are not changed. Closing odds of played J1 matches come from
+football-data.co.uk (`data/japan/odds/JPN.csv`, average closing odds, margin removed proportionally); no other
+competition has odds there.
+
+1. Every played J1 match is priced from its pre-match ratings with today's J1 parameters. Its *gap* is the
+   market's ln(prob1/prob2) minus the model's.
+2. Each club carries a *state*, an Elo on those gaps: after a match with odds both clubs move by
+   `k` × (gap − state home + state away), in opposite directions (`odds_shadow.k`, 0.3).
+3. A live price is tilted by a × its own ln(prob1/prob2) + b × (state home − state away); the draw keeps its
+   relative weight. (a, b) are refitted every run on J1 matches from `train_from` (now a ≈ +0.05, b ≈ 0.94).
+
+Only earlier matches feed a price; the match being priced contributes nothing. Backtest on J1, seasons 2021 to
+2026-27, tilt fitted on earlier seasons only, 1X2 log loss against the live engine's price: −0.99% ± 0.24 at
+k 0.3 (−0.91 at 0.2, −1.01 at 0.4), better in each of the six seasons (−0.24% to −1.90%); the closing market
+itself is 1.5% better than the live price. The gain sits where the states differ most and early in a season.
+Tested and left out: dropping a state after 60 to 200 days without odds (J1 0.1 to 0.2% worse). Known weak
+spot: a season without odds (spring 2026) leaves the states stale. `log.csv` keeps each side's last price
+before kick-off and `score.csv` compares them once results are in.
 
 **Hierarchical rating for Japan** (fitted offline by maximum likelihood, with J1 on plain Elo, `away_summers` and
 `away_cap`). A club's rating is its division's level plus its own deviation; league matches move only

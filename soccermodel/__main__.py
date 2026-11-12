@@ -5,6 +5,8 @@ Command line:
     python -m soccermodel update japan --sims 2000  # quicker run while checking
     python -m soccermodel check japan             # validate data only (team names, scores)
     python -m soccermodel shadow japan            # after update: price with the other engine, compare
+    python -m soccermodel odds-shadow japan       # after update: live prices corrected by past closing odds
+    python -m soccermodel odds-shadow japan --download   # ... refreshing the odds file first
 """
 
 import argparse
@@ -13,16 +15,19 @@ from pathlib import Path
 
 from .data import DataError, load_config, load_initial_elo, load_results, validate
 from .pipeline import ROOT, update
+from .odds_shadow import odds_shadow
 from .shadow import shadow
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(prog='soccermodel')
-    parser.add_argument('command', choices=['update', 'check', 'shadow'])
+    parser.add_argument('command', choices=['update', 'check', 'shadow', 'odds-shadow'])
     parser.add_argument('country', help='folder name under data/, e.g. japan')
     parser.add_argument('--sims', type=int, default=None, help='override number of simulations')
     parser.add_argument('--engine', default=None,
                         help="shadow: rating engine to compare (default: the one elo.engine doesn't use)")
+    parser.add_argument('--download', action='store_true',
+                        help='odds-shadow: refresh the odds file from odds_shadow.url first')
     args = parser.parse_args(argv)
 
     country_dir = ROOT / 'data' / args.country
@@ -32,6 +37,8 @@ def main(argv=None):
             results = load_results(cfg)
             validate(results, load_initial_elo(cfg), cfg)
             print(f"OK: {len(results)} results, latest {results['date'].max():%Y-%m-%d}")
+        elif args.command == 'odds-shadow':
+            odds_shadow(country_dir, ROOT / 'output' / args.country, fetch=args.download)
         elif args.command == 'shadow':
             shadow(country_dir, ROOT / 'output' / args.country, engine=args.engine, n_sims=args.sims)
         else:

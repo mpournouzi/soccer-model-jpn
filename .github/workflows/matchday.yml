@@ -42,11 +42,17 @@ jobs:
       - name: Run matchday update
         run: python -m soccermodel update japan
 
+      # Shadow only: J1 prices corrected by past closing odds, into output/japan/odds_shadow. Fetches the odds
+      # file from football-data.co.uk; a failure here never stops the matchday update.
+      - name: Odds shadow (J1)
+        continue-on-error: true
+        run: python -m soccermodel odds-shadow japan --download
+
       - name: Commit outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add output
+          git add output data/japan/odds
           if git diff --cached --quiet; then
             echo "No output changes"
           else
