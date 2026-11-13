@@ -1,6 +1,6 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-11-11** (18,543 matches). Generated 2026-11-13 22:42 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-11-11** (18,543 matches). Generated 2026-11-13 22:45 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 ## J1 League
 
@@ -335,14 +335,14 @@ Parameters — early: HFA 43.0, draw 0.250, goals 2.63 · late: HFA 55.6, draw 0
 
 | team | Reach QF % | Reach QF Yes | Reach SF % | Reach SF Yes | Reach Final % | Reach Final Yes | Winner % | Winner Yes |
 |---|---|---|---|---|---|---|---|---|
-| Machida Zelvia | 100 | 1.001 | 82.3 | 1.18 | 49.4 | 1.87 | 28 | 3.1 |
-| Kashima Antlers | 100 | 1.001 | 84.4 | 1.16 | 47.2 | 1.95 | 24.7 | 3.45 |
-| Kashiwa Reysol | 100 | 1.001 | 83.8 | 1.17 | 43.6 | 2.1 | 22.2 | 3.8 |
-| Urawa Reds | 100 | 1.001 | 84.5 | 1.16 | 32.1 | 2.75 | 12.7 | 6.25 |
-| Vissel Kobe | 100 | 1.001 | 17.7 | 4.6 | 9.3 | 8.5 | 4.7 | 15 |
-| Yokohama F. Marinos | 100 | 1.001 | 15.6 | 5.25 | 6.5 | 11 | 2.8 | 23 |
-| Kawasaki Frontale | 100 | 1.001 | 16.2 | 5 | 6.3 | 12 | 2.6 | 26 |
-| Cerezo Osaka | 100 | 1.001 | 15.5 | 5.25 | 5.5 | 13 | 2.2 | 29 |
+| Machida Zelvia | 100 | 1.001 | 82.1 | 1.2 | 53.7 | 1.75 | 29.1 | 3 |
+| Kashima Antlers | 100 | 1.001 | 84.3 | 1.16 | 45.7 | 2 | 23.9 | 3.6 |
+| Kashiwa Reysol | 100 | 1.001 | 83.8 | 1.17 | 41.9 | 2.15 | 21.5 | 3.85 |
+| Urawa Reds | 100 | 1.001 | 84.3 | 1.16 | 30.6 | 2.87 | 12.7 | 6.25 |
+| Vissel Kobe | 100 | 1.001 | 17.9 | 4.6 | 10.6 | 7.25 | 5.3 | 13 |
+| Yokohama F. Marinos | 100 | 1.001 | 15.7 | 5.25 | 6.3 | 12 | 2.9 | 23 |
+| Kawasaki Frontale | 100 | 1.001 | 16.2 | 5 | 6.1 | 12 | 2.5 | 26 |
+| Cerezo Osaka | 100 | 1.001 | 15.7 | 5.25 | 5.1 | 13 | 2.1 | 29 |
 | Mito Hollyhock | 0 |  | 0 |  | 0 |  | 0 |  |
 | Nagoya Grampus | 0 |  | 0 |  | 0 |  | 0 |  |
 | Sagan Tosu | 0 |  | 0 |  | 0 |  | 0 |  |
