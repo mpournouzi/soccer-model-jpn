@@ -1,14 +1,14 @@
 team,elo,tilt,last_match,last_tournament
-Machida Zelvia,1531,0.9242,2026-11-08,J1 League
-Sanfrecce Hiroshima,1530,1.0649,2026-11-08,J1 League
+Machida Zelvia,1541,0.9127,2026-11-11,League Cup QF
+Sanfrecce Hiroshima,1530,1.065,2026-11-08,J1 League
 Tokyo,1521,1.0049,2026-11-07,J1 League
-Kashima Antlers,1512,1.0482,2026-11-07,J1 League
-Vissel Kobe,1507,0.9572,2026-11-08,J1 League
-Kashiwa Reysol,1497,1.1044,2026-11-07,J1 League
-Yokohama F. Marinos,1454,1.1196,2026-11-07,J1 League
-Kawasaki Frontale,1440,1.2284,2026-11-07,J1 League
-Urawa Reds,1435,1.0205,2026-11-08,J1 League
-Cerezo Osaka,1430,1.1304,2026-11-08,J1 League
+Kashima Antlers,1520,1.0569,2026-11-11,League Cup QF
+Kashiwa Reysol,1506,1.0985,2026-11-11,League Cup QF
+Vissel Kobe,1497,0.9453,2026-11-11,League Cup QF
+Yokohama F. Marinos,1445,1.129,2026-11-11,League Cup QF
+Urawa Reds,1443,1.0119,2026-11-11,League Cup QF
+Kawasaki Frontale,1432,1.222,2026-11-11,League Cup QF
+Cerezo Osaka,1423,1.1208,2026-11-11,League Cup QF
 Gamba Osaka,1401,1.1348,2026-11-08,J1 League
 Kyoto Sanga,1394,1.0085,2026-11-07,J1 League
 Nagoya Grampus,1380,1.0817,2026-11-07,J1 League
@@ -17,7 +17,7 @@ Tokyo Verdy,1353,0.8697,2026-11-07,J1 League
 V-Varen Nagasaki,1347,1.0575,2026-11-07,J1 League
 Shimizu S-Pulse,1327,0.9497,2026-11-07,J1 League
 Avispa Fukuoka,1312,0.8752,2026-11-07,J1 League
-Yokohama,1312,1.103,2026-11-07,J2 League
+Yokohama,1312,1.1031,2026-11-07,J2 League
 JEF United,1308,1.0709,2026-11-08,J1 League
 Vegalta Sendai,1294,0.9998,2026-11-08,J2 League
 Tegevajaro Miyazaki,1288,1.0478,2026-11-07,J2 League
@@ -27,7 +27,7 @@ Omiya Ardija,1264,1.2085,2026-11-08,J2 League
 Kagoshima United,1252,1.012,2026-11-08,J3 League
 Albirex Niigata,1236,1.0162,2026-11-07,J2 League
 Sagamihara,1225,1.0357,2026-11-08,J3 League
-Shonan Bellmare,1221,0.9473,2026-11-08,J2 League
+Shonan Bellmare,1221,0.9474,2026-11-08,J2 League
 Iwaki,1218,1.0217,2026-11-07,J2 League
 Consadole Sapporo,1217,1.0787,2026-11-08,J2 League
 Sagan Tosu,1217,0.9215,2026-11-07,J2 League
@@ -44,14 +44,14 @@ Fujieda MYFC,1168,0.9273,2026-11-07,J2 League
 Oita Trinita,1165,0.8464,2026-11-07,J2 League
 Ehime,1162,1.1045,2026-11-07,J3 League
 Zweigen Kanazawa,1161,1.0245,2026-11-07,J3 League
-Montedio Yamagata,1155,1.0235,2026-11-07,J2 League
+Montedio Yamagata,1156,1.0235,2026-11-07,J2 League
 Tochigi,1149,0.836,2026-11-08,J3 League
 Matsumoto Yamaga,1141,0.9361,2026-11-07,J3 League
 Tochigi City,1136,1.1989,2026-11-08,J2 League
 Fukushima United,1130,1.3919,2026-11-07,J3 League
 Sagawa Printing Kyoto SC,1127,1.0312,2015-11-15,JFL
 Tsukuba University,1124,0.9568,2026-08-19,Emperor Cup
-Hosei University,1122,0.9527,2025-05-25,Emperor Cup
+Hosei University,1122,0.9526,2025-05-25,Emperor Cup
 Gainare Tottori,1110,1.0725,2026-11-08,J3 League
 Ventforet Kofu,1109,0.9679,2026-11-08,J2 League
 Ryūkyū,1101,1.042,2026-11-07,J3 League
@@ -88,7 +88,7 @@ TIAMO Hirakata,985,1.2579,2026-11-08,JFL
 Grulla Morioka,980,1.1045,2026-11-07,JFL
 Cerezo Osaka U23,974,1.0612,2020-12-20,J3 League
 Meiji University FC,972,0.9546,2024-05-26,Emperor Cup
-YSCC,970,1.2117,2026-11-07,JFL
+YSCC,969,1.2117,2026-11-07,JFL
 Gifu II,960,1.0099,2016-08-28,Emperor Cup
 Honda Lock,955,1.0174,2026-11-08,JFL
 J-Lease FC,951,0.9994,2026-11-08,JFL
@@ -131,7 +131,7 @@ Laranja Kyoto,782,0.9933,2023-05-20,Emperor Cup
 Konan University,781,0.995,2024-06-12,Emperor Cup
 Miyazaki Sangyo-keiei,780,1.0146,2017-06-21,Emperor Cup
 Tokai Gakuen University FC,779,0.9926,2016-08-27,Emperor Cup
-Senshu University,778,0.9983,2026-08-26,Emperor Cup
+Senshu University,778,0.9982,2026-08-26,Emperor Cup
 Sapporo University FC,777,1.0017,2026-08-19,Emperor Cup
 MD Nagasaki,775,0.995,2022-05-22,Emperor Cup
 Tadotsu,774,1.0426,2018-06-06,Emperor Cup
@@ -167,9 +167,9 @@ Moriyama Samurai,693,1.0051,2025-05-24,Emperor Cup
 Tokuyama University SC,689,1.063,2022-06-01,Emperor Cup
 Toyama Shinjo,687,1.0313,2026-08-19,Emperor Cup
 Komazawa University SC,681,1.0047,2021-05-22,Emperor Cup
+Oyama,680,1.1263,2026-08-19,Emperor Cup
 Biwako Seikei Sport College FC,679,1.0043,2024-05-26,Emperor Cup
 Kani,679,0.9992,2018-05-27,Emperor Cup
-Oyama,679,1.1263,2026-08-19,Emperor Cup
 Kawasoe Club,676,1.0007,2026-08-19,Emperor Cup
 SRC Hiroshima,674,1.0505,2026-08-19,Emperor Cup
 Norbritz Hokkaido,673,1.0421,2017-04-22,Emperor Cup
