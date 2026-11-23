@@ -1,6 +1,6 @@
 # Japan 2026-27 — matchday report
 
-Results up to **2026-11-22** (18,613 matches). Generated 2026-11-22 07:59 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
+Results up to **2026-11-22** (18,613 matches). Generated 2026-11-23 20:26 UTC. Full tables are in the CSV files next to this report and in `report.xlsx`.
 
 ## J1 League
 
@@ -244,7 +244,6 @@ HFA 14.8 Elo · draw rate 0.264 (level teams; league average 0.250) · goals/gam
 
 | date | home | away | 1 | X | 2 | O2.5 | U2.5 | expg1 | expg2 |
 |---|---|---|---|---|---|---|---|---|---|
-| 2026‑10‑25 | Azul Claro Numazu | TIAMO Hirakata | 2.3 | 3.45 | 2.75 | 1.4 | 2.75 | 1.86 | 1.648 |
 | 2026‑11‑28 | Honda | Criacao Shinjuku | 2.1 | 3.5 | 3.15 | 2.45 | 1.5 | 1.221 | 0.944 |
 | 2026‑11‑28 | Reinmeer Aomori | VONDS Ichihara | 2.15 | 3.5 | 3.1 | 2.15 | 1.65 | 1.33 | 1.052 |
 | 2026‑11‑28 | YSCC | Veertien Mie | 2.85 | 3.45 | 2.3 | 1.7 | 2.05 | 1.34 | 1.552 |

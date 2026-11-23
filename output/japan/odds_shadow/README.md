@@ -1,6 +1,6 @@
 # Odds shadow: J1 League live prices corrected by past closing odds
 
-Run 2026-11-22 07:59 UTC. Live engine `hierarchical`; nothing here changes the published outputs one folder up.
+Run 2026-11-23 20:26 UTC. Live engine `hierarchical`; nothing here changes the published outputs one folder up.
 
 Closing odds to 2026-11-08 (4037 of 4050 J1 League matches priced by the market). Step k 0.3; tilt fitted on 3423 matches: a +0.048 (live logit), b 0.944 (club state difference).
 
