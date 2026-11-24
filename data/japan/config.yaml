@@ -99,31 +99,57 @@ tournaments:
   J1 100 Year Vision:   {k: 30, hfa: auto}
   J2/3 100 Year Vision: {k: 30, hfa: auto}
 
-# Odds shadow (`python -m soccermodel odds-shadow japan`, after an update; docs/PIPELINE.md): the live J1
-# prices corrected by how the closing market rated each club in its earlier matches. Shadow only: written
-# to output/japan/odds_shadow/, the published prices are untouched.
+# Odds shadow (`python -m soccermodel odds-shadow japan --download`, after an update; docs/PIPELINE.md):
+# live prices corrected by how the closing market rated each club in its earlier league matches. Shadow
+# only: written to output/japan/odds_shadow/, the published prices are untouched. This repo is public and
+# the odds API's prices may not be redistributed, so only derived numbers are kept here: club states,
+# the keys of the matches counted, and the tilts below (fitted offline: soccer-model-odds
+# tools/seed_odds_shadow.py, which also wrote the first states).
 odds_shadow:
-  league: j1
-  file: odds/JPN.csv              # closing odds of played matches (J1 only), refreshed by --download
-  url: https://football-data.co.uk/new/JPN.csv
-  columns: [AvgCH, AvgCD, AvgCA]  # average closing odds, home / draw / away
-  k: 0.3                          # Elo step on a club's market-minus-model gap (backtest pick, 2022 on)
-  train_from: '2016'              # first season used to fit the tilt
-  names:                          # odds-file club names -> names used here
-    Chiba: JEF United
-    FC Tokyo: Tokyo
-    Hokkaido Consadole Sapporo: Consadole Sapporo
-    Iwata: Jubilo Iwata
-    Kofu: Ventforet Kofu
-    Kumamoto: Roasso Kumamoto
-    Kyoto: Kyoto Sanga
-    Machida: Machida Zelvia
-    Mito: Mito Hollyhock
-    Okayama: Fagiano Okayama
-    Tokushima: Tokushima Vortis
-    Verdy: Tokyo Verdy
-    Yamaga: Matsumoto Yamaga
-    Yokohama FC: Yokohama
+  targets:                        # live prices to shadow -> tilt [a on the live logit, b on the state difference]
+    j1: [0.038, 0.916]
+    j2: [0.147, 0.921]
+    emperors_cup: [0.035, 0.803]
+    league_cup: [0.035, 0.803]
+  k: 0.3                          # Elo step of the states (backtest: 0.2-0.4 all the same)
+  max_age_days: 365               # a club without odds for this long counts as 0
+  state_tournaments:              # league matches whose closing odds move the states -> league that prices them
+    J1 League: j1
+    J2 League: j2
+    J3 League: j3
+    JFL: jfl
+    J1 100 Year Vision: j1
+    J2/3 100 Year Vision: j2
+  states_file: odds/states.csv    # derived: every club's state and its last match with odds
+  counted_file: odds/counted.csv  # derived: keys of the league matches already in the states (no prices)
+  football_data:                  # free J1 closing odds, kept in the repo and preferred where both have a match
+    file: odds/JPN.csv
+    url: https://football-data.co.uk/new/JPN.csv
+    columns: [AvgCH, AvgCD, AvgCA]  # average closing odds, home / draw / away
+    names:                          # odds-file club names -> names used here
+      Chiba: JEF United
+      FC Tokyo: Tokyo
+      Hokkaido Consadole Sapporo: Consadole Sapporo
+      Iwata: Jubilo Iwata
+      Kofu: Ventforet Kofu
+      Kumamoto: Roasso Kumamoto
+      Kyoto: Kyoto Sanga
+      Machida: Machida Zelvia
+      Mito: Mito Hollyhock
+      Okayama: Fagiano Okayama
+      Tokushima: Tokushima Vortis
+      Verdy: Tokyo Verdy
+      Yamaga: Matsumoto Yamaga
+      Yokohama FC: Yokohama
+  api:                            # 5DollarFootballAPI: Bet365 closing odds of recent matches, fetched each run, not kept
+    key_env: FDFA_KEY             # the Action reads it from the repository secret FDFA_KEY
+    teams_file: odds/api_teams.csv  # API club id -> name used here (add new clubs when the run warns)
+    lookback_days: 30
+    leagues:                      # J1 (incl. J1 100 Year Vision), J2, J3, JFL; J3 and JFL need the Ultra plan
+      - 3836571083
+      - 3492701972
+      - 226006968
+      - 1485863837
 
 margins:
   three_way: 1.08               # 1X2

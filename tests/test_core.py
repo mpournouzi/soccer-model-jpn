@@ -590,3 +590,41 @@ def test_odds_shadow_reads_odds_file_and_matches_within_a_day(tmp_path):
     m = attach_odds(matches, odds)
     assert m['home'].tolist() == matches['home'].tolist()                   # row order kept
     assert m['mk1'].isna().tolist() == [True, False, True]                  # a day apart matches, 13 days does not
+
+
+def test_odds_shadow_counts_each_match_once_and_continues_states():
+    from soccermodel.odds_shadow import COUNTED, count_new, current_states
+
+    h = pd.DataFrame({'tournament': ['J2 League'] * 3, 'date': pd.to_datetime(['2026-11-01', '2026-11-08', '2026-11-15']),
+                      'home': ['A', 'B', 'A'], 'away': ['B', 'A', 'C'],
+                      'p1': [0.4] * 3, 'px': [0.3] * 3, 'p2': [0.3] * 3,
+                      'mk1': [0.5, np.nan, 0.5], 'mkX': [0.25, np.nan, 0.25], 'mk2': [0.25, np.nan, 0.25]})
+    state, last = {}, {}
+    added = count_new(h, pd.DataFrame(columns=COUNTED), state, last, 0.5)
+    assert len(added) == 2                                   # the match without odds is not counted
+    gap = np.log(2) - np.log(0.4 / 0.3)                      # market 0.5/0.25 v model 0.4/0.3
+    assert state['A'] == pytest.approx(0.5 * gap + 0.5 * (gap - 0.5 * gap))
+    before = dict(state)
+    counted = added.assign(date=added['date'].dt.strftime('%Y-%m-%d'))
+    assert len(count_new(h, counted, state, last, 0.5)) == 0 and state == before     # nothing counted twice
+    assert last['C'] == pd.Timestamp('2026-11-15')
+    aged = current_states(state, last, '2027-11-10', 365)
+    assert aged['B'] == 0.0 and aged['A'] == state['A']      # B last priced 2026-11-01: over a year ago
+
+
+def test_odds_shadow_reads_api_fixtures_in_our_names():
+    from soccermodel.odds_shadow import api_rows
+
+    fx = [{'kickoff_utc': '2026-11-21T05:00:00+00:00', 'teams': {'home': {'id': 1, 'name': 'JEF Utd Chiba'},
+                                                                'away': {'id': 2, 'name': 'Mito'}},
+           'odds': {'1x2': {'opening': {'home': 2.1, 'draw': 3.4, 'away': 3.3}, 'closing': {'home': 2.0, 'draw': 3.5, 'away': 3.6}}}},
+          {'kickoff_utc': '2026-11-21T05:00:00+00:00', 'teams': {'home': {'id': 1, 'name': 'JEF Utd Chiba'},
+                                                                'away': {'id': 9, 'name': 'New Club'}},
+           'odds': {'1x2': {'closing': {'home': 1.5, 'draw': 4.0, 'away': 6.0}}}},
+          {'kickoff_utc': '2026-11-22T05:00:00+00:00', 'teams': {'home': {'id': 2, 'name': 'Mito'},
+                                                                'away': {'id': 1, 'name': 'JEF Utd Chiba'}},
+           'odds': {'1x2': {'closing': {'home': 1.9, 'draw': 24.0, 'away': 30.0}}}}]      # broken quote
+    rows, unknown = api_rows(fx, {'1': 'JEF United', '2': 'Mito Hollyhock'})
+    assert rows[['home', 'away']].values.tolist() == [['JEF United', 'Mito Hollyhock']]
+    assert unknown == {'9': 'New Club'}
+    assert rows[['mk1', 'mkX', 'mk2']].sum(axis=1).iloc[0] == pytest.approx(1)

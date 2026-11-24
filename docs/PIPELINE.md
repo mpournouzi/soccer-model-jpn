@@ -52,27 +52,38 @@ best at 400 (the default) and stakes showed no effect in Japan.
 | `leagues.<league>.stakes` | off | price shift against sides with nothing left to play for |
 | `leagues.<league>.phases` / `final_groups`, cup `league_phase` / `ties` | not used | split-table phases with carried points, grouped leagues, league-phase cups |
 | `python -m soccermodel shadow` | not run | price a matchday with the other engine and log both (default: the engine `elo.engine` doesn't use) |
-| `python -m soccermodel odds-shadow` | shadow, J1 only | live prices corrected by past closing odds, logged against the live prices (below) |
+| `python -m soccermodel odds-shadow` | shadow: J1, J2, cups | live prices corrected by past closing odds, logged against the live prices (below) |
 
-**Odds shadow (J1)**. `python -m soccermodel odds-shadow japan --download` runs after an update and writes
-`output/japan/odds_shadow/`; the published prices are not changed. Closing odds of played J1 matches come from
-football-data.co.uk (`data/japan/odds/JPN.csv`, average closing odds, margin removed proportionally); no other
-competition has odds there.
+**Odds shadow (J1, J2, cups)**. `python -m soccermodel odds-shadow japan --download` runs after an update and
+writes `output/japan/odds_shadow/`; the published prices are not changed.
 
-1. Every played J1 match is priced from its pre-match ratings with today's J1 parameters. Its *gap* is the
-   market's ln(prob1/prob2) minus the model's.
+1. Every played league match (J1 to JFL, and the spring 2026 100 Year Vision leagues) is priced from its
+   pre-match ratings with today's parameters of its league. Its *gap* is the closing market's ln(prob1/prob2)
+   minus the model's.
 2. Each club carries a *state*, an Elo on those gaps: after a match with odds both clubs move by
-   `k` × (gap − state home + state away), in opposite directions (`odds_shadow.k`, 0.3).
+   `k` × (gap − state home + state away), in opposite directions (`odds_shadow.k`, 0.3). League matches of every
+   division count, so a promoted club brings its state along; cup matches only read the states. A state with
+   no odds for `max_age_days` (365) counts as 0.
 3. A live price is tilted by a × its own ln(prob1/prob2) + b × (state home − state away); the draw keeps its
-   relative weight. (a, b) are refitted every run on J1 matches from `train_from` (now a ≈ +0.05, b ≈ 0.94).
+   relative weight. One (a, b) per target in `odds_shadow.targets`: J1 (0.04, 0.92), J2 (0.15, 0.92), both cups
+   (0.04, 0.80, fitted on all league matches).
 
-Only earlier matches feed a price; the match being priced contributes nothing. Backtest on J1, seasons 2021 to
-2026-27, tilt fitted on earlier seasons only, 1X2 log loss against the live engine's price: −0.99% ± 0.24 at
-k 0.3 (−0.91 at 0.2, −1.01 at 0.4), better in each of the six seasons (−0.24% to −1.90%); the closing market
-itself is 1.5% better than the live price. The gain sits where the states differ most and early in a season.
-Tested and left out: dropping a state after 60 to 200 days without odds (J1 0.1 to 0.2% worse). Known weak
-spot: a season without odds (spring 2026) leaves the states stale. `log.csv` keeps each side's last price
-before kick-off and `score.csv` compares them once results are in.
+Odds: J1 from football-data.co.uk (`data/japan/odds/JPN.csv`, average closing odds, free, kept in the repo);
+every division from 5DollarFootballAPI (Bet365 closing odds; key in `FDFA_KEY`). This repo is public and the
+API's prices may not be redistributed, so they are never stored: each run fetches the last 30 days, moves the
+states with the matches not yet counted and keeps only `odds/states.csv` (club, state, last match with odds)
+and `odds/counted.csv` (keys of the matches counted, no prices). API club ids map to our names through
+`odds/api_teams.csv`; a run warns about an unknown club. J3 and JFL odds need the API's Ultra plan; on Pro
+(J1, J2) those clubs' states stop moving and age out after a year. The tilts and the first states were made
+offline from the full odds history (soccer-model-odds `tools/seed_odds_shadow.py`), which is where to refit
+them.
+
+Backtest, seasons 2019 to 2026-27, tilt fitted on earlier seasons only, 1X2 log loss against the live
+engine's price: J1 −0.77% ± 0.15, J2 −0.91% ± 0.24 (7 of 8 seasons better), all league matches −0.53% ± 0.05
+(the cups' tilt); on the backtest's cup prices −0.48% ± 0.08, better in 8 of 8 seasons. J3 (−0.2%) and JFL
+(none: the market is no better than our model there) are not shadowed. Tested and left out: dropping a state
+after 60 to 200 days without odds (J1 0.1 to 0.2% worse). `log.csv` keeps each side's last price before
+kick-off and `score.csv` compares them once results are in.
 
 **Hierarchical rating for Japan** (fitted offline by maximum likelihood, with J1 on plain Elo, `away_summers` and
 `away_cap`). A club's rating is its division's level plus its own deviation; league matches move only

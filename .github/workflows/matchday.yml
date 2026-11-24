@@ -42,10 +42,13 @@ jobs:
       - name: Run matchday update
         run: python -m soccermodel update japan
 
-      # Shadow only: J1 prices corrected by past closing odds, into output/japan/odds_shadow. Fetches the odds
-      # file from football-data.co.uk; a failure here never stops the matchday update.
-      - name: Odds shadow (J1)
+      # Shadow only: J1, J2 and cup prices corrected by past closing odds, into output/japan/odds_shadow.
+      # Fetches football-data.co.uk's J1 file and recent Bet365 odds from 5DollarFootballAPI (secret FDFA_KEY;
+      # the API's prices are not stored). A failure here never stops the matchday update.
+      - name: Odds shadow (J1, J2, cups)
         continue-on-error: true
+        env:
+          FDFA_KEY: ${{ secrets.FDFA_KEY }}
         run: python -m soccermodel odds-shadow japan --download
 
       - name: Commit outputs

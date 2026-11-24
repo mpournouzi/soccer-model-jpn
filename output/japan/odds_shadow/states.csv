@@ -1,34 +1,89 @@
-team,state,elo_points,last_odds,in_league_now
-Tokyo,0.497,86,2026-11-07,True
-Tokushima Vortis,0.369,64,2021-12-04,False
-Sanfrecce Hiroshima,0.366,64,2026-11-08,True
-Ventforet Kofu,0.363,63,2017-12-02,False
-Urawa Reds,0.277,48,2026-11-08,True
-Kawasaki Frontale,0.258,45,2026-11-07,True
-Kashiwa Reysol,0.241,42,2026-11-07,True
-Fagiano Okayama,0.21,36,2026-11-07,True
-Avispa Fukuoka,0.193,34,2026-11-07,True
-Nagoya Grampus,0.185,32,2026-11-07,True
-JEF United,0.109,19,2026-11-08,True
-Albirex Niigata,0.073,13,2025-12-06,False
-Montedio Yamagata,0.073,13,2015-11-22,False
-Kashima Antlers,0.056,10,2026-11-07,True
-Vissel Kobe,0.036,6,2026-11-08,True
-Gamba Osaka,-0.0,0,2026-11-08,True
-Yokohama,-0.018,-3,2025-12-06,False
-Machida Zelvia,-0.024,-4,2026-11-08,True
-Jubilo Iwata,-0.088,-15,2024-12-08,False
-Tokyo Verdy,-0.109,-19,2026-11-07,True
-Matsumoto Yamaga,-0.122,-21,2019-12-07,False
-Yokohama F. Marinos,-0.13,-23,2026-11-07,True
-Consadole Sapporo,-0.135,-23,2024-12-08,False
-Shimizu S-Pulse,-0.147,-26,2026-11-07,True
-Mito Hollyhock,-0.151,-26,2026-11-08,True
-Vegalta Sendai,-0.226,-39,2021-12-04,False
-Cerezo Osaka,-0.246,-43,2026-11-08,True
-Kyoto Sanga,-0.249,-43,2026-11-07,True
-Shonan Bellmare,-0.255,-44,2025-12-06,False
-Omiya Ardija,-0.324,-56,2017-12-02,False
-Oita Trinita,-0.339,-59,2021-12-04,False
-V-Varen Nagasaki,-0.358,-62,2026-11-07,True
-Sagan Tosu,-0.384,-67,2024-12-08,False
+team,state,elo_points,last_odds,in_targets_now
+Tokyo,0.597,104,2026-11-21,True
+Sanfrecce Hiroshima,0.558,97,2026-11-21,True
+Sagan Tosu,0.544,95,2026-11-21,True
+Kawasaki Frontale,0.421,73,2026-11-21,True
+Urawa Reds,0.372,65,2026-11-21,True
+Kochi United,0.365,63,2026-11-21,False
+Nagoya Grampus,0.351,61,2026-11-21,True
+Matsumoto Yamaga,0.32,56,2026-11-21,False
+Kashiwa Reysol,0.317,55,2026-11-20,True
+Okinawa SV,0.308,54,2026-11-22,False
+Jubilo Iwata,0.286,50,2026-11-21,True
+JEF United,0.272,47,2026-11-20,True
+Avispa Fukuoka,0.268,47,2026-11-21,True
+Gamba Osaka,0.243,42,2026-11-21,True
+Ryūkyū,0.243,42,2026-11-21,False
+Vegalta Sendai,0.237,41,2026-11-21,True
+Fagiano Okayama,0.214,37,2026-11-21,True
+Omiya Ardija,0.195,34,2026-11-21,True
+Biwako Shiga,0.192,33,2026-11-22,False
+Zweigen Kanazawa,0.189,33,2026-11-15,False
+Tegevajaro Miyazaki,0.182,32,2026-11-21,True
+Yokohama,0.161,28,2026-11-21,True
+Porvenir Kashihara,0.154,27,2025-11-23,False
+Kashima Antlers,0.142,25,2026-11-20,True
+Vissel Kobe,0.133,23,2026-11-20,True
+Gifu,0.116,20,2026-11-21,False
+Roasso Kumamoto,0.092,16,2026-11-22,False
+Kagoshima United,0.088,15,2026-11-15,False
+Osaka,0.087,15,2026-11-22,False
+Kataller Toyama,0.083,14,2026-11-21,True
+Maruyasu Okazaki,0.08,14,2026-11-22,False
+Fukushima United,0.065,11,2026-11-21,False
+Giravanz Kitakyushu,0.056,10,2026-11-22,False
+Machida Zelvia,0.051,9,2026-11-21,True
+Kamatamare Sanuki,0.049,9,2026-11-22,False
+Honda Lock,0.048,8,2026-11-22,False
+Iwaki,0.006,1,2026-11-21,True
+Shimizu S-Pulse,0.005,1,2026-11-20,True
+Cerezo Osaka U23,0.0,0,2020-12-20,False
+Cobaltore Onagawa,0.0,0,2018-11-18,False
+FC Kariya,0.0,0,2021-11-28,False
+FC Tokyo U23,0.0,0,2019-12-08,False
+Fagiano Okayama II,0.0,0,2016-11-13,False
+Gamba Osaka U23,0.0,0,2020-12-20,False
+Matsue City,0.0,0,2022-11-20,False
+Ryutsu Keizai Dragons,0.0,0,2019-12-01,False
+Sony Sendai,0.0,0,2024-11-24,False
+Tochigi Uva,0.0,0,2017-11-05,False
+Mito Hollyhock,-0.008,-1,2026-11-20,True
+Ehime,-0.015,-3,2026-11-21,False
+Tochigi,-0.022,-4,2026-11-21,False
+Vanraure Hachinohe,-0.032,-6,2026-11-21,True
+Imabari,-0.033,-6,2026-11-21,True
+J-Lease FC,-0.034,-6,2026-11-22,False
+Tokyo Verdy,-0.036,-6,2026-11-21,True
+Honda,-0.056,-10,2026-11-22,False
+Verspah Oita,-0.057,-10,2026-11-21,False
+Suzuka Point Getters,-0.061,-11,2025-11-23,False
+Criacao Shinjuku,-0.063,-11,2026-11-22,False
+Azul Claro Numazu,-0.069,-12,2026-11-22,False
+Oita Trinita,-0.084,-15,2026-11-21,True
+Yokohama F. Marinos,-0.087,-15,2026-11-21,True
+Tokyo Musashino City,-0.095,-17,2026-11-22,False
+Cerezo Osaka,-0.104,-18,2026-11-21,True
+Kyoto Sanga,-0.106,-18,2026-11-21,True
+Tokushima Vortis,-0.107,-19,2026-11-22,True
+Veertien Mie,-0.109,-19,2026-11-22,False
+YSCC,-0.119,-21,2026-11-22,False
+Renofa Yamaguchi,-0.146,-25,2026-11-22,False
+Consadole Sapporo,-0.161,-28,2026-11-21,True
+Tochigi City,-0.167,-29,2026-11-21,True
+Parceiro Nagano,-0.173,-30,2026-11-21,False
+VONDS Ichihara,-0.204,-35,2026-11-21,False
+V-Varen Nagasaki,-0.205,-36,2026-11-21,True
+Nara Club,-0.219,-38,2026-11-21,False
+Montedio Yamagata,-0.237,-41,2026-11-21,True
+Shonan Bellmare,-0.239,-42,2026-11-22,True
+Fujieda MYFC,-0.245,-43,2026-11-21,True
+Sagamihara,-0.247,-43,2026-11-21,False
+Grulla Morioka,-0.249,-43,2026-11-22,False
+TIAMO Hirakata,-0.251,-44,2026-11-21,False
+Reinmeer Aomori,-0.257,-45,2026-11-22,False
+ThespaKusatsu Gunma,-0.289,-50,2026-11-21,False
+Urayasu,-0.318,-55,2026-11-21,False
+Gainare Tottori,-0.36,-63,2026-11-21,False
+Ventforet Kofu,-0.361,-63,2026-11-21,True
+Blaublitz Akita,-0.366,-64,2026-11-21,True
+Albirex Niigata,-0.402,-70,2026-11-21,True
