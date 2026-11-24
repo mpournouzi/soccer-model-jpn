@@ -1,6 +1,6 @@
 # Odds shadow: live prices corrected by past closing odds
 
-Run 2026-11-24 18:40 UTC. Live engine `hierarchical`; nothing here changes the published outputs one folder up.
+Run 2026-11-24 18:45 UTC. Live engine `hierarchical`; nothing here changes the published outputs one folder up.
 
 States from 16719 league matches with closing odds (step k 0.3; a state unchanged for 365 days counts as 0). Tilts, fitted offline:
 
