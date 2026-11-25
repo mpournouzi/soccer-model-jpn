@@ -1,21 +1,21 @@
 pos,team,P,W,D,L,GF,GA,GD,Pts
-1,Tokyo,15,11,3,1,36,8,28,36
-2,Sanfrecce Hiroshima,15,9,4,2,34,12,22,31
+1,Tokyo,16,11,4,1,38,10,28,37
+2,Sanfrecce Hiroshima,16,9,5,2,36,14,22,32
 3,Kashiwa Reysol,15,10,1,4,31,21,10,31
 4,Machida Zelvia,15,8,6,1,30,10,20,30
-5,Vissel Kobe,15,8,3,4,24,16,8,27
-6,Kawasaki Frontale,15,7,4,4,29,24,5,25
-7,Kashima Antlers,15,7,3,5,30,25,5,24
-8,Yokohama F. Marinos,15,5,8,2,23,17,6,23
-9,Urawa Reds,15,7,1,7,24,31,-7,22
-10,Fagiano Okayama,15,6,2,7,17,22,-5,20
+5,Kawasaki Frontale,16,8,4,4,31,25,6,28
+6,Vissel Kobe,15,8,3,4,24,16,8,27
+7,Yokohama F. Marinos,16,6,8,2,25,18,7,26
+8,Kashima Antlers,15,7,3,5,30,25,5,24
+9,Fagiano Okayama,16,7,2,7,19,22,-3,23
+10,Urawa Reds,16,7,2,7,26,33,-7,23
 11,Kyoto Sanga,15,5,4,6,21,24,-3,19
-12,Cerezo Osaka,15,4,5,6,16,28,-12,17
-13,JEF United,15,4,4,7,17,24,-7,16
-14,Nagoya Grampus,15,4,3,8,15,23,-8,15
-15,Tokyo Verdy,15,3,6,6,12,22,-10,15
-16,V-Varen Nagasaki,15,3,5,7,17,22,-5,14
-17,Gamba Osaka,15,3,5,7,17,25,-8,14
-18,Shimizu S-Pulse,15,4,2,9,11,25,-14,14
-19,Mito Hollyhock,15,3,3,9,14,27,-13,12
-20,Avispa Fukuoka,15,2,2,11,14,26,-12,8
+12,Nagoya Grampus,16,5,3,8,17,24,-7,18
+13,Cerezo Osaka,16,4,6,6,18,30,-12,18
+14,JEF United,16,4,4,8,18,26,-8,16
+15,Tokyo Verdy,16,3,6,7,12,23,-11,15
+16,Mito Hollyhock,16,4,3,9,15,27,-12,15
+17,V-Varen Nagasaki,16,3,5,8,18,24,-6,14
+18,Gamba Osaka,15,3,5,7,17,25,-8,14
+19,Shimizu S-Pulse,16,4,2,10,11,27,-16,14
+20,Avispa Fukuoka,16,2,2,12,15,28,-13,8
